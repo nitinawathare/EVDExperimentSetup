@@ -22,7 +22,7 @@ for i in range(length):
 	print(enodeDir[i])
 
   
-loc = ("/home/nitin14/Downloads/minerDistribution.xls") 
+loc = ("minerDistribution.xls") 
   
 wb = xlrd.open_workbook(loc) 
 sheet = wb.sheet_by_index(0) 
