@@ -1,6 +1,9 @@
 #!/bin/bash
 
+killall geth
+
 cd gitRepoEVD
+
 sudo rm -r .ethereum
 mkdir .ethereum
 
@@ -14,7 +17,7 @@ echo $IPAddress
 
 echo "[\"$(cat .ethereum/setup.log | grep -oEi '(enode.*@)'| head -1)"${IPAddress}":21000?discport=0&raftport=23000\"]" >> .ethereum/static-nodes.json
 killall geth
-sudo rm -r .ethereum/geth
+sudo rm -r .ethereum/geth/chaindata/ #.ethereum/geth/chaindata/
 
 geth --datadir .ethereum --password passwords.txt account new
 
