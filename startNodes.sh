@@ -1,8 +1,8 @@
 #!/bin/bash
 
 
-sh copyScripts.sh
-sh installGoLocal.sh
-sh downloadEVDCodeLocal.sh
+#sh copyScripts.sh
+#sh installGoLocal.sh
+#sh downloadEVDCodeLocal.sh
 sh setupEthereumLocal.sh
-sh initGenesis.sh
+#sh initGenesis.sh
