@@ -11,7 +11,7 @@ list = file.read().splitlines()
 length = len(list) 
 for i in range(length): 
         #print(list[i])
-        listAcc[list[i]] = {"balance": "1000000000000000000000000000"}
+        listAcc[list[i]] = {"balance": "10000000000000000000000000000000"}
 element = {
           "config": {
             "chainId": 2310,
