@@ -1,0 +1,165 @@
+geth: no process found
+INFO [05-29|13:14:32.778] Bumping default cache on mainnet         provided=1024 updated=4096
+WARN [05-29|13:14:32.778] Sanitizing cache to Go's GC limits       provided=4096 updated=2492
+Fatal: invalid genesis file: json: cannot unmarshal number into Go struct field Genesis.gasLimit1 of type *math.HexOrDecimal64
+Fatal: invalid genesis file: json: cannot unmarshal number into Go struct field Genesis.gasLimit1 of type *math.HexOrDecimal64
+INFO [05-29|13:14:32.831] Bumping default cache on mainnet         provided=1024 updated=4096
+WARN [05-29|13:14:32.831] Sanitizing cache to Go's GC limits       provided=4096 updated=2492
+INFO [05-29|13:14:32.834] Maximum peer count                       ETH=25 LES=0 total=25
+WARN [05-29|13:14:32.835] Failed to start smart card hub, disabling: dial unix /run/pcscd/pcscd.comm: connect: no such file or directory 
+WARN [05-29|13:14:32.835] Found deprecated node list file /home/ubuntu/gitRepoEVD/.ethereum/static-nodes.json, please use the TOML config file instead. 
+INFO [05-29|13:14:32.835] Starting peer-to-peer node               instance=Geth/v1.9.0-unstable-8e717fca/linux-amd64/go1.9.3
+INFO [05-29|13:14:32.835] Allocated trie memory caches             clean=1246.00MiB dirty=0.00B
+INFO [05-29|13:14:32.835] Allocated cache and file handles         database=/home/ubuntu/gitRepoEVD/.ethereum/geth/chaindata cache=1246.00MiB handles=524288
+INFO [05-29|13:14:32.891] Writing default main-net genesis block 
+INFO [05-29|13:14:33.539] Persisted trie from memory database      nodes=12356 size=1.79MiB time=117.629065ms gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [05-29|13:14:33.748] Persisted trie from memory database      nodes=12376 size=1.79MiB time=94.214601ms  gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [05-29|13:14:33.748] Initialised chain configuration          config="{ChainID: 1 Homestead: 1150000 DAO: 1920000 DAOSupport: true EIP150: 2463000 EIP155: 2675000 EIP158: 2675000 Byzantium: 4370000 Constantinople: 7280000  ConstantinopleFix: 7280000 Engine: ethash}"
+INFO [05-29|13:14:33.748] Disk storage enabled for ethash caches   dir=/home/ubuntu/gitRepoEVD/.ethereum/geth/ethash count=3
+INFO [05-29|13:14:33.748] Disk storage enabled for ethash DAGs     dir=/home/ubuntu/.ethash                          count=2
+INFO [05-29|13:14:33.748] Initialising Ethereum protocol           versions="[63 62]" network=1 dbversion=<nil>
+WARN [05-29|13:14:33.748] Upgrade blockchain database version      from=<nil> to=5
+INFO [05-29|13:14:33.829] Loaded most recent local header          number=0 hash=15c0a3…107c65 td=17179869184 age=50y1mo2w
+INFO [05-29|13:14:33.829] Loaded most recent local full block      number=0 hash=15c0a3…107c65 td=17179869184 age=50y1mo2w
+INFO [05-29|13:14:33.829] Loaded most recent local fast block      number=0 hash=15c0a3…107c65 td=17179869184 age=50y1mo2w
+INFO [05-29|13:14:33.829] Loaded local transaction journal         transactions=0 dropped=0
+INFO [05-29|13:14:33.829] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [05-29|13:14:33.831] @Sourav GetKthParentState                bn=0 bh=15c0a3…107c65
+INFO [05-29|13:14:33.831] @Sourav Kth parent states already available 
+INFO [05-29|13:14:33.831] @Sourav inside Finalize                  root=d7f897…0f0544 root1=ab0da8…2515fe number=1
+INFO [05-29|13:14:33.887] New local node record                    seq=6 id=c9f5c48d067bcb7b ip=127.0.0.1 udp=21000 tcp=21000
+INFO [05-29|13:14:33.889] Started P2P networking                   self=enode://ea2c512062e42b95f9c13784de49fe8732aa68663b3cdf64b4fa1b3d4ab194f54f94717ee560f5916bd686c8a5791682badaafe871cff3f1a910eb58f34405f8@127.0.0.1:21000
+INFO [05-29|13:14:33.897] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:14:33.898] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:14:33.898] ------------------------------------------------------------------- 
+WARN [05-29|13:14:33.899] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:14:33.899] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:14:33.899] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:14:33.899] ------------------------------------------------------------------- 
+INFO [05-29|13:14:35.063] Unlocked account                         address=0x7bF66C027Ec29625366B604a7274D1a9879af330
+WARN [05-29|13:17:48.112] System clock seems off by -52.902410154s, which can prevent network connectivity 
+WARN [05-29|13:17:48.112] Please enable network time synchronisation in system settings. 
+INFO [05-29|13:22:34.804] Updated mining threads                   threads=1
+INFO [05-29|13:22:34.804] Transaction pool price threshold updated price=1000000000
+INFO [05-29|13:22:34.804] Etherbase automatically configured       address=0x7bF66C027Ec29625366B604a7274D1a9879af330
+INFO [05-29|13:22:34.804] @Sourav GetKthParentState                bn=0 bh=15c0a3…107c65
+INFO [05-29|13:22:34.804] @Sourav Kth parent states already available 
+INFO [05-29|13:22:34.804] @Sourav inside Finalize                  root=d7f897…0f0544 root1=d6394c…06786c number=1
+INFO [05-29|13:22:34.804] Commit new mining work                   number=1 sealhash=29c80d…990a5a uncles=0 txs=0 gas=0 fees=0 elapsed=607.094µs
+WARN [05-29|13:22:36.455] Discarded bad propagated block           number=1 hash=8f449c…02156a
+WARN [05-29|13:22:36.987] Discarded bad propagated block           number=1 hash=49a243…cb3925
+WARN [05-29|13:22:41.498] Discarded bad propagated block           number=1 hash=a93879…504c88
+INFO [05-29|13:24:46.456] Block synchronisation started 
+INFO [05-29|13:24:46.457] Mining aborted due to sync 
+INFO [05-29|13:24:46.464] Imported new block headers               count=4 elapsed=991.932µs number=4 hash=9371a5…42f6a0 age=2m5s
+INFO [05-29|13:24:46.465] @Sourav, insertChain, state before Process number=1 hash=a93879…504c88 kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=f12487…fef838 state root=d7f897…0f0544 state1 root=647328…1e4a71
+INFO [05-29|13:24:46.466] @Sourav inside Finalize                  root=d7f897…0f0544 root1=f12487…fef838 number=1
+INFO [05-29|13:24:46.467] @Sourav, insertChain, state before Process number=2 hash=4755b9…83fb99 kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=985bbb…81165a state root=d7f897…0f0544 state1 root=f12487…fef838
+INFO [05-29|13:24:46.468] @Sourav inside Finalize                  root=d7f897…0f0544 root1=985bbb…81165a number=2
+INFO [05-29|13:24:46.468] @Sourav, insertChain, state before Process number=3 hash=d0d5b2…83ba99 kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=2a1a3e…220772 state root=d7f897…0f0544 state1 root=985bbb…81165a
+INFO [05-29|13:24:46.468] @Sourav inside Finalize                  root=d7f897…0f0544 root1=2a1a3e…220772 number=3
+INFO [05-29|13:24:46.469] @Sourav, insertChain, state before Process number=4 hash=9371a5…42f6a0 kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=224899…1d33e6 state root=d7f897…0f0544 state1 root=2a1a3e…220772
+INFO [05-29|13:24:46.469] @Sourav inside Finalize                  root=d7f897…0f0544 root1=224899…1d33e6 number=4
+INFO [05-29|13:24:46.470] Imported new chain segment               blocks=4 txs=0 mgas=0.000 elapsed=4.781ms   mgasps=0.000 number=4 hash=9371a5…42f6a0 age=2m5s     dirty=0.00B
+INFO [05-29|13:24:46.470] Imported new chain segment               blocks=0 txs=0 mgas=0.000 elapsed=53.353µs  mgasps=0.000 number=4 hash=9371a5…42f6a0 age=2m5s     dirty=0.00B
+INFO [05-29|13:24:46.470] Fast sync complete, auto disabling 
+INFO [05-29|13:24:46.470] @Sourav stats                            PQ size=3 RQ size=1 bn=4
+INFO [05-29|13:24:46.470] @Sourav GetKthParentState                bn=0 bh=15c0a3…107c65
+INFO [05-29|13:24:46.471] @Sourav Kth parent states already available 
+INFO [05-29|13:24:46.471] @Sourav inside Finalize                  root=d7f897…0f0544 root1=58b757…bb9da6 number=5
+INFO [05-29|13:24:46.471] Commit new mining work                   number=5 sealhash=b37c6e…05e71c uncles=0 txs=0 gas=0 fees=0 elapsed=480.436µs
+INFO [05-29|13:24:46.471] @Sourav GetKthParentState                bn=0 bh=15c0a3…107c65
+INFO [05-29|13:24:46.471] @Sourav Kth parent states already available 
+INFO [05-29|13:24:46.471] @Sourav inside Finalize                  root=d7f897…0f0544 root1=58b757…bb9da6 number=5
+INFO [05-29|13:24:46.471] Commit new mining work                   number=5 sealhash=b37c6e…05e71c uncles=0 txs=0 gas=0 fees=0 elapsed=282.425µs
+INFO [05-29|13:25:02.015] @Sourav, insertChain, state before Process number=4 hash=1c0031…8fa9c0 kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=a56573…080d03 state root=d7f897…0f0544 state1 root=2a1a3e…220772
+INFO [05-29|13:25:02.015] @Sourav inside Finalize                  root=d7f897…0f0544 root1=a56573…080d03 number=4
+INFO [05-29|13:25:02.016] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=1.319ms   mgasps=0.000 number=4 hash=1c0031…8fa9c0 age=1m35s    dirty=0.00B
+INFO [05-29|13:25:02.016] Imported new chain segment               blocks=0 txs=0 mgas=0.000 elapsed=94.683µs  mgasps=0.000 number=4 hash=1c0031…8fa9c0 age=1m35s    dirty=0.00B
+INFO [05-29|13:25:02.017] @Sourav inside Finalize                  root=d7f897…0f0544 root1=ce76f0…ec162c number=5
+INFO [05-29|13:25:02.017] Commit new mining work                   number=5 sealhash=157b71…153735 uncles=1 txs=0 gas=0 fees=0 elapsed=497.244µs
+INFO [05-29|13:26:58.790] @Sourav, insertChain, state before Process number=1 hash=49a243…cb3925 kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=2b7a05…26cc29 state root=d7f897…0f0544 state1 root=647328…1e4a71
+INFO [05-29|13:26:58.791] @Sourav inside Finalize                  root=d7f897…0f0544 root1=2b7a05…26cc29 number=1
+INFO [05-29|13:26:58.792] @Sourav, insertChain, state before Process number=2 hash=09437b…766d5e kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=3f82e2…21ef2c state root=d7f897…0f0544 state1 root=2b7a05…26cc29
+INFO [05-29|13:26:58.793] @Sourav inside Finalize                  root=d7f897…0f0544 root1=3f82e2…21ef2c number=2
+INFO [05-29|13:26:58.794] @Sourav, insertChain, state before Process number=3 hash=398ec9…e2bd27 kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=5d852a…1861a7 state root=d7f897…0f0544 state1 root=3f82e2…21ef2c
+INFO [05-29|13:26:58.795] @Sourav inside Finalize                  root=d7f897…0f0544 root1=5d852a…1861a7 number=3
+INFO [05-29|13:26:58.796] @Sourav, insertChain, state before Process number=4 hash=740dbb…c3d949 kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=e896d1…38494e state root=d7f897…0f0544 state1 root=5d852a…1861a7
+INFO [05-29|13:26:58.797] @Sourav inside Finalize                  root=d7f897…0f0544 root1=e896d1…38494e number=4
+INFO [05-29|13:26:58.798] @Sourav, insertChain, state before Process number=5 hash=038b42…f4c75d kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=c54348…aff1f9 state root=d7f897…0f0544 state1 root=e896d1…38494e
+INFO [05-29|13:26:58.799] @Sourav inside Finalize                  root=d7f897…0f0544 root1=c54348…aff1f9 number=5
+INFO [05-29|13:26:58.801] @Sourav, insertChain, state before Process number=6 hash=0db138…e86f77 kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=6b3f27…5f7104 state root=d7f897…0f0544 state1 root=c54348…aff1f9
+INFO [05-29|13:26:58.801] @Sourav inside Finalize                  root=d7f897…0f0544 root1=6b3f27…5f7104 number=6
+INFO [05-29|13:26:58.802] @Sourav, insertChain, state before Process number=7 hash=defae5…bead7d kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=b04a8a…168769 state root=d7f897…0f0544 state1 root=6b3f27…5f7104
+INFO [05-29|13:26:58.803] @Sourav inside Finalize                  root=d7f897…0f0544 root1=b04a8a…168769 number=7
+INFO [05-29|13:26:58.804] @Sourav, insertChain, state before Process number=8 hash=95f4fb…825cfb kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=e564dd…b90855 state root=d7f897…0f0544 state1 root=b04a8a…168769
+INFO [05-29|13:26:58.804] @Sourav inside Finalize                  root=d7f897…0f0544 root1=e564dd…b90855 number=8
+INFO [05-29|13:26:58.805] @Sourav, insertChain, state before Process number=9 hash=e712f2…e0abf7 kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=b4a24b…e06b9a state root=d7f897…0f0544 state1 root=e564dd…b90855
+INFO [05-29|13:26:58.805] @Sourav inside Finalize                  root=d7f897…0f0544 root1=b4a24b…e06b9a number=9
+INFO [05-29|13:26:58.806] @Sourav, insertChain, state before Process number=10 hash=a9dc56…d4b829 kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=f07359…608f8d state root=d7f897…0f0544 state1 root=b4a24b…e06b9a
+INFO [05-29|13:26:58.806] @Sourav inside Finalize                  root=d7f897…0f0544 root1=f07359…608f8d number=10
+INFO [05-29|13:26:58.807] Imported new chain segment               blocks=10 txs=0 mgas=0.000 elapsed=17.618ms  mgasps=0.000 number=10 hash=a9dc56…d4b829 age=2m20s    dirty=0.00B
+INFO [05-29|13:26:58.807] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=115.336µs mgasps=0.000 number=10 hash=a9dc56…d4b829 age=2m20s    dirty=0.00B
+INFO [05-29|13:26:58.808] @Sourav stats                            PQ size=9 RQ size=4 bn=10
+INFO [05-29|13:26:58.808] @Sourav inside Finalize                  root=d7f897…0f0544 root1=cb81e0…fefc07 number=5
+INFO [05-29|13:26:58.808] Commit new mining work                   number=5  sealhash=7c7c78…2f280f uncles=2 txs=0 gas=0 fees=0 elapsed=492.545µs
+INFO [05-29|13:26:58.808] @Sourav GetKthParentState                bn=1  bh=49a243…cb3925
+INFO [05-29|13:26:58.809] Received new result for                  bn=1  bh=49a243…cb3925
+INFO [05-29|13:26:58.809] @Sourav inside Finalize                  root=fa94f1…25d035 root1=e7681f…99f96c number=11
+INFO [05-29|13:26:58.809] Commit new mining work                   number=11 sealhash=5cc719…d49c03 uncles=0 txs=0 gas=0 fees=0 elapsed=828.036µs
+INFO [05-29|13:26:59.233] @Sourav, insertChain, state before Process number=10 hash=523881…be632e kthParent=0 kthParent Hash=15c0a3…107c65 block root=d7f897…0f0544 block root1=1c2eef…52bc7d state root=d7f897…0f0544 state1 root=b4a24b…e06b9a
+INFO [05-29|13:26:59.233] @Sourav inside Finalize                  root=d7f897…0f0544 root1=1c2eef…52bc7d number=10
+INFO [05-29|13:26:59.235] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=1.961ms   mgasps=0.000 number=10 hash=523881…be632e age=1m24s    dirty=0.00B
+INFO [05-29|13:26:59.235] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=125.798µs mgasps=0.000 number=10 hash=523881…be632e age=1m24s    dirty=0.00B
+INFO [05-29|13:26:59.235] @Sourav inside Finalize                  root=fa94f1…25d035 root1=deec70…59a4c5 number=11
+INFO [05-29|13:26:59.236] Commit new mining work                   number=11 sealhash=0305f9…03303b uncles=1 txs=0 gas=0 fees=0 elapsed=751.481µs
+WARN [05-29|13:26:59.337] Served eth_sendTransaction               reqid=92 t=1.187942ms err="exceeds block gas limit"
+INFO [05-29|13:27:00.254] @Sourav, insertChain, state before Process number=11 hash=230be2…18297d kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=55069a…ca3584 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:27:00.254] @Sourav inside Finalize                  root=fa94f1…25d035 root1=55069a…ca3584 number=11
+INFO [05-29|13:27:00.257] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=3.528ms   mgasps=0.000 number=11 hash=230be2…18297d age=1m58s    dirty=0.00B
+INFO [05-29|13:27:00.257] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=161.377µs mgasps=0.000 number=11 hash=230be2…18297d age=1m58s    dirty=0.00B
+INFO [05-29|13:27:00.257] @Sourav stats                            PQ size=1 RQ size=13 bn=11
+INFO [05-29|13:27:00.258] @Sourav GetKthParentState                bn=2  bh=09437b…766d5e
+INFO [05-29|13:27:00.258] @Sourav Kth parent states already available 
+INFO [05-29|13:27:00.258] @Sourav inside Finalize                  root=96f9c3…f57fc2 root1=e89d95…34cfac number=12
+INFO [05-29|13:27:46.463] @Sourav, insertChain, state before Process number=12 hash=33f0c6…cab5c7 kthParent=2 kthParent Hash=09437b…766d5e block root=96f9c3…f57fc2 block root1=7ac744…92f82f state root=96f9c3…f57fc2 state1 root=55069a…ca3584
+INFO [05-29|13:27:46.464] @Sourav inside Finalize                  root=96f9c3…f57fc2 root1=7ac744…92f82f number=12
+INFO [05-29|13:27:46.465] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=1.850ms   mgasps=0.000 number=12 hash=33f0c6…cab5c7 age=2m28s    dirty=0.00B
+INFO [05-29|13:27:46.465] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=172.422µs mgasps=0.000 number=12 hash=33f0c6…cab5c7 age=2m28s    dirty=0.00B
+INFO [05-29|13:27:46.465] @Sourav stats                            PQ size=1 RQ size=14 bn=12
+INFO [05-29|13:27:46.466] @Sourav GetKthParentState                bn=3  bh=398ec9…e2bd27
+INFO [05-29|13:27:46.466] @Sourav Kth parent states already available 
+INFO [05-29|13:27:46.467] @Sourav inside Finalize                  root=7e686f…eac921 root1=15a20b…e0a35c number=13
+INFO [05-29|13:27:52.604] @Sourav, insertChain, state before Process number=11 hash=5ed2c6…d3576b kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=3c8765…aed181 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:27:52.604] @Sourav inside Finalize                  root=fa94f1…25d035 root1=3c8765…aed181 number=11
+INFO [05-29|13:27:52.605] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=1.417ms   mgasps=0.000 number=11 hash=5ed2c6…d3576b age=1m58s    dirty=0.00B
+INFO [05-29|13:27:52.605] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=72.557µs  mgasps=0.000 number=11 hash=5ed2c6…d3576b age=1m58s    dirty=0.00B
+INFO [05-29|13:28:06.769] @Sourav, insertChain, state before Process number=11 hash=d21ea6…b50d73 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=1bc02a…40a5cd state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:28:06.769] @Sourav inside Finalize                  root=fa94f1…25d035 root1=1bc02a…40a5cd number=11
+INFO [05-29|13:28:06.771] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=3.233ms   mgasps=0.000 number=11 hash=d21ea6…b50d73 age=3m27s    dirty=0.00B
+INFO [05-29|13:28:06.772] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=245.32µs  mgasps=0.000 number=11 hash=d21ea6…b50d73 age=3m27s    dirty=0.00B
+INFO [05-29|13:28:34.962] @Sourav, insertChain, state before Process number=11 hash=de4fe3…9217d0 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=bb3d92…e1c4c3 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:28:34.962] @Sourav inside Finalize                  root=fa94f1…25d035 root1=bb3d92…e1c4c3 number=11
+INFO [05-29|13:28:34.964] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=2.975ms   mgasps=0.000 number=11 hash=de4fe3…9217d0 age=3m32s    dirty=0.00B
+INFO [05-29|13:28:34.964] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=109.954µs mgasps=0.000 number=11 hash=de4fe3…9217d0 age=3m32s    dirty=0.00B
+INFO [05-29|13:28:45.200] @Sourav, insertChain, state before Process number=11 hash=33cce3…e68e52 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=ce3c37…e98155 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:28:45.201] @Sourav inside Finalize                  root=fa94f1…25d035 root1=ce3c37…e98155 number=11
+INFO [05-29|13:28:45.202] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=2.034ms   mgasps=0.000 number=11 hash=33cce3…e68e52 age=4m6s     dirty=0.00B
+INFO [05-29|13:28:45.202] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=169.327µs mgasps=0.000 number=11 hash=33cce3…e68e52 age=4m6s     dirty=0.00B
+INFO [05-29|13:29:04.204] @Sourav, insertChain, state before Process number=11 hash=dedb2b…0833cf kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=96aa9d…abfaf7 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:29:04.205] @Sourav inside Finalize                  root=fa94f1…25d035 root1=96aa9d…abfaf7 number=11
+INFO [05-29|13:29:04.206] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=2.483ms   mgasps=0.000 number=11 hash=dedb2b…0833cf age=4m7s     dirty=0.00B
+INFO [05-29|13:29:04.206] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=102.226µs mgasps=0.000 number=11 hash=dedb2b…0833cf age=4m7s     dirty=0.00B
+INFO [05-29|13:29:17.730] @Sourav, insertChain, state before Process number=11 hash=81593f…23443d kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=990c6f…c58c25 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:29:17.731] @Sourav inside Finalize                  root=fa94f1…25d035 root1=990c6f…c58c25 number=11
+INFO [05-29|13:29:17.732] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=1.917ms   mgasps=0.000 number=11 hash=81593f…23443d age=4m21s    dirty=0.00B
+INFO [05-29|13:29:17.732] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=75.681µs  mgasps=0.000 number=11 hash=81593f…23443d age=4m21s    dirty=0.00B
+INFO [05-29|13:29:21.920] @Sourav, insertChain, state before Process number=11 hash=f1350f…266b2f kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=5ad9bb…2a1214 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:29:21.920] @Sourav inside Finalize                  root=fa94f1…25d035 root1=5ad9bb…2a1214 number=11
+INFO [05-29|13:29:21.922] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=3.105ms   mgasps=0.000 number=11 hash=f1350f…266b2f age=4m21s    dirty=0.00B
+INFO [05-29|13:29:21.923] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=287.172µs mgasps=0.000 number=11 hash=f1350f…266b2f age=4m21s    dirty=0.00B
+INFO [05-29|13:30:15.194] @Sourav, insertChain, state before Process number=11 hash=9e57c6…263851 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=dd8d33…3c20b7 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:30:15.195] @Sourav inside Finalize                  root=fa94f1…25d035 root1=dd8d33…3c20b7 number=11
+INFO [05-29|13:30:15.196] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=1.936ms   mgasps=0.000 number=11 hash=9e57c6…263851 age=3m18s    dirty=0.00B
+INFO [05-29|13:30:15.196] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=74.942µs  mgasps=0.000 number=11 hash=9e57c6…263851 age=3m18s    dirty=0.00B
+packet_write_wait: Connection to 129.154.120.58 port 22: Broken pipe

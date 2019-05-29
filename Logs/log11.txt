@@ -1,0 +1,40 @@
+geth: no process found
+INFO [05-29|13:10:55.290] Bumping default cache on mainnet         provided=1024 updated=4096
+WARN [05-29|13:10:55.290] Sanitizing cache to Go's GC limits       provided=4096 updated=2492
+Fatal: invalid genesis file: json: cannot unmarshal number into Go struct field Genesis.gasLimit1 of type *math.HexOrDecimal64
+Fatal: invalid genesis file: json: cannot unmarshal number into Go struct field Genesis.gasLimit1 of type *math.HexOrDecimal64
+INFO [05-29|13:10:55.340] Bumping default cache on mainnet         provided=1024 updated=4096
+WARN [05-29|13:10:55.340] Sanitizing cache to Go's GC limits       provided=4096 updated=2492
+INFO [05-29|13:10:55.342] Maximum peer count                       ETH=25 LES=0 total=25
+WARN [05-29|13:10:55.343] Failed to start smart card hub, disabling: dial unix /run/pcscd/pcscd.comm: connect: no such file or directory 
+WARN [05-29|13:10:55.344] Found deprecated node list file /home/ubuntu/gitRepoEVD/.ethereum/static-nodes.json, please use the TOML config file instead. 
+INFO [05-29|13:10:55.344] Starting peer-to-peer node               instance=Geth/v1.9.0-unstable-8e717fca/linux-amd64/go1.9.3
+INFO [05-29|13:10:55.344] Allocated trie memory caches             clean=1246.00MiB dirty=0.00B
+INFO [05-29|13:10:55.344] Allocated cache and file handles         database=/home/ubuntu/gitRepoEVD/.ethereum/geth/chaindata cache=1246.00MiB handles=524288
+INFO [05-29|13:10:55.412] Writing default main-net genesis block 
+INFO [05-29|13:10:56.030] Persisted trie from memory database      nodes=12356 size=1.79MiB time=112.491043ms gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [05-29|13:10:56.224] Persisted trie from memory database      nodes=12376 size=1.79MiB time=90.981421ms  gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [05-29|13:10:56.225] Initialised chain configuration          config="{ChainID: 1 Homestead: 1150000 DAO: 1920000 DAOSupport: true EIP150: 2463000 EIP155: 2675000 EIP158: 2675000 Byzantium: 4370000 Constantinople: 7280000  ConstantinopleFix: 7280000 Engine: ethash}"
+INFO [05-29|13:10:56.225] Disk storage enabled for ethash caches   dir=/home/ubuntu/gitRepoEVD/.ethereum/geth/ethash count=3
+INFO [05-29|13:10:56.225] Disk storage enabled for ethash DAGs     dir=/home/ubuntu/.ethash                          count=2
+INFO [05-29|13:10:56.225] Initialising Ethereum protocol           versions="[63 62]" network=1 dbversion=<nil>
+WARN [05-29|13:10:56.225] Upgrade blockchain database version      from=<nil> to=5
+INFO [05-29|13:10:56.304] Loaded most recent local header          number=0 hash=15c0a3…107c65 td=17179869184 age=50y1mo2w
+INFO [05-29|13:10:56.304] Loaded most recent local full block      number=0 hash=15c0a3…107c65 td=17179869184 age=50y1mo2w
+INFO [05-29|13:10:56.304] Loaded most recent local fast block      number=0 hash=15c0a3…107c65 td=17179869184 age=50y1mo2w
+INFO [05-29|13:10:56.304] Loaded local transaction journal         transactions=0 dropped=0
+INFO [05-29|13:10:56.305] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [05-29|13:10:56.306] @Sourav GetKthParentState                bn=0 bh=15c0a3…107c65
+INFO [05-29|13:10:56.306] @Sourav Kth parent states already available 
+INFO [05-29|13:10:56.306] @Sourav inside Finalize                  root=d7f897…0f0544 root1=ab0da8…2515fe number=1
+INFO [05-29|13:10:56.373] New local node record                    seq=6 id=ca4e5840a9bd4ca1 ip=127.0.0.1 udp=21000 tcp=21000
+INFO [05-29|13:10:56.373] Started P2P networking                   self=enode://743be6e8a9a35aa06069784a6035fedef81fc85f01bdddf4594a0a0bd46ab8e4fa38414f65bb32cdd372dfa4854fd51b0fe337f818c7ebb982441fac255e91e8@127.0.0.1:21000
+INFO [05-29|13:10:56.381] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:10:56.382] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:10:56.382] ------------------------------------------------------------------- 
+WARN [05-29|13:10:56.382] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:10:56.383] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:10:56.383] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:10:56.383] ------------------------------------------------------------------- 
+INFO [05-29|13:10:57.519] Unlocked account                         address=0x7FB461821b0Ce08A671ECfd8d77AC354eD8ABF52
+packet_write_wait: Connection to 129.154.96.72 port 22: Broken pipe

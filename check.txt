@@ -1,443 +1,443 @@
 ==> Logs/log0.txt <==
-INFO [05-29|10:53:16.281] can't open the file 
-INFO [05-29|10:53:16.281] @Sourav, will start processing from      block=33
-INFO [05-29|10:53:16.282] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:53:16.283] @Sourav Kth parent states already available 
-INFO [05-29|10:53:16.283] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:53:16.283] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c9f66b…eadfe8 number=36
-INFO [05-29|10:53:16.328] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:53:16.328] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=e7c9d9…526575 number=36
-INFO [05-29|10:53:16.385] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:53:16.385] @Sourav, finished processing             block=34
+INFO [05-29|13:09:08.622] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:09:08.622] ------------------------------------------------------------------- 
+WARN [05-29|13:09:08.623] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:09:08.623] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:09:08.623] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:09:08.623] ------------------------------------------------------------------- 
+INFO [05-29|13:09:08.624] Started P2P networking                   self=enode://e9ce09801802fe1ef989ca2b0ed47ccd943d4762f3841fc2720d203be40e06e97a05272b366fc8fdbeb5121efea31982669fcb5bfe3f1a04dfb8ab6cfdd63b81@127.0.0.1:21000
+INFO [05-29|13:09:09.776] Unlocked account                         address=0xd1516aF211042D9dCf4AF568d3407384fd6832bB
+WARN [05-29|13:11:53.166] System clock seems off by -2m33.633285613s, which can prevent network connectivity 
+WARN [05-29|13:11:53.166] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log10.txt <==
-INFO [05-29|10:52:54.676] @Sourav, finished processing             block=34
-INFO [05-29|10:52:57.561] @Sourav, will start processing from      block=34
-INFO [05-29|10:52:57.561] @Sourav, finished processing             block=34
-INFO [05-29|10:52:57.561] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:52:57.561] @Sourav Kth parent states already available 
-ERROR[05-29|10:52:57.593] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:52:57.593] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:52:57.594] @Sourav computing complement coinbase address original=0xdb48a05e5bE091c17066EA7b1Ca60fb0A0Fa7869 complemented=0x24B75fA1A41f6e3E8F991584E359F04F5F058796
-INFO [05-29|10:52:57.594] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=4c3c15…b3589a number=36
-INFO [05-29|10:52:57.599] Commit new mining work                   number=36 sealhash=97f0d9…6f05be uncles=0 txs=320  gas=2560000000  fees=0.00672  elapsed=37.729ms
+INFO [05-29|13:10:39.291] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:10:39.292] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:10:39.292] ------------------------------------------------------------------- 
+WARN [05-29|13:10:39.292] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:10:39.292] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:10:39.292] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:10:39.292] ------------------------------------------------------------------- 
+INFO [05-29|13:10:40.441] Unlocked account                         address=0xdb48a05e5bE091c17066EA7b1Ca60fb0A0Fa7869
+WARN [05-29|13:13:54.021] System clock seems off by -2m55.327128921s, which can prevent network connectivity 
+WARN [05-29|13:13:54.021] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log11.txt <==
-INFO [05-29|10:53:00.420] can't open the file 
-INFO [05-29|10:53:00.420] @Sourav, will start processing from      block=33
-INFO [05-29|10:53:00.421] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:53:00.421] @Sourav Kth parent states already available 
-INFO [05-29|10:53:00.422] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:53:00.422] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c9f66b…eadfe8 number=36
-INFO [05-29|10:53:00.518] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:53:00.518] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=e7221c…1cc781 number=36
-INFO [05-29|10:53:00.551] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:53:00.551] @Sourav, finished processing             block=34
+INFO [05-29|13:10:56.373] New local node record                    seq=6 id=ca4e5840a9bd4ca1 ip=127.0.0.1 udp=21000 tcp=21000
+INFO [05-29|13:10:56.373] Started P2P networking                   self=enode://743be6e8a9a35aa06069784a6035fedef81fc85f01bdddf4594a0a0bd46ab8e4fa38414f65bb32cdd372dfa4854fd51b0fe337f818c7ebb982441fac255e91e8@127.0.0.1:21000
+INFO [05-29|13:10:56.381] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:10:56.382] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:10:56.382] ------------------------------------------------------------------- 
+WARN [05-29|13:10:56.382] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:10:56.383] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:10:56.383] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:10:56.383] ------------------------------------------------------------------- 
+INFO [05-29|13:10:57.519] Unlocked account                         address=0x7FB461821b0Ce08A671ECfd8d77AC354eD8ABF52
 
 ==> Logs/log12.txt <==
-INFO [05-29|10:52:55.315] can't open the file 
-INFO [05-29|10:52:55.315] @Sourav, will start processing from      block=33
-INFO [05-29|10:52:55.321] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:52:55.321] @Sourav Kth parent states already available 
-INFO [05-29|10:52:55.321] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:52:55.322] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c9f66b…eadfe8 number=36
-INFO [05-29|10:52:55.364] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:52:55.364] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=1c9d78…8399eb number=36
-INFO [05-29|10:52:55.420] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:52:55.420] @Sourav, finished processing             block=34
+INFO [05-29|13:11:02.287] New local node record                    seq=6 id=c5a0ae6ebc8c496d ip=127.0.0.1 udp=21000 tcp=21000
+INFO [05-29|13:11:02.290] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:11:02.292] Started P2P networking                   self=enode://c7c98848bf1f11b4354fced2aa066c91788beb2ebbecad0fe61f21a04eadadfdda9028a86e5d444ec29411187f35aa00c9f8e9197e31e1785695bba69d1df725@127.0.0.1:21000
+INFO [05-29|13:11:02.294] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:11:02.294] ------------------------------------------------------------------- 
+WARN [05-29|13:11:02.294] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:11:02.294] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:11:02.295] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:11:02.295] ------------------------------------------------------------------- 
+INFO [05-29|13:11:03.444] Unlocked account                         address=0x79F4eCA2f0fa095bC8371062849fE7cF9D194482
 
 ==> Logs/log13.txt <==
-INFO [05-29|10:52:56.680] @Sourav computing complement coinbase address original=0xb73465780ac630FdcCDbe80508bfB756c6bde49a complemented=0x48cB9A87F539cF02332417faF74048a939421b65
-INFO [05-29|10:52:56.680] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=3ada33…08b679 number=36
-INFO [05-29|10:52:56.680] Commit new mining work                   number=36 sealhash=8d92bd…030b33 uncles=0 txs=0    gas=0           fees=0        elapsed=1.696ms
-INFO [05-29|10:52:56.808] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:52:56.809] @Sourav, finished processing             block=34
-ERROR[05-29|10:52:56.813] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:52:56.813] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:52:56.813] @Sourav computing complement coinbase address original=0xb73465780ac630FdcCDbe80508bfB756c6bde49a complemented=0x48cB9A87F539cF02332417faF74048a939421b65
-INFO [05-29|10:52:56.814] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=00c454…4c9d1c number=36
-INFO [05-29|10:52:56.823] Commit new mining work                   number=36 sealhash=3e049c…d039a8 uncles=0 txs=623  gas=4984000000  fees=0.013083 elapsed=144.012ms
+INFO [05-29|13:11:14.193] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:11:14.195] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:11:14.195] ------------------------------------------------------------------- 
+WARN [05-29|13:11:14.195] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:11:14.195] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:11:14.195] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:11:14.196] ------------------------------------------------------------------- 
+INFO [05-29|13:11:15.358] Unlocked account                         address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a
+WARN [05-29|13:14:18.655] System clock seems off by -2m53.852037535s, which can prevent network connectivity 
+WARN [05-29|13:14:18.655] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log14.txt <==
-INFO [05-29|10:54:56.549] @Sourav stats                            PQ size=1 RQ size=18 bn=35
-INFO [05-29|10:54:56.549] @Sourav, will start processing from      block=33
-INFO [05-29|10:54:56.550] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:54:56.551] @Sourav Kth parent states already available 
-INFO [05-29|10:54:56.551] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:54:56.551] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c9f66b…eadfe8 number=36
-INFO [05-29|10:54:56.615] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:54:56.615] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=29d396…ae275b number=36
-INFO [05-29|10:54:56.674] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:54:56.674] @Sourav, finished processing             block=34
+INFO [05-29|13:13:26.066] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:13:26.068] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:13:26.068] ------------------------------------------------------------------- 
+WARN [05-29|13:13:26.068] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:13:26.068] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:13:26.068] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:13:26.068] ------------------------------------------------------------------- 
+INFO [05-29|13:13:27.204] Unlocked account                         address=0x3b362d6Be7f491eD3de171a1b999e2eE8BE6A4Dc
+WARN [05-29|13:16:30.685] System clock seems off by -53.335411079s, which can prevent network connectivity 
+WARN [05-29|13:16:30.685] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log15.txt <==
-INFO [05-29|10:54:56.799] Commit new mining work                   number=36 sealhash=3341e0…6909a2 uncles=0 txs=1514 gas=12112000000 fees=0.031794 elapsed=207.216ms
-INFO [05-29|10:54:59.591] @Sourav, will start processing from      block=34
-INFO [05-29|10:54:59.591] @Sourav, finished processing             block=34
-INFO [05-29|10:54:59.592] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:54:59.592] @Sourav Kth parent states already available 
-ERROR[05-29|10:54:59.727] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:54:59.727] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:54:59.728] @Sourav computing complement coinbase address original=0x6Dc46982655D6A71F1a8d34c8253653fD05d9C96 complemented=0x923b967d9AA2958E0e572CB37Dac9ac02fA26369
-INFO [05-29|10:54:59.728] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=362053…721183 number=36
-INFO [05-29|10:54:59.750] Commit new mining work                   number=36 sealhash=3341e0…6909a2 uncles=0 txs=1514 gas=12112000000 fees=0.031794 elapsed=158.661ms
+INFO [05-29|13:13:37.434] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:13:37.435] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:13:37.435] ------------------------------------------------------------------- 
+WARN [05-29|13:13:37.435] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:13:37.435] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:13:37.435] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:13:37.435] ------------------------------------------------------------------- 
+INFO [05-29|13:13:38.577] Unlocked account                         address=0x6Dc46982655D6A71F1a8d34c8253653fD05d9C96
+WARN [05-29|13:16:54.730] System clock seems off by -53.285833659s, which can prevent network connectivity 
+WARN [05-29|13:16:54.730] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log16.txt <==
-INFO [05-29|10:54:56.594] @Sourav, finished processing             block=34
-INFO [05-29|10:54:59.468] @Sourav, will start processing from      block=34
-INFO [05-29|10:54:59.468] @Sourav, finished processing             block=34
-INFO [05-29|10:54:59.468] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:54:59.468] @Sourav Kth parent states already available 
-ERROR[05-29|10:54:59.508] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:54:59.508] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:54:59.509] @Sourav computing complement coinbase address original=0xee5e12E6B99FF062783F0F0d7c7ceCE6813721f6 complemented=0x11a1ed1946600F9D87c0F0f2838313197ec8dE09
-INFO [05-29|10:54:59.509] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=adfdd1…e80c86 number=36
-INFO [05-29|10:54:59.515] Commit new mining work                   number=36 sealhash=8071e8…2bbdb4 uncles=0 txs=430  gas=3440000000  fees=0.00903  elapsed=47.373ms
+INFO [05-29|13:13:48.520] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:13:48.522] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:13:48.522] ------------------------------------------------------------------- 
+WARN [05-29|13:13:48.522] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:13:48.522] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:13:48.522] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:13:48.522] ------------------------------------------------------------------- 
+INFO [05-29|13:13:49.652] Unlocked account                         address=0xee5e12E6B99FF062783F0F0d7c7ceCE6813721f6
+WARN [05-29|13:17:20.963] System clock seems off by -53.416545276s, which can prevent network connectivity 
+WARN [05-29|13:17:20.963] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log17.txt <==
-INFO [05-29|10:54:57.636] @Sourav stats                            PQ size=1 RQ size=18 bn=35
-INFO [05-29|10:54:57.636] @Sourav, will start processing from      block=33
-INFO [05-29|10:54:57.638] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:54:57.638] @Sourav Kth parent states already available 
-INFO [05-29|10:54:57.639] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:54:57.639] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c9f66b…eadfe8 number=36
-INFO [05-29|10:54:57.691] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:54:57.691] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=8e05ac…75b32e number=36
-INFO [05-29|10:54:57.744] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:54:57.744] @Sourav, finished processing             block=34
+INFO [05-29|13:14:01.006] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:14:01.006] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:14:01.006] ------------------------------------------------------------------- 
+WARN [05-29|13:14:01.006] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:14:01.006] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:14:01.006] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:14:01.007] ------------------------------------------------------------------- 
+INFO [05-29|13:14:02.161] Unlocked account                         address=0x2Ec2513950c13A2AbfA9B398018C504342eE23f2
+WARN [05-29|13:17:09.018] System clock seems off by -52.251813493s, which can prevent network connectivity 
+WARN [05-29|13:17:09.018] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log18.txt <==
-INFO [05-29|10:54:57.193] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=3dffcc…f6f726 number=36
-INFO [05-29|10:54:57.194] 😱 block lost                             number=28 hash=22e6a8…ff636c
-INFO [05-29|10:54:57.194] Commit new mining work                   number=36 sealhash=71530f…384aa1 uncles=0 txs=0    gas=0           fees=0        elapsed=2.384ms
-INFO [05-29|10:54:57.323] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:54:57.323] @Sourav, finished processing             block=34
-ERROR[05-29|10:54:57.435] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:54:57.435] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:54:57.436] @Sourav computing complement coinbase address original=0x25B945E5C974D3D3393bbd4Cf58cD3A1Fd7bfBe3 complemented=0xdA46ba1a368b2C2cc6C442b30A732C5e0284041C
-INFO [05-29|10:54:57.436] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=cbde3f…183579 number=36
-INFO [05-29|10:54:57.462] Commit new mining work                   number=36 sealhash=d6e79a…a00129 uncles=0 txs=1967 gas=15736000000 fees=0.041307 elapsed=270.465ms
+INFO [05-29|13:14:10.859] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:14:10.859] ------------------------------------------------------------------- 
+WARN [05-29|13:14:10.859] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:14:10.860] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:14:10.860] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:14:10.860] ------------------------------------------------------------------- 
+INFO [05-29|13:14:10.861] Started P2P networking                   self=enode://b489aafbc571d298080ed89dd6a96440dc5acf52d4d68d5138c127052c97ac1dd6792cde7b9384a3f1242628a7653773d6ed4a79595144a651886d720d08e78d@127.0.0.1:21000
+INFO [05-29|13:14:12.031] Unlocked account                         address=0x25B945E5C974D3D3393bbd4Cf58cD3A1Fd7bfBe3
+WARN [05-29|13:16:58.624] System clock seems off by -53.346884084s, which can prevent network connectivity 
+WARN [05-29|13:16:58.624] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log19.txt <==
-INFO [05-29|10:54:57.287] Commit new mining work                   number=36 sealhash=7d1c87…94b621 uncles=0 txs=937  gas=7496000000  fees=0.019677 elapsed=181.788ms
-INFO [05-29|10:55:00.104] @Sourav, will start processing from      block=34
-INFO [05-29|10:55:00.104] @Sourav, finished processing             block=34
-INFO [05-29|10:55:00.105] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:55:00.105] @Sourav Kth parent states already available 
-ERROR[05-29|10:55:00.193] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:55:00.193] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:55:00.194] @Sourav computing complement coinbase address original=0xC50537259B44ED443e6972597944b602d31dA29a complemented=0x3AfAc8DA64Bb12bbc1968DA686bb49fd2cE25D65
-INFO [05-29|10:55:00.195] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=a614b6…608cf0 number=36
-INFO [05-29|10:55:00.208] Commit new mining work                   number=36 sealhash=7d1c87…94b621 uncles=0 txs=937  gas=7496000000  fees=0.019677 elapsed=103.814ms
+INFO [05-29|13:14:22.098] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:14:22.099] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:14:22.099] ------------------------------------------------------------------- 
+WARN [05-29|13:14:22.099] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:14:22.099] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:14:22.099] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:14:22.099] ------------------------------------------------------------------- 
+INFO [05-29|13:14:23.246] Unlocked account                         address=0xC50537259B44ED443e6972597944b602d31dA29a
+WARN [05-29|13:17:19.851] System clock seems off by -53.458482006s, which can prevent network connectivity 
+WARN [05-29|13:17:19.851] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log1.txt <==
-INFO [05-29|10:53:52.440] Commit new mining work                   number=36 sealhash=88fa82…e92ae2 uncles=0 txs=1682 gas=13456000000 fees=0.035322 elapsed=219.793ms
-INFO [05-29|10:53:55.217] @Sourav, will start processing from      block=34
-INFO [05-29|10:53:55.217] @Sourav, finished processing             block=34
-INFO [05-29|10:53:55.217] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:53:55.218] @Sourav Kth parent states already available 
-ERROR[05-29|10:53:55.365] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:53:55.365] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:53:55.370] @Sourav computing complement coinbase address original=0x78B0ccF85b3b0C6D5DBbE215B60eC763eB0a9876 complemented=0x874F3307A4C4F392A2441Dea49f1389c14f56789
-INFO [05-29|10:53:55.370] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=4f36cf…526f1e number=36
-INFO [05-29|10:53:55.395] Commit new mining work                   number=36 sealhash=c4af5c…42b3ab uncles=0 txs=1688 gas=13504000000 fees=0.035448 elapsed=178.487ms
+INFO [05-29|13:09:55.766] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:09:55.778] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:09:55.778] ------------------------------------------------------------------- 
+WARN [05-29|13:09:55.778] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:09:55.778] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:09:55.778] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:09:55.778] ------------------------------------------------------------------- 
+INFO [05-29|13:09:56.923] Unlocked account                         address=0x78B0ccF85b3b0C6D5DBbE215B60eC763eB0a9876
+WARN [05-29|13:12:54.606] System clock seems off by -1m57.632419235s, which can prevent network connectivity 
+WARN [05-29|13:12:54.606] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log20.txt <==
-INFO [05-29|10:54:57.149] @Sourav, finished processing             block=34
-INFO [05-29|10:54:59.993] @Sourav, will start processing from      block=34
-INFO [05-29|10:54:59.993] @Sourav, finished processing             block=34
-INFO [05-29|10:54:59.993] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:54:59.994] @Sourav Kth parent states already available 
-ERROR[05-29|10:55:00.053] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:55:00.053] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:55:00.054] @Sourav computing complement coinbase address original=0x7bF66C027Ec29625366B604a7274D1a9879af330 complemented=0x840993fD813d69DAc9949FB58d8b2E5678650ccF
-INFO [05-29|10:55:00.054] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=3fdafb…de79df number=36
-INFO [05-29|10:55:00.063] Commit new mining work                   number=36 sealhash=3e712c…b9cba6 uncles=0 txs=629  gas=5032000000  fees=0.013209 elapsed=70.130ms
+INFO [05-29|13:29:17.732] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=1.917ms   mgasps=0.000 number=11 hash=81593f…23443d age=4m21s    dirty=0.00B
+INFO [05-29|13:29:17.732] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=75.681µs  mgasps=0.000 number=11 hash=81593f…23443d age=4m21s    dirty=0.00B
+INFO [05-29|13:29:21.920] @Sourav, insertChain, state before Process number=11 hash=f1350f…266b2f kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=5ad9bb…2a1214 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:29:21.920] @Sourav inside Finalize                  root=fa94f1…25d035 root1=5ad9bb…2a1214 number=11
+INFO [05-29|13:29:21.922] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=3.105ms   mgasps=0.000 number=11 hash=f1350f…266b2f age=4m21s    dirty=0.00B
+INFO [05-29|13:29:21.923] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=287.172µs mgasps=0.000 number=11 hash=f1350f…266b2f age=4m21s    dirty=0.00B
+INFO [05-29|13:30:15.194] @Sourav, insertChain, state before Process number=11 hash=9e57c6…263851 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=dd8d33…3c20b7 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:30:15.195] @Sourav inside Finalize                  root=fa94f1…25d035 root1=dd8d33…3c20b7 number=11
+INFO [05-29|13:30:15.196] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=1.936ms   mgasps=0.000 number=11 hash=9e57c6…263851 age=3m18s    dirty=0.00B
+INFO [05-29|13:30:15.196] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=74.942µs  mgasps=0.000 number=11 hash=9e57c6…263851 age=3m18s    dirty=0.00B
 
 ==> Logs/log21.txt <==
-INFO [05-29|10:54:59.581] @Sourav stats                            PQ size=1 RQ size=18 bn=35
-INFO [05-29|10:54:59.581] @Sourav, will start processing from      block=33
-INFO [05-29|10:54:59.582] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:54:59.583] @Sourav Kth parent states already available 
-INFO [05-29|10:54:59.583] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:54:59.583] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c9f66b…eadfe8 number=36
-INFO [05-29|10:54:59.665] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:54:59.665] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=0a264a…07f1ff number=36
-INFO [05-29|10:54:59.715] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:54:59.715] @Sourav, finished processing             block=34
+INFO [05-29|13:29:24.552] @Sourav, insertChain, state before Process number=11 hash=f1350f…266b2f kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=5ad9bb…2a1214 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:29:24.552] @Sourav inside Finalize                  root=fa94f1…25d035 root1=5ad9bb…2a1214 number=11
+INFO [05-29|13:29:24.554] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=2.748ms   mgasps=0.000 number=11 hash=f1350f…266b2f age=4m24s    dirty=0.00B
+INFO [05-29|13:29:24.554] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=209.482µs mgasps=0.000 number=11 hash=f1350f…266b2f age=4m24s    dirty=0.00B
+WARN [05-29|13:29:51.745] System clock seems off by -50.338661591s, which can prevent network connectivity 
+WARN [05-29|13:29:51.745] Please enable network time synchronisation in system settings. 
+INFO [05-29|13:30:17.827] @Sourav, insertChain, state before Process number=11 hash=9e57c6…263851 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=dd8d33…3c20b7 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:30:17.828] @Sourav inside Finalize                  root=fa94f1…25d035 root1=dd8d33…3c20b7 number=11
+INFO [05-29|13:30:17.830] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=4.104ms   mgasps=0.000 number=11 hash=9e57c6…263851 age=3m20s    dirty=0.00B
+INFO [05-29|13:30:17.830] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=223.343µs mgasps=0.000 number=11 hash=9e57c6…263851 age=3m20s    dirty=0.00B
 
 ==> Logs/log22.txt <==
-INFO [05-29|10:54:56.533] Commit new mining work                   number=36 sealhash=4c5d82…588a7d uncles=0 txs=1409 gas=11272000000 fees=0.029589 elapsed=219.067ms
-INFO [05-29|10:54:59.314] @Sourav, will start processing from      block=34
-INFO [05-29|10:54:59.314] @Sourav, finished processing             block=34
-INFO [05-29|10:54:59.315] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:54:59.315] @Sourav Kth parent states already available 
-ERROR[05-29|10:54:59.430] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:54:59.430] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:54:59.432] @Sourav computing complement coinbase address original=0x77787Ff23Bf62225437824C50D152A9d7d51eBa9 complemented=0x8887800DC409DdDAbC87Db3aF2eAd56282AE1456
-INFO [05-29|10:54:59.432] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=4786f7…83ff34 number=36
-INFO [05-29|10:54:59.452] Commit new mining work                   number=36 sealhash=5c5ce2…7299d2 uncles=0 txs=1415 gas=11320000000 fees=0.029715 elapsed=137.537ms
+INFO [05-29|13:14:55.804] New local node record                    seq=6 id=1f1ae3d70494eedf ip=127.0.0.1 udp=21000 tcp=21000
+INFO [05-29|13:14:55.807] Started P2P networking                   self=enode://115689b303cb0ea50c8a5da0d99de7e07e1b2b20a0394a77bad673bd8c699d336fb16cd08a4ef6bf7a67472f736f13d794c8ed357c3a2adb521a2f6e66cc1bf4@127.0.0.1:21000
+INFO [05-29|13:14:55.808] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:14:55.809] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:14:55.809] ------------------------------------------------------------------- 
+WARN [05-29|13:14:55.809] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:14:55.809] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:14:55.810] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:14:55.810] ------------------------------------------------------------------- 
+INFO [05-29|13:14:56.978] Unlocked account                         address=0x77787Ff23Bf62225437824C50D152A9d7d51eBa9
 
 ==> Logs/log23.txt <==
-INFO [05-29|10:54:59.140] Commit new mining work                   number=36 sealhash=39931f…4b77a2 uncles=0 txs=2942 gas=23536000000 fees=0.061782 elapsed=463.417ms
-INFO [05-29|10:55:01.676] @Sourav, will start processing from      block=34
-INFO [05-29|10:55:01.677] @Sourav, finished processing             block=34
-INFO [05-29|10:55:01.677] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:55:01.678] @Sourav Kth parent states already available 
-ERROR[05-29|10:55:01.949] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:55:01.949] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:55:01.951] @Sourav computing complement coinbase address original=0x6755fc90C1A47457bD145B61195FC93a73266418 complemented=0x98aA036f3E5b8BA842eba49EE6a036c58Cd99Be7
-INFO [05-29|10:55:01.952] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=4fa652…011b11 number=36
-INFO [05-29|10:55:01.995] Commit new mining work                   number=36 sealhash=354912…e627fb uncles=0 txs=2948 gas=23584000000 fees=0.061908 elapsed=318.251ms
+INFO [05-29|13:29:23.622] @Sourav, insertChain, state before Process number=11 hash=f1350f…266b2f kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=5ad9bb…2a1214 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:29:23.623] @Sourav inside Finalize                  root=fa94f1…25d035 root1=5ad9bb…2a1214 number=11
+INFO [05-29|13:29:23.625] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=4.392ms   mgasps=0.000 number=11 hash=f1350f…266b2f age=4m23s    dirty=0.00B
+INFO [05-29|13:29:23.625] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=156.386µs mgasps=0.000 number=11 hash=f1350f…266b2f age=4m23s    dirty=0.00B
+WARN [05-29|13:29:28.451] System clock seems off by -51.263173253s, which can prevent network connectivity 
+WARN [05-29|13:29:28.451] Please enable network time synchronisation in system settings. 
+INFO [05-29|13:30:16.897] @Sourav, insertChain, state before Process number=11 hash=9e57c6…263851 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=dd8d33…3c20b7 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:30:16.898] @Sourav inside Finalize                  root=fa94f1…25d035 root1=dd8d33…3c20b7 number=11
+INFO [05-29|13:30:16.900] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=3.784ms   mgasps=0.000 number=11 hash=9e57c6…263851 age=3m19s    dirty=0.00B
+INFO [05-29|13:30:16.900] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=240.763µs mgasps=0.000 number=11 hash=9e57c6…263851 age=3m19s    dirty=0.00B
 
 ==> Logs/log24.txt <==
-INFO [05-29|10:54:57.811] @Sourav, finished processing             block=34
-INFO [05-29|10:55:00.656] @Sourav, will start processing from      block=34
-INFO [05-29|10:55:00.656] @Sourav, finished processing             block=34
-INFO [05-29|10:55:00.656] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:55:00.657] @Sourav Kth parent states already available 
-ERROR[05-29|10:55:00.718] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:55:00.718] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:55:00.720] @Sourav computing complement coinbase address original=0x4797df845C679CE6FeCe4FeE52049Da0A6a20292 complemented=0xb868207BA39863190131b011Adfb625f595Dfd6d
-INFO [05-29|10:55:00.720] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=2ef8af…8ca5c9 number=36
-INFO [05-29|10:55:00.728] Commit new mining work                   number=36 sealhash=8922bc…5e7e73 uncles=0 txs=630  gas=5040000000  fees=0.01323  elapsed=72.461ms
+INFO [05-29|13:29:23.202] @Sourav, insertChain, state before Process number=11 hash=f1350f…266b2f kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=5ad9bb…2a1214 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:29:23.203] @Sourav inside Finalize                  root=fa94f1…25d035 root1=5ad9bb…2a1214 number=11
+INFO [05-29|13:29:23.204] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=2.499ms   mgasps=0.000 number=11 hash=f1350f…266b2f age=4m23s    dirty=0.00B
+INFO [05-29|13:29:23.205] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=192.551µs mgasps=0.000 number=11 hash=f1350f…266b2f age=4m23s    dirty=0.00B
+INFO [05-29|13:30:15.859] @Sourav, insertChain, state before Process number=11 hash=9e57c6…263851 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=dd8d33…3c20b7 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:30:15.859] @Sourav inside Finalize                  root=fa94f1…25d035 root1=dd8d33…3c20b7 number=11
+INFO [05-29|13:30:15.861] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=2.302ms   mgasps=0.000 number=11 hash=9e57c6…263851 age=3m18s    dirty=0.00B
+INFO [05-29|13:30:15.861] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=197.526µs mgasps=0.000 number=11 hash=9e57c6…263851 age=3m18s    dirty=0.00B
+WARN [05-29|13:30:38.258] System clock seems off by -52.308995664s, which can prevent network connectivity 
+WARN [05-29|13:30:38.258] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log25.txt <==
-INFO [05-29|10:54:54.801] @Sourav stats                            PQ size=1 RQ size=18 bn=35
-INFO [05-29|10:54:54.801] @Sourav, will start processing from      block=33
-INFO [05-29|10:54:54.810] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:54:54.811] @Sourav Kth parent states already available 
-INFO [05-29|10:54:54.811] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:54:54.811] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c9f66b…eadfe8 number=36
-INFO [05-29|10:54:54.887] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:54:54.887] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=b72751…932188 number=36
-INFO [05-29|10:54:54.923] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:54:54.923] @Sourav, finished processing             block=34
+INFO [05-29|13:29:19.652] @Sourav, insertChain, state before Process number=11 hash=f1350f…266b2f kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=5ad9bb…2a1214 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:29:19.653] @Sourav inside Finalize                  root=fa94f1…25d035 root1=5ad9bb…2a1214 number=11
+INFO [05-29|13:29:19.655] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=3.346ms   mgasps=0.000 number=11 hash=f1350f…266b2f age=4m19s    dirty=0.00B
+INFO [05-29|13:29:19.656] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=280.899µs mgasps=0.000 number=11 hash=f1350f…266b2f age=4m19s    dirty=0.00B
+INFO [05-29|13:30:12.926] @Sourav, insertChain, state before Process number=11 hash=9e57c6…263851 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=dd8d33…3c20b7 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:30:12.927] @Sourav inside Finalize                  root=fa94f1…25d035 root1=dd8d33…3c20b7 number=11
+INFO [05-29|13:30:12.928] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=2.849ms   mgasps=0.000 number=11 hash=9e57c6…263851 age=3m15s    dirty=0.00B
+INFO [05-29|13:30:12.928] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=201.862µs mgasps=0.000 number=11 hash=9e57c6…263851 age=3m15s    dirty=0.00B
+WARN [05-29|13:30:32.686] System clock seems off by -55.238791s, which can prevent network connectivity 
+WARN [05-29|13:30:32.686] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log26.txt <==
-INFO [05-29|10:54:59.027] @Sourav, finished processing             block=34
-INFO [05-29|10:55:01.924] @Sourav, will start processing from      block=34
-INFO [05-29|10:55:01.924] @Sourav, finished processing             block=34
-INFO [05-29|10:55:01.924] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:55:01.925] @Sourav Kth parent states already available 
-ERROR[05-29|10:55:01.958] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:55:01.958] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:55:01.962] @Sourav computing complement coinbase address original=0x5600b1d8040c48611509Dbb1CC6510566a4e725C complemented=0xA9Ff4e27fBf3b79EeaF6244e339aEFa995b18da3
-INFO [05-29|10:55:01.963] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c23803…bb5493 number=36
-INFO [05-29|10:55:01.968] Commit new mining work                   number=36 sealhash=fe9978…5bfbdb uncles=0 txs=364  gas=2912000000  fees=0.007644 elapsed=43.502ms
+INFO [05-29|13:29:23.852] @Sourav, insertChain, state before Process number=11 hash=f1350f…266b2f kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=5ad9bb…2a1214 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:29:23.852] @Sourav inside Finalize                  root=fa94f1…25d035 root1=5ad9bb…2a1214 number=11
+INFO [05-29|13:29:23.854] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=2.882ms   mgasps=0.000 number=11 hash=f1350f…266b2f age=4m23s    dirty=0.00B
+INFO [05-29|13:29:23.854] Imported new chain segment               blocks=0 txs=0 mgas=0.000 elapsed=187.17µs  mgasps=0.000 number=11 hash=f1350f…266b2f age=4m23s    dirty=0.00B
+WARN [05-29|13:30:05.231] System clock seems off by -51.034547407s, which can prevent network connectivity 
+WARN [05-29|13:30:05.231] Please enable network time synchronisation in system settings. 
+INFO [05-29|13:30:17.126] @Sourav, insertChain, state before Process number=11 hash=9e57c6…263851 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=dd8d33…3c20b7 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:30:17.126] @Sourav inside Finalize                  root=fa94f1…25d035 root1=dd8d33…3c20b7 number=11
+INFO [05-29|13:30:17.128] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=2.815ms   mgasps=0.000 number=11 hash=9e57c6…263851 age=3m20s    dirty=0.00B
+INFO [05-29|13:30:17.128] Imported new chain segment               blocks=0 txs=0 mgas=0.000 elapsed=164.28µs  mgasps=0.000 number=11 hash=9e57c6…263851 age=3m20s    dirty=0.00B
 
 ==> Logs/log27.txt <==
-INFO [05-29|10:54:59.220] @Sourav, finished processing             block=34
-INFO [05-29|10:55:02.069] @Sourav, will start processing from      block=34
-INFO [05-29|10:55:02.069] @Sourav, finished processing             block=34
-INFO [05-29|10:55:02.069] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:55:02.069] @Sourav Kth parent states already available 
-ERROR[05-29|10:55:02.162] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:55:02.162] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:55:02.164] @Sourav computing complement coinbase address original=0xE3CbB4d8E9fC6094A0519F8d2D9090B180B01eB7 complemented=0x1c344B2716039f6b5FaE6072D26F6f4E7f4Fe148
-INFO [05-29|10:55:02.164] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=2a882e…086e50 number=36
-INFO [05-29|10:55:02.179] Commit new mining work                   number=36 sealhash=ce74ba…60052b uncles=0 txs=629  gas=5032000000  fees=0.013209 elapsed=110.015ms
+INFO [05-29|13:29:19.806] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=2.374ms   mgasps=0.000 number=11 hash=81593f…23443d age=4m23s    dirty=0.00B
+INFO [05-29|13:29:19.806] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=99.418µs  mgasps=0.000 number=11 hash=81593f…23443d age=4m23s    dirty=0.00B
+INFO [05-29|13:29:23.994] @Sourav, insertChain, state before Process number=11 hash=f1350f…266b2f kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=5ad9bb…2a1214 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:29:23.995] @Sourav inside Finalize                  root=fa94f1…25d035 root1=5ad9bb…2a1214 number=11
+INFO [05-29|13:29:23.997] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=3.331ms   mgasps=0.000 number=11 hash=f1350f…266b2f age=4m23s    dirty=0.00B
+INFO [05-29|13:29:23.997] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=144.387µs mgasps=0.000 number=11 hash=f1350f…266b2f age=4m23s    dirty=0.00B
+INFO [05-29|13:30:17.268] @Sourav, insertChain, state before Process number=11 hash=9e57c6…263851 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=dd8d33…3c20b7 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:30:17.269] @Sourav inside Finalize                  root=fa94f1…25d035 root1=dd8d33…3c20b7 number=11
+INFO [05-29|13:30:17.271] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=3.433ms   mgasps=0.000 number=11 hash=9e57c6…263851 age=3m20s    dirty=0.00B
+INFO [05-29|13:30:17.271] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=252.772µs mgasps=0.000 number=11 hash=9e57c6…263851 age=3m20s    dirty=0.00B
 
 ==> Logs/log28.txt <==
-INFO [05-29|10:54:58.531] @Sourav computing complement coinbase address original=0x8F61E6e8736cA2e73b32d174dd8c2e9CEbCbB69B complemented=0x709E19178c935D18C4cd2e8B2273D16314344964
-INFO [05-29|10:54:58.531] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=7e9cbe…7ef80f number=36
-INFO [05-29|10:54:58.531] Commit new mining work                   number=36 sealhash=fbbb0f…1dc7f9 uncles=0 txs=0    gas=0           fees=0        elapsed=1.570ms
-INFO [05-29|10:54:58.654] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:54:58.654] @Sourav, finished processing             block=34
-ERROR[05-29|10:54:58.666] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:54:58.666] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:54:58.670] @Sourav computing complement coinbase address original=0x8F61E6e8736cA2e73b32d174dd8c2e9CEbCbB69B complemented=0x709E19178c935D18C4cd2e8B2273D16314344964
-INFO [05-29|10:54:58.670] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=09bc59…eae526 number=36
-INFO [05-29|10:54:58.685] Commit new mining work                   number=36 sealhash=6c9e9f…391d1b uncles=0 txs=1044 gas=8352000000  fees=0.021924 elapsed=155.865ms
+INFO [05-29|13:29:23.455] @Sourav, insertChain, state before Process number=11 hash=f1350f…266b2f kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=5ad9bb…2a1214 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:29:23.456] @Sourav inside Finalize                  root=fa94f1…25d035 root1=5ad9bb…2a1214 number=11
+INFO [05-29|13:29:23.457] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=3.079ms   mgasps=0.000 number=11 hash=f1350f…266b2f age=4m23s    dirty=0.00B
+INFO [05-29|13:29:23.459] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=1.114ms   mgasps=0.000 number=11 hash=f1350f…266b2f age=4m23s    dirty=0.00B
+INFO [05-29|13:30:16.730] @Sourav, insertChain, state before Process number=11 hash=9e57c6…263851 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=dd8d33…3c20b7 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:30:16.730] @Sourav inside Finalize                  root=fa94f1…25d035 root1=dd8d33…3c20b7 number=11
+INFO [05-29|13:30:16.732] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=2.873ms   mgasps=0.000 number=11 hash=9e57c6…263851 age=3m19s    dirty=0.00B
+INFO [05-29|13:30:16.732] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=50.616µs  mgasps=0.000 number=11 hash=9e57c6…263851 age=3m19s    dirty=0.00B
+WARN [05-29|13:31:04.806] System clock seems off by -51.437144282s, which can prevent network connectivity 
+WARN [05-29|13:31:04.807] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log29.txt <==
-INFO [05-29|10:55:00.056] @Sourav, finished processing             block=34
-INFO [05-29|10:55:02.935] @Sourav, will start processing from      block=34
-INFO [05-29|10:55:02.935] @Sourav, finished processing             block=34
-INFO [05-29|10:55:02.936] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:55:02.936] @Sourav Kth parent states already available 
-ERROR[05-29|10:55:02.985] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:55:02.985] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:55:02.987] @Sourav computing complement coinbase address original=0x3111Db825b5e0e5c5ae440A010380cE8b4152615 complemented=0xcEEe247da4A1f1A3a51BBF5Fefc7f3174bEAD9EA
-INFO [05-29|10:55:02.987] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=bf1170…746b7f number=36
-INFO [05-29|10:55:02.994] Commit new mining work                   number=36 sealhash=8364a8…fe8bfb uncles=0 txs=504  gas=4032000000  fees=0.010584 elapsed=58.960ms
+INFO [05-29|13:16:18.213] New local node record                    seq=6 id=a19d9fdcb03cca90 ip=127.0.0.1 udp=21000 tcp=21000
+INFO [05-29|13:16:18.213] Started P2P networking                   self=enode://d14649cc0546c6b8132066ab9ec74b5203d4a57e5fa850736c8d3850617dbd9a858b7c586b18d25a31ca8ac7f66649cb48d0508cc7bbe29bff5c83140da5eb35@127.0.0.1:21000
+INFO [05-29|13:16:18.221] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:16:18.224] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:16:18.224] ------------------------------------------------------------------- 
+WARN [05-29|13:16:18.224] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:16:18.224] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:16:18.224] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:16:18.224] ------------------------------------------------------------------- 
+INFO [05-29|13:16:19.377] Unlocked account                         address=0x3111Db825b5e0e5c5ae440A010380cE8b4152615
 
 ==> Logs/log2.txt <==
-INFO [05-29|10:51:09.176] Commit new mining work                   number=36 sealhash=a3322d…683788 uncles=0 txs=1670 gas=13360000000 fees=0.03507  elapsed=303.695ms
-INFO [05-29|10:51:11.872] @Sourav, will start processing from      block=34
-INFO [05-29|10:51:11.873] @Sourav, finished processing             block=34
-INFO [05-29|10:51:11.873] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:51:11.874] @Sourav Kth parent states already available 
-ERROR[05-29|10:51:12.029] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:51:12.030] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:51:12.034] @Sourav computing complement coinbase address original=0x3E5c8A41da870551a9a2722D3BAb9d6CB89c5841 complemented=0xc1A375bE2578fAaE565d8dd2c45462934763a7bE
-INFO [05-29|10:51:12.034] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=b9aca3…8d3c28 number=36
-INFO [05-29|10:51:12.059] Commit new mining work                   number=36 sealhash=391250…107929 uncles=0 txs=1676 gas=13408000000 fees=0.035196 elapsed=186.468ms
+INFO [05-29|13:07:23.792] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:07:23.793] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:07:23.794] ------------------------------------------------------------------- 
+WARN [05-29|13:07:23.794] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:07:23.794] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:07:23.794] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:07:23.794] ------------------------------------------------------------------- 
+INFO [05-29|13:07:24.953] Unlocked account                         address=0x3E5c8A41da870551a9a2722D3BAb9d6CB89c5841
+WARN [05-29|13:10:03.567] System clock seems off by -4m41.003586146s, which can prevent network connectivity 
+WARN [05-29|13:10:03.567] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log30.txt <==
-INFO [05-29|10:54:59.327] @Sourav, finished processing             block=34
-INFO [05-29|10:55:02.141] @Sourav, will start processing from      block=34
-INFO [05-29|10:55:02.142] @Sourav, finished processing             block=34
-INFO [05-29|10:55:02.142] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:55:02.143] @Sourav Kth parent states already available 
-ERROR[05-29|10:55:02.191] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:55:02.191] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:55:02.197] @Sourav computing complement coinbase address original=0xDd95e8c704c6F78F20b83F75cc786B7057A8c5E1 complemented=0x226A1738FB390870Df47c08a3387948fa8573A1E
-INFO [05-29|10:55:02.197] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=21e53c…effc48 number=36
-INFO [05-29|10:55:02.205] Commit new mining work                   number=36 sealhash=d88345…d75eb0 uncles=0 txs=528  gas=4224000000  fees=0.011088 elapsed=63.305ms
+INFO [05-29|13:29:24.084] @Sourav, insertChain, state before Process number=11 hash=f1350f…266b2f kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=5ad9bb…2a1214 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:29:24.085] @Sourav inside Finalize                  root=fa94f1…25d035 root1=5ad9bb…2a1214 number=11
+INFO [05-29|13:29:24.086] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=3.360ms   mgasps=0.000 number=11 hash=f1350f…266b2f age=4m24s    dirty=0.00B
+INFO [05-29|13:29:24.087] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=251.189µs mgasps=0.000 number=11 hash=f1350f…266b2f age=4m24s    dirty=0.00B
+INFO [05-29|13:30:17.358] @Sourav, insertChain, state before Process number=11 hash=9e57c6…263851 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=dd8d33…3c20b7 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:30:17.359] @Sourav inside Finalize                  root=fa94f1…25d035 root1=dd8d33…3c20b7 number=11
+INFO [05-29|13:30:17.361] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=4.077ms   mgasps=0.000 number=11 hash=9e57c6…263851 age=3m20s    dirty=0.00B
+INFO [05-29|13:30:17.361] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=237.042µs mgasps=0.000 number=11 hash=9e57c6…263851 age=3m20s    dirty=0.00B
+WARN [05-29|13:31:58.957] System clock seems off by -50.803276276s, which can prevent network connectivity 
+WARN [05-29|13:31:58.957] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log31.txt <==
-INFO [05-29|10:55:00.668] @Sourav stats                            PQ size=1 RQ size=18 bn=35
-INFO [05-29|10:55:00.668] @Sourav, will start processing from      block=33
-INFO [05-29|10:55:00.670] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:55:00.670] @Sourav Kth parent states already available 
-INFO [05-29|10:55:00.670] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:55:00.671] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c9f66b…eadfe8 number=36
-INFO [05-29|10:55:00.739] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:55:00.740] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=f18845…acd883 number=36
-INFO [05-29|10:55:00.804] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:55:00.804] @Sourav, finished processing             block=34
+INFO [05-29|13:29:25.586] @Sourav, insertChain, state before Process number=11 hash=f1350f…266b2f kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=5ad9bb…2a1214 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:29:25.587] @Sourav inside Finalize                  root=fa94f1…25d035 root1=5ad9bb…2a1214 number=11
+INFO [05-29|13:29:25.588] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=3.054ms   mgasps=0.000 number=11 hash=f1350f…266b2f age=4m25s    dirty=0.00B
+INFO [05-29|13:29:25.589] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=277.515µs mgasps=0.000 number=11 hash=f1350f…266b2f age=4m25s    dirty=0.00B
+INFO [05-29|13:30:18.864] @Sourav, insertChain, state before Process number=11 hash=9e57c6…263851 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=dd8d33…3c20b7 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:30:18.865] @Sourav inside Finalize                  root=fa94f1…25d035 root1=dd8d33…3c20b7 number=11
+INFO [05-29|13:30:18.866] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=2.743ms   mgasps=0.000 number=11 hash=9e57c6…263851 age=3m21s    dirty=0.00B
+INFO [05-29|13:30:18.866] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=192.589µs mgasps=0.000 number=11 hash=9e57c6…263851 age=3m21s    dirty=0.00B
+WARN [05-29|13:30:39.862] System clock seems off by -49.30331501s, which can prevent network connectivity 
+WARN [05-29|13:30:39.862] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log32.txt <==
-INFO [05-29|10:55:01.493] @Sourav, finished processing             block=34
-INFO [05-29|10:55:04.339] @Sourav, will start processing from      block=34
-INFO [05-29|10:55:04.339] @Sourav, finished processing             block=34
-INFO [05-29|10:55:04.339] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:55:04.340] @Sourav Kth parent states already available 
-ERROR[05-29|10:55:04.402] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:55:04.403] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:55:04.404] @Sourav computing complement coinbase address original=0x1441B7B202EF3eE58c9efFd2eA1FDbEeDFC26725 complemented=0xEbbe484Dfd10c11a7361002D15e02411203D98dA
-INFO [05-29|10:55:04.404] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=d26127…95c8a5 number=36
-INFO [05-29|10:55:04.413] Commit new mining work                   number=36 sealhash=c507d1…610336 uncles=0 txs=629  gas=5032000000  fees=0.013209 elapsed=73.331ms
+WARN [05-29|13:33:02.570] System clock seems off by -48.64078536s, which can prevent network connectivity 
+WARN [05-29|13:33:02.570] Please enable network time synchronisation in system settings. 
+INFO [05-29|13:37:02.734] @Sourav, insertChain, state before Process number=11 hash=9a149f…51f9f6 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=c04ace…1c851f state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:37:02.734] @Sourav inside Finalize                  root=fa94f1…25d035 root1=c04ace…1c851f number=11
+INFO [05-29|13:37:02.735] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=1.744ms   mgasps=0.000 number=11 hash=9a149f…51f9f6 age=10m2s    dirty=0.00B
+INFO [05-29|13:37:02.735] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=166.851µs mgasps=0.000 number=11 hash=9a149f…51f9f6 age=10m2s    dirty=0.00B
+INFO [05-29|13:38:54.125] @Sourav, insertChain, state before Process number=11 hash=895d14…11b069 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=34ceb9…a7487b state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:38:54.125] @Sourav inside Finalize                  root=fa94f1…25d035 root1=34ceb9…a7487b number=11
+INFO [05-29|13:38:54.126] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=1.999ms   mgasps=0.000 number=11 hash=895d14…11b069 age=13m57s   dirty=0.00B
+INFO [05-29|13:38:54.126] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=75.603µs  mgasps=0.000 number=11 hash=895d14…11b069 age=13m57s   dirty=0.00B
 
 ==> Logs/log33.txt <==
-INFO [05-29|10:55:03.755] @Sourav stats                            PQ size=1 RQ size=18 bn=35
-INFO [05-29|10:55:03.755] @Sourav, will start processing from      block=33
-INFO [05-29|10:55:03.756] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:55:03.757] @Sourav Kth parent states already available 
-INFO [05-29|10:55:03.757] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:55:03.757] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c9f66b…eadfe8 number=36
-INFO [05-29|10:55:03.831] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:55:03.831] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=d6ff2a…1ba5c1 number=36
-INFO [05-29|10:55:03.888] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:55:03.888] @Sourav, finished processing             block=34
+INFO [05-29|13:29:28.028] @Sourav, insertChain, state before Process number=11 hash=f1350f…266b2f kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=5ad9bb…2a1214 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:29:28.028] @Sourav inside Finalize                  root=fa94f1…25d035 root1=5ad9bb…2a1214 number=11
+INFO [05-29|13:29:28.030] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=2.288ms   mgasps=0.000 number=11 hash=f1350f…266b2f age=4m28s    dirty=0.00B
+INFO [05-29|13:29:28.030] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=203.835µs mgasps=0.000 number=11 hash=f1350f…266b2f age=4m28s    dirty=0.00B
+INFO [05-29|13:30:21.911] @Sourav, insertChain, state before Process number=11 hash=9e57c6…263851 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=dd8d33…3c20b7 state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:30:21.912] @Sourav inside Finalize                  root=fa94f1…25d035 root1=dd8d33…3c20b7 number=11
+INFO [05-29|13:30:21.913] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=1.920ms   mgasps=0.000 number=11 hash=9e57c6…263851 age=3m24s    dirty=0.00B
+INFO [05-29|13:30:21.913] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=77.193µs  mgasps=0.000 number=11 hash=9e57c6…263851 age=3m24s    dirty=0.00B
+WARN [05-29|13:31:55.907] System clock seems off by -46.87234629s, which can prevent network connectivity 
+WARN [05-29|13:31:55.907] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log34.txt <==
-INFO [05-29|10:55:05.138] @Sourav, finished processing             block=34
-INFO [05-29|10:55:08.024] @Sourav, will start processing from      block=34
-INFO [05-29|10:55:08.024] @Sourav, finished processing             block=34
-INFO [05-29|10:55:08.024] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:55:08.025] @Sourav Kth parent states already available 
-ERROR[05-29|10:55:08.054] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:55:08.054] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:55:08.055] @Sourav computing complement coinbase address original=0x98297910DF46debb24f2cBc29a0203a970778C94 complemented=0x67D686ef20b92144db0d343D65fdfc568f88736b
-INFO [05-29|10:55:08.055] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=34d2a5…68f8a7 number=36
-INFO [05-29|10:55:08.060] Commit new mining work                   number=36 sealhash=5fb5f9…3910aa uncles=0 txs=313  gas=2504000000  fees=0.006573 elapsed=35.656ms
+INFO [05-29|13:17:19.004] New local node record                    seq=6 id=a0054d9f0cc1ee2e ip=127.0.0.1 udp=21000 tcp=21000
+INFO [05-29|13:17:19.011] Started P2P networking                   self=enode://a536051ab39faa1809c6b9655393f9471f913b6ec5bedf13827e0240002ac55c6215d32fcb92db34e4fd031ef35e87db03a3e2957c964a88a54e71ab5ec2b479@127.0.0.1:21000
+INFO [05-29|13:17:19.018] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:17:19.020] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:17:19.021] ------------------------------------------------------------------- 
+WARN [05-29|13:17:19.021] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:17:19.021] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:17:19.021] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:17:19.021] ------------------------------------------------------------------- 
+INFO [05-29|13:17:20.208] Unlocked account                         address=0x98297910DF46debb24f2cBc29a0203a970778C94
 
 ==> Logs/log35.txt <==
-INFO [05-29|10:55:01.772] Commit new mining work                   number=36 sealhash=debb25…5a45ed uncles=0 txs=0    gas=0           fees=0        elapsed=2.255ms
-INFO [05-29|10:55:01.848] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:55:01.849] @Sourav, finished processing             block=34
-INFO [05-29|10:55:04.769] @Sourav, will start processing from      block=34
-INFO [05-29|10:55:04.769] @Sourav, finished processing             block=34
-INFO [05-29|10:55:04.769] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:55:04.770] @Sourav Kth parent states already available 
-INFO [05-29|10:55:04.773] @Sourav computing complement coinbase address original=0x76232Fa60cA13DFBd6810a1F47F38AAD047d900D complemented=0x89dcD059F35eC204297eF5E0B80c7552Fb826Ff2
-INFO [05-29|10:55:04.774] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=230f61…cba735 number=36
-INFO [05-29|10:55:04.774] Commit new mining work                   number=36 sealhash=f4181c…03dbab uncles=0 txs=6    gas=48000000    fees=0.000126 elapsed=5.556ms
+WARN [05-29|13:33:17.384] System clock seems off by -48.166932255s, which can prevent network connectivity 
+WARN [05-29|13:33:17.384] Please enable network time synchronisation in system settings. 
+INFO [05-29|13:37:03.208] @Sourav, insertChain, state before Process number=11 hash=9a149f…51f9f6 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=c04ace…1c851f state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:37:03.208] @Sourav inside Finalize                  root=fa94f1…25d035 root1=c04ace…1c851f number=11
+INFO [05-29|13:37:03.210] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=1.808ms   mgasps=0.000 number=11 hash=9a149f…51f9f6 age=10m3s    dirty=0.00B
+INFO [05-29|13:37:03.210] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=80.777µs  mgasps=0.000 number=11 hash=9a149f…51f9f6 age=10m3s    dirty=0.00B
+INFO [05-29|13:38:54.598] @Sourav, insertChain, state before Process number=11 hash=895d14…11b069 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=34ceb9…a7487b state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:38:54.599] @Sourav inside Finalize                  root=fa94f1…25d035 root1=34ceb9…a7487b number=11
+INFO [05-29|13:38:54.600] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=2.181ms   mgasps=0.000 number=11 hash=895d14…11b069 age=13m57s   dirty=0.00B
+INFO [05-29|13:38:54.600] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=99.682µs  mgasps=0.000 number=11 hash=895d14…11b069 age=13m57s   dirty=0.00B
 
 ==> Logs/log36.txt <==
-INFO [05-29|10:55:03.900] @Sourav stats                            PQ size=1 RQ size=18 bn=35
-INFO [05-29|10:55:03.900] @Sourav, will start processing from      block=33
-INFO [05-29|10:55:03.901] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:55:03.902] @Sourav Kth parent states already available 
-INFO [05-29|10:55:03.902] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:55:03.902] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c9f66b…eadfe8 number=36
-INFO [05-29|10:55:03.972] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:55:03.973] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=8bc206…351cb1 number=36
-INFO [05-29|10:55:04.014] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:55:04.014] @Sourav, finished processing             block=34
+WARN [05-29|13:33:01.700] System clock seems off by -46.754673018s, which can prevent network connectivity 
+WARN [05-29|13:33:01.700] Please enable network time synchronisation in system settings. 
+INFO [05-29|13:37:04.005] @Sourav, insertChain, state before Process number=11 hash=9a149f…51f9f6 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=c04ace…1c851f state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:37:04.006] @Sourav inside Finalize                  root=fa94f1…25d035 root1=c04ace…1c851f number=11
+INFO [05-29|13:37:04.008] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=3.067ms   mgasps=0.000 number=11 hash=9a149f…51f9f6 age=10m4s    dirty=0.00B
+INFO [05-29|13:37:04.008] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=268.032µs mgasps=0.000 number=11 hash=9a149f…51f9f6 age=10m4s    dirty=0.00B
+INFO [05-29|13:38:56.610] @Sourav, insertChain, state before Process number=11 hash=895d14…11b069 kthParent=1 kthParent Hash=49a243…cb3925 block root=fa94f1…25d035 block root1=34ceb9…a7487b state root=fa94f1…25d035 state1 root=f07359…608f8d
+INFO [05-29|13:38:56.611] @Sourav inside Finalize                  root=fa94f1…25d035 root1=34ceb9…a7487b number=11
+INFO [05-29|13:38:56.612] Imported new chain segment               blocks=1  txs=0 mgas=0.000 elapsed=2.470ms   mgasps=0.000 number=11 hash=895d14…11b069 age=13m59s   dirty=0.00B
+INFO [05-29|13:38:56.612] Imported new chain segment               blocks=0  txs=0 mgas=0.000 elapsed=190.683µs mgasps=0.000 number=11 hash=895d14…11b069 age=13m59s   dirty=0.00B
 
 ==> Logs/log3.txt <==
-INFO [05-29|10:38:44.820] can't open the file 
-INFO [05-29|10:38:44.820] @Sourav, will start processing from      block=33
-INFO [05-29|10:38:44.821] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:38:44.822] @Sourav Kth parent states already available 
-INFO [05-29|10:38:44.822] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:38:44.822] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c9f66b…eadfe8 number=36
-INFO [05-29|10:38:44.889] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:38:44.890] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=378d4d…f7af8a number=36
-INFO [05-29|10:38:44.935] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:38:44.935] @Sourav, finished processing             block=34
+INFO [05-29|12:55:10.888] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|12:55:10.890] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|12:55:10.890] ------------------------------------------------------------------- 
+WARN [05-29|12:55:10.890] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|12:55:10.890] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|12:55:10.890] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|12:55:10.890] ------------------------------------------------------------------- 
+INFO [05-29|12:55:12.013] Unlocked account                         address=0xc7a8085B62dE7D32E2C84DC96378CD5714946DD7
+WARN [05-29|12:58:06.682] System clock seems off by -17m5.058099182s, which can prevent network connectivity 
+WARN [05-29|12:58:06.682] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log4.txt <==
-INFO [05-29|10:52:55.381] can't open the file 
-INFO [05-29|10:52:55.381] @Sourav, will start processing from      block=33
-INFO [05-29|10:52:55.385] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:52:55.385] @Sourav Kth parent states already available 
-INFO [05-29|10:52:55.385] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:52:55.386] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c9f66b…eadfe8 number=36
-INFO [05-29|10:52:55.445] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:52:55.445] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c54d6e…c19c9a number=36
-INFO [05-29|10:52:55.486] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:52:55.486] @Sourav, finished processing             block=34
+INFO [05-29|13:09:32.421] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:09:32.422] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:09:32.422] ------------------------------------------------------------------- 
+WARN [05-29|13:09:32.422] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:09:32.422] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:09:32.422] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:09:32.422] ------------------------------------------------------------------- 
+INFO [05-29|13:09:33.566] Unlocked account                         address=0xcC86cdf64a36Ba87aD4daE5e2A62B1172de11BA9
+WARN [05-29|13:12:19.318] System clock seems off by -2m54.48735362s, which can prevent network connectivity 
+WARN [05-29|13:12:19.318] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log5.txt <==
-INFO [05-29|10:53:01.009] Commit new mining work                   number=36 sealhash=3110b7…b8e365 uncles=0 txs=1496 gas=11968000000 fees=0.031416 elapsed=254.774ms
-INFO [05-29|10:53:03.750] @Sourav, will start processing from      block=34
-INFO [05-29|10:53:03.750] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:53:03.750] @Sourav, finished processing             block=34
-INFO [05-29|10:53:03.751] @Sourav Kth parent states already available 
-ERROR[05-29|10:53:03.872] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:53:03.872] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:53:03.873] @Sourav computing complement coinbase address original=0xDD50fc7B8B10C30267e21f2Ee3c5F160dd026C62 complemented=0x22Af038474ef3CfD981dE0D11c3a0e9F22fd939D
-INFO [05-29|10:53:03.873] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=4f95dc…449aed number=36
-INFO [05-29|10:53:03.895] Commit new mining work                   number=36 sealhash=c16a34…018257 uncles=0 txs=1502 gas=12016000000 fees=0.031542 elapsed=145.245ms
+INFO [05-29|13:09:49.251] New local node record                    seq=7 id=d466989120545e83 ip=127.0.0.1 udp=21000 tcp=21000
+INFO [05-29|13:09:49.254] Started P2P networking                   self=enode://fde385e997afd2e9272a38de2003fbd7c5a23fb25aa84d929966af628cd13f05178325934a4862a117e5e66aa2122a266ec4b6c67da2c411396ddd0fbeb9ede3@127.0.0.1:21000
+INFO [05-29|13:09:49.256] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:09:49.257] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:09:49.257] ------------------------------------------------------------------- 
+WARN [05-29|13:09:49.257] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:09:49.257] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:09:49.257] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:09:49.257] ------------------------------------------------------------------- 
+INFO [05-29|13:09:50.417] Unlocked account                         address=0xDD50fc7B8B10C30267e21f2Ee3c5F160dd026C62
 
 ==> Logs/log6.txt <==
-INFO [05-29|10:53:01.387] Commit new mining work                   number=36 sealhash=157cbe…5ece24 uncles=0 txs=1696 gas=13568000000 fees=0.035616 elapsed=248.327ms
-INFO [05-29|10:53:04.138] @Sourav, will start processing from      block=34
-INFO [05-29|10:53:04.138] @Sourav, finished processing             block=34
-INFO [05-29|10:53:04.138] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:53:04.139] @Sourav Kth parent states already available 
-ERROR[05-29|10:53:04.285] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:53:04.285] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:53:04.286] @Sourav computing complement coinbase address original=0xA588153D4d6dd936C0c0f91e290fED379B489FA6 complemented=0x5A77Eac2b29226C93f3f06e1d6f012C864B76059
-INFO [05-29|10:53:04.286] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=dd1e33…b66b55 number=36
-INFO [05-29|10:53:04.311] Commit new mining work                   number=36 sealhash=84980a…724d4b uncles=0 txs=1702 gas=13616000000 fees=0.035742 elapsed=173.300ms
+INFO [05-29|13:10:00.930] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:10:00.933] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:10:00.933] ------------------------------------------------------------------- 
+WARN [05-29|13:10:00.933] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:10:00.933] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:10:00.933] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:10:00.933] ------------------------------------------------------------------- 
+INFO [05-29|13:10:02.106] Unlocked account                         address=0xA588153D4d6dd936C0c0f91e290fED379B489FA6
+WARN [05-29|13:13:23.942] System clock seems off by -2m48.72182352s, which can prevent network connectivity 
+WARN [05-29|13:13:23.942] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log7.txt <==
-INFO [05-29|10:52:55.423] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:52:55.423] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=2f7a59…918607 number=36
-ERROR[05-29|10:52:55.432] Failed Fees transfer of transaction of type 2 err="nonce too low"
-ERROR[05-29|10:52:55.432] Failed Fees transfer of transaction of type 2 err="nonce too low"
-ERROR[05-29|10:52:55.432] Failed Fees transfer of transaction of type 2 err="nonce too low"
-ERROR[05-29|10:52:55.433] Failed Fees transfer of transaction of type 2 err="nonce too low"
-ERROR[05-29|10:52:55.433] Failed Fees transfer of transaction of type 2 err="nonce too low"
-ERROR[05-29|10:52:55.433] Failed Fees transfer of transaction of type 2 err="nonce too low"
-INFO [05-29|10:52:55.480] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:52:55.480] @Sourav, finished processing             block=34
+INFO [05-29|13:10:06.247] New local node record                    seq=7 id=61340b7f6f842b28 ip=127.0.0.1 udp=21000 tcp=21000
+INFO [05-29|13:10:06.250] Started P2P networking                   self=enode://5e5c21a0dc439f1f84b9157b038232b7774835df795f0f00327543fca5cd97a86297aa18121d98d617eb810df04ca442f5e61b15a6a9ed080b1db4b925b74b78@127.0.0.1:21000
+INFO [05-29|13:10:06.252] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:10:06.253] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:10:06.253] ------------------------------------------------------------------- 
+WARN [05-29|13:10:06.253] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:10:06.253] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:10:06.253] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:10:06.254] ------------------------------------------------------------------- 
+INFO [05-29|13:10:07.391] Unlocked account                         address=0x09bAf1A256078BE645Ea8eFBb9B9FF87a88dc0D0
 
 ==> Logs/log8.txt <==
-INFO [05-29|10:52:55.349] @Sourav, finished processing             block=34
-INFO [05-29|10:52:58.214] @Sourav, will start processing from      block=34
-INFO [05-29|10:52:58.214] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:52:58.215] @Sourav Kth parent states already available 
-INFO [05-29|10:52:58.215] @Sourav, finished processing             block=34
-ERROR[05-29|10:52:58.258] Failed Fees transfer of transaction of type 2 err="insufficient balance for transfer"
-ERROR[05-29|10:52:58.258] Failed Fees transfer of transaction of type 2 err="nonce too high"
-INFO [05-29|10:52:58.262] @Sourav computing complement coinbase address original=0x25F20720E00137ed7a804F1F81E876bb4CAFEd9d complemented=0xda0DF8dF1FfEc812857Fb0e07E178944B3501262
-INFO [05-29|10:52:58.262] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=afddc1…1e395c number=36
-INFO [05-29|10:52:58.270] Commit new mining work                   number=36 sealhash=d8c446…4d82ad uncles=0 txs=538  gas=4304000000  fees=0.011298 elapsed=55.439ms
+INFO [05-29|13:10:17.468] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:10:17.470] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:10:17.470] ------------------------------------------------------------------- 
+WARN [05-29|13:10:17.470] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:10:17.470] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:10:17.470] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:10:17.470] ------------------------------------------------------------------- 
+INFO [05-29|13:10:18.650] Unlocked account                         address=0x25F20720E00137ed7a804F1F81E876bb4CAFEd9d
+WARN [05-29|13:13:27.012] System clock seems off by -2m54.67086098s, which can prevent network connectivity 
+WARN [05-29|13:13:27.012] Please enable network time synchronisation in system settings. 
 
 ==> Logs/log9.txt <==
-INFO [05-29|10:52:58.792] can't open the file 
-INFO [05-29|10:52:58.792] @Sourav, will start processing from      block=33
-INFO [05-29|10:52:58.793] @Sourav GetKthParentState                bn=26 bh=b9607f…f787ff
-INFO [05-29|10:52:58.793] @Sourav Kth parent states already available 
-INFO [05-29|10:52:58.793] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:52:58.793] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=c9f66b…eadfe8 number=36
-INFO [05-29|10:52:58.893] @Sourav computing complement coinbase address original=0x0000000000000000000000000000000000000000 complemented=0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF
-INFO [05-29|10:52:58.893] @Sourav inside Finalize                  root=90dc47…9fcd9d root1=36d7f6…4be240 number=36
-INFO [05-29|10:52:58.945] @Sourav added state balance              address=0xb73465780ac630FdcCDbe80508bfB756c6bde49a amount=5000000000000000000
-INFO [05-29|10:52:58.945] @Sourav, finished processing             block=34
+INFO [05-29|13:10:32.267] IPC endpoint opened                      url=/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc
+INFO [05-29|13:10:32.271] HTTP endpoint opened                     url=http://127.0.0.1:22001                     cors= vhosts=localhost
+WARN [05-29|13:10:32.272] ------------------------------------------------------------------- 
+WARN [05-29|13:10:32.272] Referring to accounts by order in the keystore folder is dangerous! 
+WARN [05-29|13:10:32.272] This functionality is deprecated and will be removed in the future! 
+WARN [05-29|13:10:32.272] Please use explicit addresses! (can search via `geth account list`) 
+WARN [05-29|13:10:32.272] ------------------------------------------------------------------- 
+INFO [05-29|13:10:33.433] Unlocked account                         address=0x67CCB1C1a70d9DBfe0d86ecFd88E364511cD3cfa
+WARN [05-29|13:13:20.537] System clock seems off by -2m51.065069416s, which can prevent network connectivity 
+WARN [05-29|13:13:20.538] Please enable network time synchronisation in system settings. 
