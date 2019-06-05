@@ -12,13 +12,13 @@ sudo ln -s /usr/local/bin/pip /usr/local/bin/pip3
 sudo pip3 install web3==4.9.0
 sudo pip3 install py-solc
 
-cd /home/ubuntu/gitRepoEVD/
+#cd /home/ubuntu/gitRepoEVD/
 
-git clone --recursive https://github.com/ethereum/solidity.git
-cd solidity
-git checkout v0.4.25
-git submodule update --init --recursive
-sh scripts/install_deps.sh
-sudo sh scripts/build.sh
+#git clone --recursive https://github.com/ethereum/solidity.git
+#cd solidity
+#git checkout v0.4.25
+#git submodule update --init --recursive
+#sh scripts/install_deps.sh
+#sudo sh scripts/build.sh
 
-touch /home/ubuntu/gitRepoEVD/queuLengthStats
+#touch /home/ubuntu/gitRepoEVD/queuLengthStats
