@@ -23,6 +23,7 @@ mkdir Logs
 while read REMOTE_SERVER
 do
 	#echo staticJsonFiles/static.json$var 	
+	echo $REMOTE_SERVER
 	#scp -i quorum2.key staticJsonFiles/static.json$var ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/.ethereum/static-nodes.json &
 	
 
@@ -37,6 +38,7 @@ do
 	hashPowerVar=$(sed  "$((var+1))q;d" /home/sourav/EVD-Expt/hashPower)
 	echo "hashPower $hashPowerVar"
 	#echo "new hashpower calculated is "
+<<<<<<< HEAD
 
 
 	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "
