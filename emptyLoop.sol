@@ -5,7 +5,7 @@ contract Sorter {
     
 
     constructor(uint initVal) public {
-        loopVar = initVal;
+        loopVar = initVal*4;
     }
 
     function runLoop() view public{

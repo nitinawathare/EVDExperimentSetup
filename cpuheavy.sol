@@ -1,51 +1,53 @@
 pragma solidity ^0.4.24;
 
 contract Sorter {
-    uint public size;
-    uint public storedData;
-    uint[] public data;
+    int public size;
+    int public storedData;
+    int[] public data;
 
-    event finish(uint size, uint signature);
+    event finish(int size, int signature);
 
-    constructor(uint initVal) public {
+    constructor(int initVal) public {
         size = initVal;
 
-        for (uint x = 0; x < size; x++) {
+        for (int x = 0; x < size; x++) {
             data.push(size-x);
             //data[x]=size-x;
         }
         //quickSort(data, 0, size - 1);
-        storedData = data[size-1];
+        storedData = data[uint(size-1)];
     }
 
-    function sort(uint signature) public{
-        //uint[] memory data = new uint[](size);
-        
-        if(data[0]>data[size-1])
-            quickSort(0, size - 1);
-        else
-            quickSortReverse(0, size - 1);
+    
 
-        storedData = data[size-1];
-        emit finish(size, signature);
-    }
-
-    function get() public constant returns (uint retVal) {
+    function get() public constant returns (int retVal) {
         return storedData;
     }
 
-    function quickSort(uint left, uint right) internal {
+    function sort(int signature) public{
+        //uint[] memory data = new uint[](size);
+        
+         if(data[0]>data[uint(size-1)])
+            quickSort(0, size - 1);
+        else
+            quickSortReverse(0, size - 1);
+        
+        storedData = data[uint(size-1)];
+        emit finish(size, signature);
+    }
 
-        uint i = left;
-        uint j = right;
+    function quickSort(int left, int right) internal {
+
+        int i = int(left);
+        int j = int(right);
 
         if (i == j) return;
-        uint pivot = data[left + (right - left) / 2];
+        int pivot = data[uint(left + (right - left) / 2)];
         while (i <= j) {
-            while (data[i] < pivot) i++;
-            while (pivot < data[j]) j--;
+            while (data[uint(i)] < pivot) i++;
+            while (pivot < data[uint(j)]) j--;
             if (i <= j) {
-                (data[i], data[j]) = (data[j], data[i]);
+                (data[uint(i)], data[uint(j)]) = (data[uint(j)], data[uint(i)]);
                 i++;
                 j--;
             }
@@ -59,18 +61,18 @@ contract Sorter {
     }
 
 
-    function quickSortReverse(uint left, uint right) internal {
+    function quickSortReverse(int left, int right) internal {
 
-        uint i = left;
-        uint j = right;
+        int i = int(left);
+        int j = int(right);
 
         if (i == j) return;
-        uint pivot = data[left + (right - left) / 2];
+        int pivot = data[uint(left + (right - left) / 2)];
         while (i <= j) {
-            while (data[i] > pivot) i++;
-            while (pivot > data[j]) j--;
+            while (data[uint(i)] > pivot) i++;
+            while (pivot > data[uint(j)]) j--;
             if (i <= j) {
-                (data[i], data[j]) = (data[j], data[i]);
+                (data[uint(i)], data[uint(j)]) = (data[uint(j)], data[uint(i)]);
                 i++;
                 j--;
             }
@@ -82,5 +84,5 @@ contract Sorter {
         if (i < right)
             quickSortReverse(i, right);
     }
-
+    
 }

@@ -3,12 +3,12 @@ pragma solidity ^0.4.24;
 contract Sorter {
     uint public size;
     uint public storedData;
-    uint[4][4] public data;
-    uint[4][4] public data1;
-    uint[4][4] public result;
+    uint[2][2] public data;
+    uint[2][2] public data1;
+    uint[2][2] public result;
 
     constructor(uint initVal) public {
-    	size=4;
+    	size=2;
         storedData = initVal;
         for (uint x = 0; x < size; x++)
         	for (uint y = 0; y < size; y++)
@@ -33,7 +33,7 @@ contract Sorter {
 	        } 
 	    } 
 
-	    storedData = result[3][3];
+	    storedData = result[1][1];
     }
 
     function get() public constant returns (uint retVal) {
