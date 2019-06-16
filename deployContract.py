@@ -22,21 +22,64 @@ def maximum(a, b, c):
 
 
 k = 10
+
+'''
+Parameters for Experiments:
+
+1. 40 Million Block measurement time.
++------------+---------------+--------------+------------- +-------------+
+|  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | 
++------------+---------------+--------------+------------- +-------------+
+|  sort      |      15       |  ----------  |    250 k     |    224323   | 
++------------+---------------+--------------+------------- +-------------+
+|  Matrix    |      3        |  ----------  |    250 k     |    244314   | 
++------------+---------------+--------------+------------- +-------------+
+|  Empty     |      15       |  ----------  |    250 k     |    227908   | 
++------------+---------------+--------------+------------- +-------------+
+
+
+1. 80 Million Block measurement time.
++------------+---------------+--------------+------------- +-------------+--------------+
+|  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  |  Exec. time  |
++------------+---------------+--------------+------------- +-------------+--------------+
+|  sort      |      30       |  ----------  |   4 Million  |    Gasused  |  Exec. time  | 
++------------+---------------+--------------+------------- +-------------+--------------+
+|  Matrix    |      4        |  ----------  |   4 Million  |    Gasused  |  Exec. time  |
++------------+---------------+--------------+------------- +-------------+--------------+
+|  Empty     |      30       |  ----------  |   4 Million  |    Gasused  |  Exec. time  |
++------------+---------------+--------------+------------- +-------------+--------------+
+
+
+2. 800 Million Block measurement time.
++------------+---------------+--------------+------------- +-------------+
+|  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | 
++------------+---------------+--------------+------------- +-------------+
+|  sort      |     150       |  ----------  |   8 Million  |    Gasused  | 
++------------+---------------+--------------+------------- +-------------+
+|  Matrix    |      8        |  ----------  |   8 Million  |    Gasused  | 
++------------+---------------+--------------+------------- +-------------+
+|  Empty     |     200       |  ----------  |   8 Million  |    Gasused  | 
++------------+---------------+--------------+------------- +-------------+
+
+'''
+
 def compile_source_file(file_path):
    with open(file_path, 'r') as f:
       source = f.read()
    return compile_source(source)
 
 # w3 = Web3(IPCProvider('/home/nitin14/EVDEthereum/.ethereum/geth.ipc', timeout=100000))
-#w31 = Web3(IPCProvider('/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc', timeout=100000))
+w3 = Web3(IPCProvider('/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc', timeout=100000))
 
 # w31 = Web3(IPCProvider('/home/sourav/test-eth3/geth.ipc', timeout=100000))
-w3 = Web3(IPCProvider('/home/sourav/test-eth3/geth.ipc', timeout=100000))
+# w3 = Web3(IPCProvider('/home/sourav/test-eth3/geth.ipc', timeout=100000))
 # w3 = Web3(IPCProvider('/home/sourav/test-eth2/geth.ipc', timeout=100000))
 
 #deploying sort contract, pass size of array as a argument to the constructor
 
-contract_source_path = '/home/sourav/EVD-Expt/cpuheavy.sol'
+
+contract_source_path = '/home/ubuntu/gitRepoEVD/cpuheavy.sol'
+# contract_source_path = '/home/sourav/EVD-Expt/cpuheavy.sol'
 # contract_source_path = '/home/sourav/EVD-Prototype/scripts/contracts/simplestorage.sol'
 compiled_sol = compile_source_file(contract_source_path)
 
@@ -44,23 +87,15 @@ contract_id, contract_interface1 = compiled_sol.popitem()
 curBlock = w3.eth.getBlock('latest')
 
 w3.miner.start(1)
-curBlock = w3.eth.getBlock('latest')
-while curBlock['number'] < 2:
-    time.sleep(1)
-    curBlock = w3.eth.getBlock('latest')
-w3.miner.stop()
-# time.sleep(2)
-
-w3.miner.start(1)
 tx_hash1 = w3.eth.contract(
         abi=contract_interface1['abi'],
-        bytecode=contract_interface1['bin']).constructor(2).transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':4000000})
+        bytecode=contract_interface1['bin']).constructor(15).transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':8000000})
 
 
 
 
 # contract_source_path = '/home/nitin14/NewEVD/matrixMultiplication.sol'
-contract_source_path = '/home/sourav/EVD-Expt/matrixMultiplication.sol'
+contract_source_path = '/home/ubuntu/gitRepoEVD/matrixMultiplication.sol'
 # contract_source_path = '/home/sourav/EVD-Prototype/scripts/contracts/simplestorage.sol'
 compiled_sol = compile_source_file(contract_source_path)
 
@@ -69,12 +104,12 @@ curBlock = w3.eth.getBlock('latest')
 
 tx_hash2 = w3.eth.contract(
         abi=contract_interface2['abi'],
-        bytecode=contract_interface2['bin']).constructor(20).transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':4000000})
+        bytecode=contract_interface2['bin']).constructor(3).transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':8000000})
 
 
 
 # contract_source_path = '/home/nitin14/NewEVD/emptyLoop.sol'
-contract_source_path = '/home/sourav/EVD-Expt/emptyLoop.sol'
+contract_source_path = '/home/ubuntu/gitRepoEVD/emptyLoop.sol'
 
 # contract_source_path = '/home/sourav/EVD-Prototype/scripts/contracts/simplestorage.sol'
 compiled_sol = compile_source_file(contract_source_path)
@@ -85,49 +120,34 @@ curBlock = w3.eth.getBlock('latest')
 
 tx_hash3 = w3.eth.contract(
         abi=contract_interface3['abi'],
-        bytecode=contract_interface3['bin']).constructor(5).transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':4000000})
+        bytecode=contract_interface3['bin']).constructor(15).transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':8000000})
 
 
+while w3.eth.blockNumber < 10 :
+    time.sleep(4)
+w3.miner.stop()
 
-receipt3 = w3.eth.getTransactionReceipt(tx_hash3)
-while  receipt3 is None:
-    time.sleep(1)
-    receipt3 = w3.eth.getTransactionReceipt(tx_hash3)
-blockNumber3 = receipt3['blockNumber']
-
-receipt2 = w3.eth.getTransactionReceipt(tx_hash2)
-while  receipt2 is None:
-    time.sleep(1)
-    receipt2 = w3.eth.getTransactionReceipt(tx_hash2)
-
-blockNumber2 = receipt2['blockNumber']
+time.sleep(30)
 
 receipt1 = w3.eth.getTransactionReceipt(tx_hash1)
-while  receipt1 is None:
-    time.sleep(1)
-    receipt1 = w3.eth.getTransactionReceipt(tx_hash1)
+receipt2 = w3.eth.getTransactionReceipt(tx_hash2)
+receipt3 = w3.eth.getTransactionReceipt(tx_hash3)
 
-# blockNumber1 = receipt1['blockNumber']
+if receipt1 is not None:
+    print("sort:{0}".format(receipt1['contractAddress']))
 
-# largestNumber = maximum(blockNumber1,blockNumber2,blockNumber3)
+if receipt2 is not None:
+    print("matrix:{0}".format(receipt2['contractAddress']))
+
+if receipt3 is not None:
+    print("empty:{0}".format(receipt3['contractAddress']))
 
 
-# curBlock = w3.eth.getBlock('latest')
-# while curBlock['number'] < largestNumber + k + 1:
-#     time.sleep(3)
-#     curBlock = w3.eth.getBlock('latest')
+# address1 = receipt1['contractAddress']
+# address2 = receipt2['contractAddress']
+# address3 = receipt3['contractAddress']
 
-#print("tx blockNumber", blockNumber, "current blockNumber", curBlock['number'])
-
-# receipt1 = w3.eth.getTransactionReceipt(tx_hash1)
-# receipt2 = w3.eth.getTransactionReceipt(tx_hash2)
-# receipt3 = w3.eth.getTransactionReceipt(tx_hash3)
-
-address1 = receipt1['contractAddress']
-address2 = receipt2['contractAddress']
-address3 = receipt3['contractAddress']
-
-print("sort:{0}\nmatrix:{1}\nempty:{2}".format(address1,address2,address3))
+# print("sort:{0}\nmatrix:{1}\nempty:{2}".format(address1,address2,address3))
 
 
 # sort_contract = w3.eth.contract(
@@ -174,7 +194,13 @@ print("sort:{0}\nmatrix:{1}\nempty:{2}".format(address1,address2,address3))
 # time.sleep(10)
 
 # w31.miner.stop()
-w3.miner.stop()
+
+# curBlock = w3.eth.getBlock('latest')
+# while curBlock['number'] < 10:
+#     time.sleep(1)
+#     curBlock = w3.eth.getBlock('latest')
+# w3.miner.stop()
+
 '''sort_contract = w3.eth.contract(
    address=address,
    abi=contract_interface['abi'])

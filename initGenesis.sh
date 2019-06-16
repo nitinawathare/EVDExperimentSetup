@@ -17,13 +17,15 @@ SERVER_LIST=ipList
 
 var=0
 hashPowerVar=0
-rm -r Logs
-mkdir Logs
+# cacheVar=$((4096*4))
+cacheVar=2048
+# rm -r GLogs
+# mkdir GLogs
 
 while read REMOTE_SERVER
 do
 	#echo staticJsonFiles/static.json$var 	
-	echo $REMOTE_SERVER
+	# echo $REMOTE_SERVER
 	#scp -i quorum2.key staticJsonFiles/static.json$var ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/.ethereum/static-nodes.json &
 	
 
@@ -36,32 +38,46 @@ do
 	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "killall geth; sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/chaindata/"
 	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "killall geth; sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/lightchaindata/"
 	hashPowerVar=$(sed  "$((var+1))q;d" /home/sourav/EVD-Expt/hashPower)
-	echo "hashPower $hashPowerVar"
+	# echo "hashPower $hashPowerVar"
 	#echo "new hashpower calculated is "
-<<<<<<< HEAD
 
+	# if [ $var -le 6 ]; then
+	# 	cacheVar=4096
+	# elif [ $var -le 13 ]; then
+	# 	cacheVar=$((4096*4))
+	# elif [ $var -le 20 ]; then
+	# 	cacheVar=$((4096*2))
+	# elif [ $var -le 27 ]; then
+	# 	cacheVar=$((4096*4))
+	# elif [ $var -le 34 ]; then
+	# 	cacheVar=$((4096*2))
+	# elif [ $var -le 41 ]; then
+	# 	cacheVar=$((4096*2))
+	# fi
+	
+	# echo "var $var, cache $cacheVar"
 
-	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "
-		nohup killall geth; 
+	# to run EVD-Prototype
+	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "
+	# 	nohup killall geth; 
+	# 	sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/chaindata/; 
+	# 	sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/lightchaindata/; 
+	# 	sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/nodes/;
+	# 	sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/ethash/;
+	# 	sudo rm /home/ubuntu/gitRepoEVD/.ethereum/geth/LOCK;
+	# 	sudo rm /home/ubuntu/gitRepoEVD/.ethereum/geth/transactions.rlp;
+	# 	nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --k 10 init /home/ubuntu/gitRepoEVD/genesis.json; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22000 --port 21000 --verbosity 3 --gcmode archive --hashpower $hashPowerVar --k 10 --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt" > /home/sourav/EVD-Expt/Logs/log$var.txt 2>&1 &
+
+	# to run go-ethereum
+	nohup ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "
 		sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/chaindata/; 
 		sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/lightchaindata/; 
 		sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/nodes/;
 		sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/ethash/;
 		sudo rm /home/ubuntu/gitRepoEVD/.ethereum/geth/LOCK;
 		sudo rm /home/ubuntu/gitRepoEVD/.ethereum/geth/transactions.rlp;
-		nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --k 10 init /home/ubuntu/gitRepoEVD/genesis.json; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22000 --port 21000 --verbosity 3 --gcmode archive --hashpower $hashPowerVar --k 10 --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt" > /home/sourav/EVD-Expt/Logs/log$var.txt 2>&1 &
-
-
-	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "
-	# 	sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum1/geth/chaindata/; 
-	# 	sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum1/geth/lightchaindata/; 
-	# 	sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum1/geth/nodes/;
-	# 	sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum1/geth/ethash/;
-	# 	sudo rm /home/ubuntu/gitRepoEVD/.ethereum1/geth/LOCK;
-	# 	sudo rm /home/ubuntu/gitRepoEVD/.ethereum1/geth/transactions.rlp;
-	# 	nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum1 --k 20 init /home/ubuntu/gitRepoEVD/genesis.json; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum1 --rpc --rpcport 22001 --port 21001 --verbosity 3 --gcmode archive --hashpower $hashPowerVar --k 20 --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt" > /home/sourav/EVD-Expt/TLogs/log$var.txt 2>&1 &
-
-
+		nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum init /home/ubuntu/gitRepoEVD/genesis.json; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22000 --port 21000 --interarrival 15 --verbosity 3 --gcmode archive --cache $cacheVar --hashpower $hashPowerVar --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt > /home/ubuntu/gitRepoEVD/log.txt 2>&1" &
+	
 	#echo "after starting ************ "$REMOTE_SERVER
 	#sleep 2s
 	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "killall geth; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22001 --port 21000 --verbosity 4 --gcmode archive --hashpower 7.1 --k 10 --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt" > log$var.txt 2>&1 &

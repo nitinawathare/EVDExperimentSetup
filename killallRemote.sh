@@ -6,5 +6,6 @@ while read REMOTE_SERVER
 do
 	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "killall geth" &
 	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "killall git" &
-	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "pkill -f automate2.py;" &
+	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "pkill -f deployContract.py;" &
+	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "pkill -f sendTransaction.py;" &
 done < $SERVER_LIST
