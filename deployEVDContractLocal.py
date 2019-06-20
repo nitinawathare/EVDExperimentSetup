@@ -37,30 +37,15 @@ Parameters for Experiments:
 +------------+---------------+--------------+------------- +-------------+
 |  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | 
 +------------+---------------+--------------+------------- +-------------+
-|  sort      |     150       |  ----------  |   5.5 M      |    5121763  | 
+|  sort      |     150       |  ----------  |   8 Million  |    Gasused  | 
 +------------+---------------+--------------+------------- +-------------+
-|  Matrix    |      8        |  ----------  |   4.5 M      |    4487369  | 
+|  Matrix    |      8        |  ----------  |   8 Million  |    Gasused  | 
 +------------+---------------+--------------+------------- +-------------+
-|  Empty     |     400       |  ----------  |   6.0 M      |    5521658  | 
+|  Empty     |     200       |  ----------  |   8 Million  |    Gasused  | 
 +------------+---------------+--------------+------------- +-------------+
-
-
 
 ###################################################
 Execution of only Memory based contracts.
-
-0. 12 Million Block measurement time.
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | Exec. time  |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  sort      |      30       |  ----------  |    75 k      |    67264    |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Matrix    |      4        |  ----------  |    75 k      |    57681    |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Empty     |      4        |  ----------  |    100 k     |    76658    |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Total     |               |  ----------  |    250 k     |    xxxxxx   |    1750     |
-+------------+---------------+--------------+------------- +-------------+-------------+
 
 1. 40 Million Block measurement time.
 +------------+---------------+--------------+------------- +-------------+
@@ -73,35 +58,7 @@ Execution of only Memory based contracts.
 |  Empty     |      15       |  ----------  |    250 k     |    227908   | 
 +------------+---------------+--------------+------------- +-------------+
 
-2. 120 Million Block measurement time.
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | Exec. time  |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  sort      |      300      |  ----------  |    250 k     |    607685   |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Matrix    |      12       |  ----------  |    350 k     |    758781   |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Empty     |      50       |  ----------  |    250 k     |    709158   |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Total     |               |  ----------  |    1000 k    |    xxxxxx   |    1750     |
-+------------+---------------+--------------+------------- +-------------+-------------+
-
-3. 240 Million Block measurement time.
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | Exec. time  |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  sort      |      620      |  ----------  |    1.5 M     |   1315056   |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Matrix    |      15       |  ----------  |    1.5 M     |   1423713   |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Empty     |      120      |  ----------  |    1.75 M    |   1671658   |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Total     |               |  ----------  |              |   xxxxxxx   |     650     |
-+------------+---------------+--------------+------------- +-------------+-------------+
-
 '''
-
-
 
 def maximum(a, b, c): 
   
@@ -115,8 +72,7 @@ def maximum(a, b, c):
           
     return largest
 
-
-k = 10
+k = 4
 def compile_source_file(file_path):
    with open(file_path, 'r') as f:
       source = f.read()
@@ -127,13 +83,12 @@ def read_address_file(file_path):
     addresses = file.read().splitlines() 
     return addresses
 
-
 def connectWeb3():
     # w3 = Web3(IPCProvider('/home/nitin14/EVDEthereum/.ethereum/geth.ipc', timeout=100000))
     # w3 = Web3(IPCProvider('/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc', timeout=100000))
 
     # w31 = Web3(IPCProvider('/home/sourav/test-eth3/geth.ipc', timeout=100000))
-    return Web3(IPCProvider('/home/sourav/test-eth4/geth.ipc', timeout=100000))
+    return Web3(IPCProvider('/home/sourav/test-eth1/geth.ipc', timeout=100000))
     # w3 = Web3(IPCProvider('/home/sourav/test-eth2/geth.ipc', timeout=100000))
 
 def deploySortContract(contract_source_path, w3, account):
@@ -141,7 +96,7 @@ def deploySortContract(contract_source_path, w3, account):
     contract_id, contract_interface1 = compiled_sol.popitem()
     tx_hash = w3.eth.contract(
             abi=contract_interface1['abi'],
-            bytecode=contract_interface1['bin']).constructor(30).transact({'txType':"0x0", 'from':account, 'gas':8500000})
+            bytecode=contract_interface1['bin']).constructor(250).transact({'txType':"0x2", 'from':account, 'gas':8000000})
     return tx_hash
 
 
@@ -151,7 +106,7 @@ def deployMatrixContract(contract_source_path, w3, account):
     curBlock = w3.eth.getBlock('latest')
     tx_hash = w3.eth.contract(
             abi=contract_interface2['abi'],
-            bytecode=contract_interface2['bin']).constructor(20).transact({'txType':"0x0", 'from':account, 'gas':4000000})
+            bytecode=contract_interface2['bin']).constructor(20).transact({'txType':"0x2", 'from':account, 'gas':8000000})
     return tx_hash
 
 def deployEmptyContract(contract_source_path, w3, account):
@@ -160,7 +115,7 @@ def deployEmptyContract(contract_source_path, w3, account):
     curBlock = w3.eth.getBlock('latest')
     tx_hash = w3.eth.contract(
             abi=contract_interface3['abi'],
-            bytecode=contract_interface3['bin']).constructor(4).transact({'txType':"0x0", 'from':account, 'gas':1000000})
+            bytecode=contract_interface3['bin']).constructor(30).transact({'txType':"0x2", 'from':account, 'gas':8000000})
     return tx_hash
 
 def deployContracts(w3, account):
@@ -178,6 +133,18 @@ def deployContracts(w3, account):
         receipt2 = w3.eth.getTransactionReceipt(tx_hash2)
         receipt3 = w3.eth.getTransactionReceipt(tx_hash3)
 
+    blkNumber1 = receipt1['blockNumber']
+    blkNumber2 = receipt2['blockNumber']
+    blkNumber3 = receipt3['blockNumber']
+
+    maxBlkNumber = maximum(blkNumber1, blkNumber2, blkNumber3)
+    while w3.eth.blockNumber < maxBlkNumber + k +1:
+        time.sleep(2)
+
+    receipt1 = w3.eth.getTransactionReceipt(tx_hash1)
+    receipt2 = w3.eth.getTransactionReceipt(tx_hash2)
+    receipt3 = w3.eth.getTransactionReceipt(tx_hash3)
+
     w3.miner.stop()
 
     if receipt1 is not None:
@@ -189,16 +156,15 @@ def deployContracts(w3, account):
     if receipt3 is not None:
         print("empty:{0}".format(receipt3['contractAddress']))
 
-
 # contract_source_path = '/home/ubuntu/gitRepoEVD/cpuheavy.sol'
-# sort_source_path = '/home/sourav/EVD-Expt/cpuheavy.sol'
-sort_source_path = '/home/sourav/EVD-Expt/sortMemory.sol'
+sort_source_path = '/home/sourav/EVD-Expt/cpuheavy.sol'
+# sort_source_path = '/home/sourav/EVD-Expt/sortMemory.sol'
 # contract_source_path = '/home/sourav/EVD-Prototype/scripts/contracts/simplestorage.sol'
 
 # contract_source_path = '/home/nitin14/NewEVD/matrixMultiplication.sol'
 # contract_source_path = '/home/ubuntu/gitRepoEVD/matrixMultiplication.sol'
-# matrix_source_path = '/home/sourav/EVD-Expt/matrixMultiplication.sol'
-matrix_source_path = '/home/sourav/EVD-Expt/matrixMemory.sol'
+matrix_source_path = '/home/sourav/EVD-Expt/matrixMultiplication.sol'
+# matrix_source_path = '/home/sourav/EVD-Expt/matrixMemory.sol'
 # contract_source_path = '/home/sourav/EVD-Prototype/scripts/contracts/simplestorage.sol'
 
 # contract_source_path = '/home/nitin14/NewEVD/emptyLoop.sol'

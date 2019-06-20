@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from decimal import *
-getcontext().prec = 300
+getcontext().prec = 400
 
 '''
 Results from Previous Runs

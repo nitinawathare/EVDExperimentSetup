@@ -3,8 +3,8 @@
 SERVER_LIST=ipList
 
 folder=$(date +%d-%m-%Y-%H-%M-%S)		
+folderEr=EC
 var=0
-
 
 # mkdir /home/sourav/EVD-Data/$folder
 # mkdir /home/sourav/EVD-Data/$folder/Mi
@@ -12,6 +12,13 @@ var=0
 # mkdir /home/sourav/EVD-Data/$folder/Log
 # mkdir /home/sourav/EVD-Data/$folder/Ex
 # mkdir /home/sourav/EVD-Data/$folder/Ti
+
+# mkdir /home/sourav/EVD-Data1/$folderEr
+# mkdir /home/sourav/EVD-Data1/$folderEr/Mi
+# mkdir /home/sourav/EVD-Data1/$folderEr/Mc
+# mkdir /home/sourav/EVD-Data1/$folderEr/Log
+# mkdir /home/sourav/EVD-Data1/$folderEr/Ex
+# mkdir /home/sourav/EVD-Data1/$folderEr/Ti
 
 while read REMOTE_SERVER
 do
@@ -42,8 +49,6 @@ do
 	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/executionTime" &
 	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/experimentTimeStats" &
 
-	
-
 	#scp -i quorum2.key installpy3.sh ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/ &
 	#scp -i quorum2.key installGo.sh ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/
         #scp -i quorum2.key installGo.sh ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/
@@ -54,4 +59,3 @@ do
 
 	var=$((var+1))
 done < $SERVER_LIST
-

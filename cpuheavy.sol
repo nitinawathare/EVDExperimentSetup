@@ -5,8 +5,6 @@ contract Sorter {
     int public storedData;
     int[] public data;
 
-    event finish(int size, int signature);
-
     constructor(int initVal) public {
         size = initVal;
 
@@ -24,7 +22,7 @@ contract Sorter {
         return storedData;
     }
 
-    function sort(int signature) public{
+    function sort() public{
         //uint[] memory data = new uint[](size);
         
          if(data[0]>data[uint(size-1)])
@@ -33,7 +31,6 @@ contract Sorter {
             quickSortReverse(0, size - 1);
         
         storedData = data[uint(size-1)];
-        emit finish(size, signature);
     }
 
     function quickSort(int left, int right) internal {

@@ -15,10 +15,16 @@ SERVER_LIST=ipList
 #python formStaticJson1.py
 # echo "formed static.json" 
 
+
+# Gas Limit (Decimal to Hexa-decimal)
+# 12M 	= B71B00
+# 800M	= 2FAF0800 
+
 var=0
 hashPowerVar=0
-# cacheVar=$((4096*4))
-cacheVar=2048
+cacheVar=$((4096*4))
+behavior=1
+# cacheVar=2048
 # rm -r GLogs
 # mkdir GLogs
 
@@ -76,8 +82,10 @@ do
 		sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/ethash/;
 		sudo rm /home/ubuntu/gitRepoEVD/.ethereum/geth/LOCK;
 		sudo rm /home/ubuntu/gitRepoEVD/.ethereum/geth/transactions.rlp;
-		nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum init /home/ubuntu/gitRepoEVD/genesis.json; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22000 --port 21000 --interarrival 15 --verbosity 3 --gcmode archive --cache $cacheVar --hashpower $hashPowerVar --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt > /home/ubuntu/gitRepoEVD/log.txt 2>&1" &
+		nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum init /home/ubuntu/gitRepoEVD/genesis.json; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22000 --port 21000 --interarrival 15 --verbosity 3 --gcmode archive --cache $cacheVar --hashpower $hashPowerVar --behavior $behavior --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt > /home/ubuntu/gitRepoEVD/log.txt 2>&1" &
 	
+	cacheVar=2048
+	behavior=0
 	#echo "after starting ************ "$REMOTE_SERVER
 	#sleep 2s
 	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "killall geth; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22001 --port 21000 --verbosity 4 --gcmode archive --hashpower 7.1 --k 10 --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt" > log$var.txt 2>&1 &

@@ -1,8 +1,11 @@
 pragma solidity ^0.4.24;
 
-contract Sorter {    
-    
-    function sort(int size) public {
+contract Sorter { 
+    int size;   
+    constructor(int arraySize) public {
+        size = arraySize;
+    }
+    function sort() public {
         int[] memory data = new int[](uint(size));
         for (int x = 0; x < size; x++) {
             data[uint(x)] = size-x;
@@ -10,25 +13,27 @@ contract Sorter {
         quickSort(data, 0, size - 1);
     }   
 
-    function quickSort(int[] arr, int left, int right) internal {
-        int i = left;
-        int j = right;
+    function quickSort(int[] data, int left, int right) internal {
+
+        int i = int(left);
+        int j = int(right);
+
         if (i == j) return;
-        int pivot = arr[uint(left + (right - left) / 2)];
+        int pivot = data[uint(left + (right - left) / 2)];
         while (i <= j) {
-            while (arr[uint(i)] < pivot) {
-                i++;
-            }
-            while (pivot < arr[uint(j)]){
-                j--;
-            }
+            while (data[uint(i)] < pivot) i++;
+            while (pivot < data[uint(j)]) j--;
             if (i <= j) {
-                int temp = arr[uint(i)];
-                arr[uint(i)] = arr[uint(j)];
-                arr[uint(j)] = temp;
+                (data[uint(i)], data[uint(j)]) = (data[uint(j)], data[uint(i)]);
                 i++;
                 j--;
             }
         }
+
+        if (left < j)
+            quickSort(data, left, j);
+
+        if (i < right)
+            quickSort(data, i, right);
     }
 }
