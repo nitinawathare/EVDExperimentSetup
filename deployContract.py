@@ -77,11 +77,11 @@ Execution of only Memory based contracts.
 +------------+---------------+--------------+------------- +-------------+-------------+
 |  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | Exec. time  |
 +------------+---------------+--------------+------------- +-------------+-------------+
-|  sort      |      300      |  ----------  |    250 k     |    607685   |             |
+|  sort      |      300      |  ----------  |    750 k     |    607685   |             |
 +------------+---------------+--------------+------------- +-------------+-------------+
-|  Matrix    |      12       |  ----------  |    350 k     |    758781   |             |
+|  Matrix    |      12       |  ----------  |    800 k     |    758781   |             |
 +------------+---------------+--------------+------------- +-------------+-------------+
-|  Empty     |      50       |  ----------  |    250 k     |    709158   |             |
+|  Empty     |      50       |  ----------  |    750 k     |    709158   |             |
 +------------+---------------+--------------+------------- +-------------+-------------+
 |  Total     |               |  ----------  |    1000k     |    xxxxxx   |     650     |
 +------------+---------------+--------------+------------- +-------------+-------------+
@@ -131,7 +131,7 @@ def deploySortContract(contract_source_path, w3, account):
     contract_id, contract_interface1 = compiled_sol.popitem()
     tx_hash = w3.eth.contract(
             abi=contract_interface1['abi'],
-            bytecode=contract_interface1['bin']).constructor(30).transact({'txType':"0x0", 'from':account, 'gas':4000000})
+            bytecode=contract_interface1['bin']).constructor(100).transact({'txType':"0x0", 'from':account, 'gas':20000000})
     return tx_hash
 
 def deployMatrixContract(contract_source_path, w3, account):
@@ -140,7 +140,7 @@ def deployMatrixContract(contract_source_path, w3, account):
     curBlock = w3.eth.getBlock('latest')
     tx_hash = w3.eth.contract(
             abi=contract_interface2['abi'],
-            bytecode=contract_interface2['bin']).constructor(4).transact({'txType':"0x0", 'from':account, 'gas':4000000})
+            bytecode=contract_interface2['bin']).constructor(8).transact({'txType':"0x0", 'from':account, 'gas':20000000})
     return tx_hash
 
 def deployEmptyContract(contract_source_path, w3, account):
@@ -149,7 +149,7 @@ def deployEmptyContract(contract_source_path, w3, account):
     curBlock = w3.eth.getBlock('latest')
     tx_hash = w3.eth.contract(
             abi=contract_interface3['abi'],
-            bytecode=contract_interface3['bin']).constructor(4).transact({'txType':"0x0", 'from':account, 'gas':1000000})
+            bytecode=contract_interface3['bin']).constructor(400).transact({'txType':"0x0", 'from':account, 'gas':20000000})
     return tx_hash
 
 def deployContracts(w3, account):
@@ -179,11 +179,11 @@ def deployContracts(w3, account):
         print("empty:{0}".format(receipt3['contractAddress']))
 
 
-# sort_source_path = '/home/ubuntu/gitRepoEVD/cpuheavy.sol'
-sort_source_path = '/home/ubuntu/gitRepoEVD/sortMemory.sol'
+sort_source_path = '/home/ubuntu/gitRepoEVD/cpuheavy.sol'
+# sort_source_path = '/home/ubuntu/gitRepoEVD/sortMemory.sol'
 
-# matrix_source_path = '/home/ubuntu/gitRepoEVD/matrixMultiplication.sol'
-matrix_source_path = '/home/ubuntu/gitRepoEVD/matrixMemory.sol'
+matrix_source_path = '/home/ubuntu/gitRepoEVD/matrixMultiplication.sol'
+# matrix_source_path = '/home/ubuntu/gitRepoEVD/matrixMemory.sol'
 
 empty_source_path = '/home/ubuntu/gitRepoEVD/emptyLoop.sol'
 

@@ -6,6 +6,8 @@ from web3 import *
 from solc import compile_source
 import datetime
 
+
+
 '''
 +------------+--------------+
 |  Contract  |    TxType    |
@@ -16,6 +18,16 @@ import datetime
 +------------+--------------+
 |   Empty    |      3       |
 +------------+--------------+
+
++------------+--------------+-------------+
+|  Contract  |   Parameter  |  Gas used   |
++------------+--------------+-------------+
+|   Sort     |      1       |   298092    |
++------------+--------------+-------------+
+|   Matrix   |      2       |   182938    |
++------------+--------------+-------------+
+|   Empty    |      3       |   227908    |
++------------+--------------+-------------+
 
 2. 800 Million Block measurement time.
 +------------+---------------+--------------+------------- +-------------+
@@ -28,36 +40,18 @@ import datetime
 |  Empty     |     400       |  ----------  |   6.0 M      |    5521658  | 
 +------------+---------------+--------------+------------- +-------------+
 
-######################################################
-Memory based Execution.
-2. 120 Million Block measurement time.
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | Exec. time  |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  sort      |      300      |  ----------  |    750 k     |    607685   |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Matrix    |      12       |  ----------  |    800 k     |    758781   |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Empty     |      50       |  ----------  |    750 k     |    709158   |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Total     |               |  ----------  |    1000k     |    xxxxxx   |     650     |
-+------------+---------------+--------------+------------- +-------------+-------------+
-
-
-3. 240 Million Block measurement time.
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | Exec. time  |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  sort      |      620      |  ----------  |    1.5 M     |   1315056   |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Matrix    |      15       |  ----------  |    1.5 M     |   1423713   |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Empty     |      120      |  ----------  |    1.75 M    |   1671658   |             |
-+------------+---------------+--------------+------------- +-------------+-------------+
-|  Total     |               |  ----------  |              |   xxxxxxx   |     650     |
-+------------+---------------+--------------+------------- +-------------+-------------+
-
 '''
+def maximum(a, b, c): 
+  
+    if (a >= b) and (a >= b): 
+        largest = a 
+  
+    elif (b >= a) and (b >= a): 
+        largest = b 
+    else: 
+        largest = c 
+          
+    return largest
 
 def compile_source_file(file_path):
    with open(file_path, 'r') as f:
@@ -65,40 +59,42 @@ def compile_source_file(file_path):
    return compile_source(source)
 
 def sendSortTransaction(address):
-    # contract_source_path = '/home/ubuntu/gitRepoEVD/sortMemory.sol'
     contract_source_path = '/home/ubuntu/gitRepoEVD/cpuheavy.sol'
     # contract_source_path = '/home/sourav/EVD-Expt/cpuheavy.sol'
-
+    # contract_source_path = '/home/sourav/EVD-Expt/sortMemory.sol'
     compiled_sol = compile_source_file(contract_source_path)
     contract_id, contract_interface = compiled_sol.popitem()
     sort_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = sort_contract.functions.sort().transact({'txType':"0x1", 'from':w3.eth.accounts[0], 'gas':5500000})
+    tx_hash = sort_contract.functions.sort().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':5121763})
+    return tx_hash
 
 def sendMatrixTransaction(address):
-    # contract_source_path = '/home/ubuntu/gitRepoEVD/matrixMemory.sol'
     contract_source_path = '/home/ubuntu/gitRepoEVD/matrixMultiplication.sol'
     # contract_source_path = '/home/sourav/EVD-Expt/matrixMultiplication.sol'
+    # contract_source_path = '/home/sourav/EVD-Expt/matrixMemory.sol'
     compiled_sol = compile_source_file(contract_source_path)
     contract_id, contract_interface = compiled_sol.popitem()
-    sort_contract = w3.eth.contract(
+    matrix_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = sort_contract.functions.multiply().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':4500000})
+    tx_hash = matrix_contract.functions.multiply().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':4487369})
+    return tx_hash
 
 def sendEmptyLoopTransaction(address):
     contract_source_path = '/home/ubuntu/gitRepoEVD/emptyLoop.sol'
     # contract_source_path = '/home/sourav/EVD-Expt/emptyLoop.sol'
     compiled_sol = compile_source_file(contract_source_path)
     contract_id, contract_interface = compiled_sol.popitem()
-    sort_contract = w3.eth.contract(
+    empty_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = sort_contract.functions.runLoop().transact({'txType':"0x3", 'from':w3.eth.accounts[0], 'gas':6000000})
+    tx_hash = empty_contract.functions.runLoop().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':5521658})
+    return tx_hash
 
 print("Starting Transaction Submission")
-# w3 = Web3(IPCProvider('/home/sourav/test-eth4/geth.ipc', timeout=100000))
+# w3 = Web3(IPCProvider('/home/sourav/test-eth1/geth.ipc', timeout=100000))
 w3 = Web3(IPCProvider('/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc', timeout=100000))
 
 file = open('/home/ubuntu/gitRepoEVD/experimentTimeStats',"w")
@@ -106,34 +102,36 @@ file.write("Experiment Start Time"+str(datetime.datetime.now())+"\n")
 
 w3.miner.start(1)
 
-curBlock = w3.eth.getBlock('latest')
-while curBlock['number'] < 10:
-    time.sleep(1)
-    curBlock = w3.eth.getBlock('latest')
-
-
 i=0
-curBlock = w3.eth.getBlock('latest')
-while curBlock['number'] < 1050:
-#while i < 2:
-    # with open('/home/sourav/contractAddressList1') as fp:
+k=27
+# curBlock = w3.eth.getBlock('latest')
+while w3.eth.blockNumber < 1050:
+# while i < 2000:
+    # with open('/home/sourav/EVD-Expt/contractAddressList1') as fp:
     with open('/home/ubuntu/gitRepoEVD/contractAddressList') as fp:
         for line in fp:
             #print(line)
             a,b = line.rstrip().split(':', 1)
             if a=="sort":
-                sendSortTransaction(b)
+                tx_hash1 = sendSortTransaction(b)
             if a=="matrix":
-                sendMatrixTransaction(b)
+                tx_hash2 = sendMatrixTransaction(b)
             if a=="empty":  
-                sendEmptyLoopTransaction(b) 
-            time.sleep(0.5)
+                tx_hash3 = sendEmptyLoopTransaction(b) 
+            # time.sleep(0.01)
+        file.write(str(w3.eth.blockNumber)+","+str(datetime.datetime.now())+"\n")
 
-        curBlock = w3.eth.getBlock('latest')
-        file.write(str(curBlock['number'])+","+str(datetime.datetime.now())+"\n")
-        
+    #time.sleep(0.08)
+    # if i%100==0:
+        # curBlock = w3.eth.getBlock('latest')
+    i=i+1
+
+blkNumber = w3.eth.blockNumber
+while w3.eth.blockNumber < blkNumber + k +1:
+    time.sleep(2)
+
 w3.miner.stop()
-
+        
 time.sleep(30)
 file1 = open('/home/ubuntu/gitRepoEVD/minersInChain',"w")
 highestBlock = w3.eth.getBlock('latest')

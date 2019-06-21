@@ -8,10 +8,10 @@ contract Sorter {
     }
 
     function multiply() public{
-        uint size1 = 4;
-        uint[4][4] memory data;
-        uint[4][4] memory data1;
-        uint[4][4] memory result;
+        uint size1 = 15;
+        uint[15][15] memory data;
+        uint[15][15] memory data1;
+        uint[15][15] memory result;
 
         for (uint x = 0; x < size1; x++)
             for (uint y = 0; y < size1; y++)

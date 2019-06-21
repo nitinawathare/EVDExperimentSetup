@@ -76,7 +76,7 @@ def sendEmptyLoopTransaction(address):
 
 
 print("Starting Transaction Submission")
-w3 = Web3(IPCProvider('/home/sourav/test-eth4/geth.ipc', timeout=100000))
+w3 = Web3(IPCProvider('/home/sourav/test-eth3/geth.ipc', timeout=100000))
 # w3 = Web3(IPCProvider('/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc', timeout=100000))
 
 w3.miner.start(1)
