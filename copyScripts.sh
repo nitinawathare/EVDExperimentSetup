@@ -13,12 +13,14 @@ var=0
 # mkdir /home/sourav/EVD-Data/$folder/Ex
 # mkdir /home/sourav/EVD-Data/$folder/Ti
 
-# mkdir /home/sourav/EVD-Data1/$folderEr
-# mkdir /home/sourav/EVD-Data1/$folderEr/Mi
-# mkdir /home/sourav/EVD-Data1/$folderEr/Mc
-# mkdir /home/sourav/EVD-Data1/$folderEr/Log
-# mkdir /home/sourav/EVD-Data1/$folderEr/Ex
-# mkdir /home/sourav/EVD-Data1/$folderEr/Ti
+# mkdir /home/sourav/EVD-Data/$folderEr
+# mkdir /home/sourav/EVD-Data/$folderEr/Mi
+# mkdir /home/sourav/EVD-Data/$folderEr/Mc
+# mkdir /home/sourav/EVD-Data/$folderEr/Log
+# mkdir /home/sourav/EVD-Data/$folderEr/Ex
+# mkdir /home/sourav/EVD-Data/$folderEr/Ti
+# mkdir /home/sourav/EVD-Data/$folderEr/Ql
+# mkdir /home/sourav/EVD-Data/$folderEr/PPt
 
 while read REMOTE_SERVER
 do
@@ -42,17 +44,27 @@ do
 
 	#scp -i quorum2.key /home/nitin14/NewEVD/EVD-Prototype/scripts/automate2.py ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/EVD-Prototype/scripts/automate2.py &
 	# ssh -o StrictHostKeyChecking=no -l sourav $REMOTE_SERVER&
-	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/queuLengthStats" &
-	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/processPreviousTime" &
-	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/miningInfo" &
-	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/minersInChain" &
-	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/log.txt" &
-	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/executionTime" &
-	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/experimentTimeStats" &
+	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/queuLengthStats" &
+	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/processPreviousTime" &
+	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/miningInfo" &
+	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/minersInChain" &
+	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/log.txt" &
+	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/executionTime" &
+	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "> /home/ubuntu/gitRepoEVD/experimentTimeStats" &
+
+
+	# scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/miningInfo /home/sourav/EVD-Data/$folderEr/Mi/$var.dat & 
+	# scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/minersInChain /home/sourav/EVD-Data/$folderEr/Mc/$var.dat & 
+	# scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/log.txt /home/sourav/EVD-Data/$folderEr/Log/$var.txt & 
+	# scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/executionTime /home/sourav/EVD-Data/$folderEr/Ex/$var.txt & 
+	# scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/experimentTimeStats /home/sourav/EVD-Data/$folderEr/Ti/$var.txt & 
+	# scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/queuLengthStats /home/sourav/EVD-Data/$folderEr/Ql/$var.dat & 
+	# scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/processPreviousTime /home/sourav/EVD-Data/$folderEr/PPt/$var.dat & 
+
 
 	#scp -i quorum2.key installpy3.sh ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/ &
 	#scp -i quorum2.key installGo.sh ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/
-        #scp -i quorum2.key installGo.sh ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/
+    #scp -i quorum2.key installGo.sh ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/
 	#scp -i quorum2.key downloadEVDCode.sh ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/
 	#scp -i quorum2.key setupEthereum.sh ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/
 	 

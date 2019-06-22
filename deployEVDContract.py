@@ -72,7 +72,7 @@ def maximum(a, b, c):
           
     return largest
 
-k = 27
+k = 7
 def compile_source_file(file_path):
    with open(file_path, 'r') as f:
       source = f.read()
@@ -96,7 +96,7 @@ def deploySortContract(contract_source_path, w3, account):
     contract_id, contract_interface1 = compiled_sol.popitem()
     tx_hash = w3.eth.contract(
             abi=contract_interface1['abi'],
-            bytecode=contract_interface1['bin']).constructor(250).transact({'txType':"0x2", 'from':account, 'gas':8000000})
+            bytecode=contract_interface1['bin']).constructor(15).transact({'txType':"0x2", 'from':account, 'gas':8000000})
     return tx_hash
 
 
@@ -106,7 +106,7 @@ def deployMatrixContract(contract_source_path, w3, account):
     curBlock = w3.eth.getBlock('latest')
     tx_hash = w3.eth.contract(
             abi=contract_interface2['abi'],
-            bytecode=contract_interface2['bin']).constructor(20).transact({'txType':"0x2", 'from':account, 'gas':8000000})
+            bytecode=contract_interface2['bin']).constructor(3).transact({'txType':"0x2", 'from':account, 'gas':8000000})
     return tx_hash
 
 def deployEmptyContract(contract_source_path, w3, account):
@@ -115,7 +115,7 @@ def deployEmptyContract(contract_source_path, w3, account):
     curBlock = w3.eth.getBlock('latest')
     tx_hash = w3.eth.contract(
             abi=contract_interface3['abi'],
-            bytecode=contract_interface3['bin']).constructor(30).transact({'txType':"0x2", 'from':account, 'gas':8000000})
+            bytecode=contract_interface3['bin']).constructor(15).transact({'txType':"0x2", 'from':account, 'gas':8000000})
     return tx_hash
 
 def deployContracts(w3, account):

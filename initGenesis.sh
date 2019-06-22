@@ -19,8 +19,10 @@ SERVER_LIST=ipList
 # Gas Limit (Decimal to Hexa-decimal)
 # 3.5M 	= 3567E0
 # 12M 	= B71B00
+# 40M 	= 2625A00
 # 120M 	= 7270E00
 # 240M	= E4E1C00
+# 400M = 17D78400
 # 800M	= 2FAF0800 
 
 var=0
@@ -85,7 +87,7 @@ do
 		sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/ethash/;
 		sudo rm /home/ubuntu/gitRepoEVD/.ethereum/geth/LOCK;
 		sudo rm /home/ubuntu/gitRepoEVD/.ethereum/geth/transactions.rlp;
-		nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum init /home/ubuntu/gitRepoEVD/genesis.json; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22000 --port 21000 --interarrival 15 --k 27 --verbosity 3 --gcmode archive --cache $cacheVar --hashpower $hashPowerVar --behavior $behavior --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt > /home/ubuntu/gitRepoEVD/log.txt 2>&1" &
+		nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum init /home/ubuntu/gitRepoEVD/genesis.json; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22000 --port 21000 --interarrival 15 --k 7 --verbosity 4 --gcmode archive --cache $cacheVar --hashpower $hashPowerVar --behavior $behavior --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt > /home/ubuntu/gitRepoEVD/log.txt 2>&1" &
 	
 	cacheVar=2048
 	behavior=0

@@ -21,7 +21,7 @@ do
 	# scp -i quorum2.key genesis.json ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/ &
 
 	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "python3 /home/ubuntu/gitRepoEVD/stopExperiment.py"&
-	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "nohup python3 /home/ubuntu/gitRepoEVD/sendEVDTransaction.py"&
+	ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "nohup python3 /home/ubuntu/gitRepoEVD/sendEVDTransaction.py"&
 	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "nohup python3 /home/ubuntu/gitRepoEVD/deployEVDContract.py"&
 	
 

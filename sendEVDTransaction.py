@@ -29,6 +29,17 @@ import datetime
 |   Empty    |      3       |   227908    |
 +------------+--------------+-------------+
 
+1. 40 Million Gas limit
++------------+---------------+--------------+------------- +-------------+
+|  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | 
++------------+---------------+--------------+------------- +-------------+
+|  sort      |      15       |  ----------  |    250 k     |    224323   | 
++------------+---------------+--------------+------------- +-------------+
+|  Matrix    |      3        |  ----------  |    250 k     |    244314   | 
++------------+---------------+--------------+------------- +-------------+
+|  Empty     |      15       |  ----------  |    250 k     |    227908   | 
++------------+---------------+--------------+------------- +-------------+
+
 2. 800 Million Block measurement time.
 +------------+---------------+--------------+------------- +-------------+
 |  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | 
@@ -67,7 +78,7 @@ def sendSortTransaction(address):
     sort_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = sort_contract.functions.sort().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':5121763})
+    tx_hash = sort_contract.functions.sort().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':224323})
     return tx_hash
 
 def sendMatrixTransaction(address):
@@ -79,7 +90,7 @@ def sendMatrixTransaction(address):
     matrix_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = matrix_contract.functions.multiply().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':4487369})
+    tx_hash = matrix_contract.functions.multiply().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':244314})
     return tx_hash
 
 def sendEmptyLoopTransaction(address):
@@ -90,7 +101,7 @@ def sendEmptyLoopTransaction(address):
     empty_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = empty_contract.functions.runLoop().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':5521658})
+    tx_hash = empty_contract.functions.runLoop().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':227908})
     return tx_hash
 
 print("Starting Transaction Submission")
@@ -103,7 +114,7 @@ file.write("Experiment Start Time"+str(datetime.datetime.now())+"\n")
 w3.miner.start(1)
 
 i=0
-k=27
+k=7
 # curBlock = w3.eth.getBlock('latest')
 while w3.eth.blockNumber < 1050:
 # while i < 2000:

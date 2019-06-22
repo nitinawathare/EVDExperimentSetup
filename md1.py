@@ -9,6 +9,23 @@ getcontext().prec = 400
 '''
 Results from Previous Runs
 
+0. 1x Scalability
++-----------+-----------+
+|	32		|	3		|
+|	40		|	4		|
+|	48		|	5		|
+|	56		|	6		|
+|	64		|	7		|
+|	72		|	8		|
+|	80		|	9		|
+|	88		|	10		|
+|	96		|	11		|
+|	104		|	12		|
+|	112		|	13		|
+|	120		|	14		|
+|	128		|	15		|
++-----------+-----------+
+
 1. 5x Scalability
 +-----------+----------+
 |	32		|	  5    |
@@ -129,67 +146,48 @@ def computeK(lambd, MAX, threshold):
 	return None
 
 
+def computeKValuses(lambd, MAX, beta):
+	kValues = []
+	betaValues = []
+	while beta <= 128:
+		kValue = computeK(lambd, MAX, math.pow(2,-1*beta))
+		if kValue is None:
+			beta = beta + 8
+			print("None k Values")
+			continue
+		kValues.append(kValue)
+		betaValues.append(beta)
+		print(beta,",",kValue)
+		beta = beta+8
+	return (kValues, betaValues)
+
+
 MAX = 100 + 1
-# lambd = Decimal(1)/Decimal(15.0)
-lambdA = Decimal(1)/Decimal(15.0) + Decimal(1)/Decimal(30)
-# ks = []
-# probHonest = computeProb(lambd, MAX)
-# ks = []
-# probAdv = computeProb(lambdA, MAX)
+# 1 second block processing time i.e 5x scalability
+# lambda5 = lambdA = Decimal(1)/Decimal(15.0) + Decimal(1)/Decimal(30)
+# kValues5 , betaValues5 = computeKValuses(lambda5, MAX, 32)
 
-kValues = []
-betaValues = []
-beta = 32
-while beta <= 128:
-	kValue = computeK(lambdA, MAX, math.pow(2,-1*beta))
-	if kValue is None:
-		beta = beta + 8
-		print("None k Values")
-		continue
-	kValues.append(kValue)
-	betaValues.append(beta)
-	print(beta,",",kValue)
-	beta = beta+8
+# # 2 second block processing time i.e 10x scalability
+# lambd10 = Decimal(1)/Decimal(5.0)
+# kValues10 , betaValues10 = computeKValuses(lambda10, MAX, 32)
 
+# # 4 second block processing time i.e 20x scalability
+# lambda20 = Decimal(1)/Decimal(2.5)
+# kValues20 , betaValues20 = computeKValuses(lambda10, MAX, 32)
 
+lambda1 = Decimal(1)/Decimal(50)
+kValues1 , betaValues1 = computeKValuses(lambda1, MAX, 32)
 
-kValues2 = []
-lambd2 = Decimal(1)/Decimal(5.0)
-beta = 32
-while beta <= 128:
-	kValue = computeK(lambd2, MAX, math.pow(2,-1*beta))
-	if kValue is None:
-		beta = beta + 8
-		print("None k Values")
-		continue
-	kValues2.append(kValue)
-	print(beta,",",kValue)
-	beta = beta+8
+# plt.figure(1)
+# # plt.plot(ks, probHonest, label='Probability')
+# # plt.plot(ks, probAdv, label='Probability with Adv')
+# plt.plot(betaValues, kValues, label='5x Ethereum Gas Limit')
+# plt.plot(betaValues, kValues2, label='10x Ethereum Gas Limit')
+# plt.plot(betaValues, kValues4, label='20x Ethereum Gas Limit')
+# plt.grid(True)
+# plt.legend(loc="upper left")
 
-kValues4 = []
-lambd4 = Decimal(1)/Decimal(2.5)
-beta = 32
-while beta <= 128:
-	kValue = computeK(lambd4, MAX, math.pow(2,-1*beta))
-	if kValue is None:
-		beta = beta + 8
-		print("None k Values")
-		continue
-	kValues4.append(kValue)
-	print(beta,",",kValue)
-	beta = beta+8
-
-
-plt.figure(1)
-# plt.plot(ks, probHonest, label='Probability')
-# plt.plot(ks, probAdv, label='Probability with Adv')
-plt.plot(betaValues, kValues, label='5x Ethereum Gas Limit')
-plt.plot(betaValues, kValues2, label='10x Ethereum Gas Limit')
-plt.plot(betaValues, kValues4, label='20x Ethereum Gas Limit')
-plt.grid(True)
-plt.legend(loc="upper left")
-
-plt.xlabel('-ve of Log2 (Probability (Q>k))')
-plt.ylabel('Required k')
-# plt.title('Gas usage and limit with increasing block height')
-plt.show()
+# plt.xlabel('-ve of Log2 (Probability (Q>k))')
+# plt.ylabel('Required k')
+# # plt.title('Gas usage and limit with increasing block height')
+# plt.show()
