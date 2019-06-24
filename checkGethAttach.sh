@@ -1,3 +1,4 @@
+#!/bin/bash
 SERVER_LIST=ipList
 
 while read REMOTE_SERVER
