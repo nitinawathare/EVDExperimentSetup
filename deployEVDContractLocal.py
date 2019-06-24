@@ -88,15 +88,15 @@ def connectWeb3():
     # w3 = Web3(IPCProvider('/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc', timeout=100000))
 
     # w31 = Web3(IPCProvider('/home/sourav/test-eth3/geth.ipc', timeout=100000))
-    return Web3(IPCProvider('/home/sourav/test-eth1/geth.ipc', timeout=100000))
-    # w3 = Web3(IPCProvider('/home/sourav/test-eth2/geth.ipc', timeout=100000))
+    # return Web3(IPCProvider('/home/sourav/test-eth1/geth.ipc', timeout=100000))
+    return Web3(IPCProvider('/home/sourav/test-eth2/geth.ipc', timeout=100000))
 
 def deploySortContract(contract_source_path, w3, account):
     compiled_sol = compile_source_file(contract_source_path)
     contract_id, contract_interface1 = compiled_sol.popitem()
     tx_hash = w3.eth.contract(
             abi=contract_interface1['abi'],
-            bytecode=contract_interface1['bin']).constructor(250).transact({'txType':"0x2", 'from':account, 'gas':8000000})
+            bytecode=contract_interface1['bin']).constructor(15).transact({'txType':"0x2", 'from':account, 'gas':800000})
     return tx_hash
 
 
@@ -106,7 +106,7 @@ def deployMatrixContract(contract_source_path, w3, account):
     curBlock = w3.eth.getBlock('latest')
     tx_hash = w3.eth.contract(
             abi=contract_interface2['abi'],
-            bytecode=contract_interface2['bin']).constructor(20).transact({'txType':"0x2", 'from':account, 'gas':8000000})
+            bytecode=contract_interface2['bin']).constructor(3).transact({'txType':"0x2", 'from':account, 'gas':800000})
     return tx_hash
 
 def deployEmptyContract(contract_source_path, w3, account):
@@ -115,7 +115,7 @@ def deployEmptyContract(contract_source_path, w3, account):
     curBlock = w3.eth.getBlock('latest')
     tx_hash = w3.eth.contract(
             abi=contract_interface3['abi'],
-            bytecode=contract_interface3['bin']).constructor(30).transact({'txType':"0x2", 'from':account, 'gas':8000000})
+            bytecode=contract_interface3['bin']).constructor(15).transact({'txType':"0x2", 'from':account, 'gas':800000})
     return tx_hash
 
 def deployContracts(w3, account):

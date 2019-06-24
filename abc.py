@@ -21,14 +21,14 @@ session = requests.Session()
 #       print (latest.hex());
 
 #blockHeight = 7585283
-for index in range(65,75):
+for index in range(75,79):
         counter = 1000
         previous = 0
         while counter <=100000:
                 lower = index*100000 + 1 + previous
                 upper = index*100000 + 1 + counter
-                NumberOfTransactionsInBlockFileName = "{0}/{1}_{2}.{3}".format("/home/ubuntu/data","NumberOfTransactionsInBlock",index*100000+1+previous,"txt")
-                gasLimitGasUsedFileName  = "{0}/{1}_{2}.{3}".format("/home/ubuntu/data","gasLimitGasUsed",index*100000+1+previous,"txt")
+                NumberOfTransactionsInBlockFileName = "{0}/{1}_{2}.{3}".format("/ssd/data","NumberOfTransactionsInBlock",index*100000+1+previous,"txt")
+                gasLimitGasUsedFileName  = "{0}/{1}_{2}.{3}".format("/ssd/data","gasLimitGasUsed",index*100000+1+previous,"txt")
                 print(lower, upper)
                 print(NumberOfTransactionsInBlockFileName, gasLimitGasUsedFileName)
                 NumberOfTransactionsInBlock= open(NumberOfTransactionsInBlockFileName,"w+")

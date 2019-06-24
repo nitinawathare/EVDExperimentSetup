@@ -87,7 +87,7 @@ do
 		sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/ethash/;
 		sudo rm /home/ubuntu/gitRepoEVD/.ethereum/geth/LOCK;
 		sudo rm /home/ubuntu/gitRepoEVD/.ethereum/geth/transactions.rlp;
-		nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum init /home/ubuntu/gitRepoEVD/genesis.json; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22000 --port 21000 --interarrival 15 --k 7 --verbosity 4 --gcmode archive --cache $cacheVar --hashpower $hashPowerVar --behavior $behavior --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt > /home/ubuntu/gitRepoEVD/log.txt 2>&1" &
+		nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum init /home/ubuntu/gitRepoEVD/genesis.json; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22000 --port 21000 --nodiscover --interarrival 15 --k 7 --verbosity 4 --gcmode archive --cache $cacheVar --hashpower $hashPowerVar --behavior $behavior --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt > /home/ubuntu/gitRepoEVD/log.txt 2>&1" &
 	
 	cacheVar=2048
 	behavior=0

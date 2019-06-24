@@ -8,7 +8,7 @@ import time
 rpcport = '21000'
 
 # # Instantiate web3
-w3 = Web3(HTTPProvider('http://132.145.209.11:' + rpcport))
+w3 = Web3(HTTPProvider('http://127.0.0.1:' + rpcport))
 session = requests.Session()
 
 monitoredOpcode = [
@@ -27,9 +27,8 @@ returnOp = [
 	'STOP'
 ]
 
-startBlockNumber =  5000000
+startBlockNumber =  5006549
 endBlockNumber =  w3.eth.getBlock('latest').number
-print("Connection Established")
 
 interval = 10000
 start = int(startBlockNumber/interval)
@@ -37,9 +36,11 @@ end = int(endBlockNumber/interval) + 1
 
 
 for i in range(start, end):
-	file = open('/ssd/callChain/data/x'+str(i)+".txt","w")
+	file = open('/ssd/callChain/data/x'+str(i)+".txt","a+")
 
 	currentStart = i*interval+1
+	if currentStart < startBlockNumber:
+		currentStart = startBlockNumber
 	currentEnd = (i+1)*interval+1
 	if currentEnd > endBlockNumber:
 		currentEnd = endBlockNumber + 1
@@ -57,6 +58,13 @@ for i in range(start, end):
 		for txn in txns:
 			_to = txn['to']
 			_hash = txn['hash'].hex()
+			_receipt = w3.eth.getTransactionReceipt(_hash)
+			_gasUsed = _receipt['gasUsed']
+
+			if _gasUsed > 1000000:
+				continue
+			if _hash == "0xa6e0f880ca60af058a28b5b4266b9f88ca7eeb3967cb9e44e254ed6c4deec351":
+				continue
 
 			# Checking whether the transaction is to a EOA or not.
 			if (_to is not None) and (w3.eth.getCode(_to).hex() == '0x'):
@@ -90,6 +98,7 @@ for i in range(start, end):
 				transactionTrace = transactionTrace['result']['structLogs']
 			else:
 				print('hash: ', _hash, 'No trace available')
+				continue				
 
 			if transactionTrace:
 				logIndex = 0
@@ -121,7 +130,7 @@ for i in range(start, end):
 					elif (opcode == "RETURN") or (opcode == "STOP") or (opcode == "SELFDESTRUCT") or (opcode == "SUICIDE") or (opcode == "REVERT"):
 						if callQueue:
 							if currentContract == "CREATECALL":
-								contractAddress = transactionTrace[logIndex+1]['stack'][-1][24:]
+								# contractAddress = transactionTrace[logIndex+1]['stack'][-1][24:]
 								currentContract = callQueue.pop(-1)
 							else:
 								currentContract = callQueue.pop(-1)
