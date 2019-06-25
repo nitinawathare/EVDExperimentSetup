@@ -31,6 +31,8 @@ elif [ "$1" = "copyData" ]; then
 	mkdir /home/sourav/EVD-Data/$folder/Log
 	mkdir /home/sourav/EVD-Data/$folder/Ex
 	mkdir /home/sourav/EVD-Data/$folder/Ti
+	mkdir /home/sourav/EVD-Data/$folder/Ql
+	mkdir /home/sourav/EVD-Data/$folder/PPt
 
 elif [ "$1" = "copyErr" ]; then
 	mkdir /home/sourav/EVD-Data/$folderEr
@@ -106,6 +108,8 @@ do
 		scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/experimentTimeStats /home/sourav/EVD-Data/$folder/Ti/$var.txt & 
 		scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/queuLengthStats /home/sourav/EVD-Data/$folder/Ql/$var.dat & 
 		scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/processPreviousTime /home/sourav/EVD-Data/$folder/PPt/$var.dat &
+	else
+		break
 	fi
 
 	#scp -i quorum2.key installpy3.sh ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/ &

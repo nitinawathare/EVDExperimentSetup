@@ -96,7 +96,7 @@ def deploySortContract(contract_source_path, w3, account):
     contract_id, contract_interface1 = compiled_sol.popitem()
     tx_hash = w3.eth.contract(
             abi=contract_interface1['abi'],
-            bytecode=contract_interface1['bin']).constructor(15).transact({'txType':"0x2", 'from':account, 'gas':800000})
+            bytecode=contract_interface1['bin']).constructor(15).transact({'txType':"0x2", 'from':account, 'gas':8000000})
     return tx_hash
 
 
@@ -106,7 +106,7 @@ def deployMatrixContract(contract_source_path, w3, account):
     curBlock = w3.eth.getBlock('latest')
     tx_hash = w3.eth.contract(
             abi=contract_interface2['abi'],
-            bytecode=contract_interface2['bin']).constructor(3).transact({'txType':"0x2", 'from':account, 'gas':800000})
+            bytecode=contract_interface2['bin']).constructor(3).transact({'txType':"0x2", 'from':account, 'gas':8000000})
     return tx_hash
 
 def deployEmptyContract(contract_source_path, w3, account):
@@ -115,7 +115,7 @@ def deployEmptyContract(contract_source_path, w3, account):
     curBlock = w3.eth.getBlock('latest')
     tx_hash = w3.eth.contract(
             abi=contract_interface3['abi'],
-            bytecode=contract_interface3['bin']).constructor(15).transact({'txType':"0x2", 'from':account, 'gas':800000})
+            bytecode=contract_interface3['bin']).constructor(15).transact({'txType':"0x2", 'from':account, 'gas':8000000})
     return tx_hash
 
 def deployContracts(w3, account):
@@ -157,14 +157,14 @@ def deployContracts(w3, account):
         print("empty:{0}".format(receipt3['contractAddress']))
 
 # contract_source_path = '/home/ubuntu/gitRepoEVD/cpuheavy.sol'
-sort_source_path = '/home/sourav/EVD-Expt/cpuheavy.sol'
-# sort_source_path = '/home/sourav/EVD-Expt/sortMemory.sol'
+# sort_source_path = '/home/sourav/EVD-Expt/cpuheavy.sol'
+sort_source_path = '/home/sourav/EVD-Expt/sortMemory.sol'
 # contract_source_path = '/home/sourav/EVD-Prototype/scripts/contracts/simplestorage.sol'
 
 # contract_source_path = '/home/nitin14/NewEVD/matrixMultiplication.sol'
 # contract_source_path = '/home/ubuntu/gitRepoEVD/matrixMultiplication.sol'
-matrix_source_path = '/home/sourav/EVD-Expt/matrixMultiplication.sol'
-# matrix_source_path = '/home/sourav/EVD-Expt/matrixMemory.sol'
+# matrix_source_path = '/home/sourav/EVD-Expt/matrixMultiplication.sol'
+matrix_source_path = '/home/sourav/EVD-Expt/matrixMemory.sol'
 # contract_source_path = '/home/sourav/EVD-Prototype/scripts/contracts/simplestorage.sol'
 
 # contract_source_path = '/home/nitin14/NewEVD/emptyLoop.sol'
