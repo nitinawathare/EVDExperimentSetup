@@ -55,7 +55,7 @@ def sendSortTransaction(address):
     sort_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = sort_contract.functions.sort().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':1000000})
+    tx_hash = sort_contract.functions.sort().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':77002})
     return tx_hash
 
 def sendMatrixTransaction(address):
@@ -66,7 +66,7 @@ def sendMatrixTransaction(address):
     matrix_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = matrix_contract.functions.multiply().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':1000000})
+    tx_hash = matrix_contract.functions.multiply().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':57681})
     return tx_hash
 
 def sendEmptyLoopTransaction(address):
@@ -77,7 +77,7 @@ def sendEmptyLoopTransaction(address):
     empty_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = empty_contract.functions.runLoop().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':1000000})
+    tx_hash = empty_contract.functions.runLoop().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':76658})
     return tx_hash
 
 print("Starting Transaction Submission")
