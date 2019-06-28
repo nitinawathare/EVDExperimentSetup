@@ -21,7 +21,7 @@ session = requests.Session()
 #       print (latest.hex());
 
 #blockHeight = 7585283
-for index in range(75,79):
+for index in range(78,79):
         counter = 1000
         previous = 0
         while counter <=100000:
