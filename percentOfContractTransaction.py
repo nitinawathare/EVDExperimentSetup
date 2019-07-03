@@ -1,3 +1,6 @@
+'''This scripts calculate the expected time saved with validation in EVD compared to the one required in ethereum'''
+
+
 import time
 import numpy as np
 import matplotlib.pyplot as plt
