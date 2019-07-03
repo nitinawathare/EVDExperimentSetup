@@ -1,3 +1,6 @@
+''' This script calculates the fraction of contract which make the nested contract call more than depth 1 to the total number of contracts'''
+
+
 import time
 import numpy as np
 import matplotlib.pyplot as plt

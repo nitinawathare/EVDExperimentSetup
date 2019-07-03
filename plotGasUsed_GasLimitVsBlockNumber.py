@@ -1,3 +1,6 @@
+'''This script calculate the variation in block gas limit and block gas used  with blockNumber, here we are planning to answer how well user can predict the gas uses'''
+
+
 import time
 import numpy as np
 import matplotlib.pyplot as plt
