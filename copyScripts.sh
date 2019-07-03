@@ -24,6 +24,14 @@ elif [ "$1" = "pyScripts" ]; then
 elif [ "$1" = 'reset' ]; then
 	echo "Received $1 Command"
 
+elif [ "$1" = "copyDataEth" ]; then
+	mkdir /home/sourav/EVD-Data/$folder
+	mkdir /home/sourav/EVD-Data/$folder/Mi
+	mkdir /home/sourav/EVD-Data/$folder/Mc
+	mkdir /home/sourav/EVD-Data/$folder/Log
+	mkdir /home/sourav/EVD-Data/$folder/Ex
+	mkdir /home/sourav/EVD-Data/$folder/Ti
+
 elif [ "$1" = "copyData" ]; then
 	mkdir /home/sourav/EVD-Data/$folder
 	mkdir /home/sourav/EVD-Data/$folder/Mi
@@ -47,6 +55,7 @@ else
 	echo "
 	'copyErr'		to copy data in Error Folder
 	'copyData'		to copy data in Data folder
+	'copyDataEth		to copy data of Go-Ethereum run in Data folder
 	'reset'			to reset Remote 
 	'genesis' 		to copy genesis
 	'contAdd'		to copy contractAddressList
@@ -99,6 +108,13 @@ do
 		scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/experimentTimeStats /home/sourav/EVD-Data/$folderEr/Ti/$var.txt & 
 		scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/queuLengthStats /home/sourav/EVD-Data/$folderEr/Ql/$var.dat & 
 		scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/processPreviousTime /home/sourav/EVD-Data/$folderEr/PPt/$var.dat & 
+
+	elif [ "$1" = "copyDataEth" ]; then 
+		scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/miningInfo /home/sourav/EVD-Data/$folder/Mi/$var.dat & 
+		scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/minersInChain /home/sourav/EVD-Data/$folder/Mc/$var.dat & 
+		scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/log.txt /home/sourav/EVD-Data/$folder/Log/$var.txt & 
+		scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/executionTime /home/sourav/EVD-Data/$folder/Ex/$var.txt & 
+		scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/experimentTimeStats /home/sourav/EVD-Data/$folder/Ti/$var.txt &
 
 	elif [ "$1" = "copyData" ]; then 
 		scp -r -i quorum2.key ubuntu@$REMOTE_SERVER:/home/ubuntu/gitRepoEVD/miningInfo /home/sourav/EVD-Data/$folder/Mi/$var.dat & 

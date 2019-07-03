@@ -1,0 +1,103 @@
+1. Transaction Usage Data:
+
+machine		:	archive node without ssd
+ip			:	ubuntu@129.154.120.82
+datadir		:	/home/ubuntu/data/
+start block :	0
+end block 	:	5,868,137
+interval	:	100,000
+note 		:	Information of all blocks are available
+
+datadir		:	/home/ubuntu/data2/
+start block :	5,800,000
+end block 	:	6,500,000
+max block 	:	7,460,000
+interval	:	1,000
+note 		:	For each 100,000 interval only first 60,000 blocks are available
+status		:	Still generating data.............................
+
+machine		:	Lab machine
+ip			:	sourav@10.129.131.196
+datadir		:	/ssd/data2/
+start block :	5,860,001
+end block 	:	5,970,000
+max block 	:	7,470,000
+interval	:	1,000
+note		:	Data of only 10000 blocks in range 60000-70000
+status		:	Still generating data........................
+
+machine 	:	ssd archive node
+ip			:	ubuntu@132.145.209.11
+pwd 		:	/ssd/data
+start block :	5,870,000
+end block 	:	7,500,000
+interval	:	1,000
+note 		:	For each 100,000 interval only blocks starting from 70001 are available
+
+
+machine 	:	ssd archive node
+ip			:	ubuntu@132.145.209.11
+pwd 		:	/ssd/data2
+start block :	7,500,001
+max block 	:	7,600,000
+interval	:	1,000
+status		:	Still generating data..............
+
+machine		:	Lab machine
+ip			:	sourav@10.129.131.196
+datadir		:	/ssd/data
+start block	:	7,600,001
+end block	:	7,815,549
+interval	:	1,000
+note		:	Information of all blocks are available
+
+====================================================================
+====================================================================
+====================================================================
+
+
+2. CallChain Data:
+
+machine		:	archive node without ssd
+ip			:	ubuntu@129.154.120.82
+datadir		:	/home/ubuntu/data/
+start block :	1
+end block 	:	4,275,187
+interval	:	10,000
+status 		:	Still generating data..............................	
+
+
+machine 	:	ssd archive node
+ip			:	ubuntu@132.145.209.11
+pwd 		:	/ssd/callChain/data4
+start block :	5,000,001
+end block 	:	5,073,000
+interval	:	10,000
+
+
+machine 	:	ssd archive node
+ip			:	ubuntu@132.145.209.11
+pwd 		:	/ssd/callChain/data1
+start block :	5,073,001
+end block 	:	5,140,022
+interval	:	1,000
+
+
+machine 	:	ssd archive node
+ip			:	ubuntu@132.145.209.11
+pwd 		:	/ssd/callChain/data
+start block :	5,140,023
+end block 	:	........
+max block 	:	eth.blockNumber
+interval	:	1,000
+status 		:	Still generating data..............................	
+
+
+machine 	:	ssd archive node
+ip			:	ubuntu@132.145.209.11
+pwd 		:	/ssd/callChain/data2
+start block :	6,500,001
+end block 	:	........
+max block 	:	eth.blockNumber
+interval	:	1,000
+status 		:	Still generating data..............................	
