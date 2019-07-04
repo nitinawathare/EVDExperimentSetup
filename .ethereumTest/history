@@ -1,6 +1,0 @@
-net.peerCount
-admin.addPeer("enode://d7c2bc1ae1230313139aa1eb037a250c3ce21720b5e1b89f6e4cb7503b0cce5ee8b899693d1d2b46be9c70ffdd24d28a84ca6c901321dfb6f0b5d6399d0bdd08@129.154.120.82:1080")
-admin.peers
-net.peerCount
-eth.syncing
-eth.getBlock(0)
