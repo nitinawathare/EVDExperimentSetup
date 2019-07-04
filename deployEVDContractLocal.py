@@ -89,7 +89,7 @@ def connectWeb3():
 
     # w31 = Web3(IPCProvider('/home/sourav/test-eth3/geth.ipc', timeout=100000))
     # return Web3(IPCProvider('/home/sourav/test-eth1/geth.ipc', timeout=100000))
-    return Web3(IPCProvider('/home/sourav/test-eth2/geth.ipc', timeout=100000))
+    return Web3(IPCProvider('/home/sourav/test-eth1/geth.ipc', timeout=100000))
 
 def deploySortContract(contract_source_path, w3, account):
     compiled_sol = compile_source_file(contract_source_path)

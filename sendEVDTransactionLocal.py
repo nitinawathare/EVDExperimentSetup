@@ -81,7 +81,7 @@ def sendEmptyLoopTransaction(address):
     return tx_hash
 
 print("Starting Transaction Submission")
-w3 = Web3(IPCProvider('/home/sourav/test-eth2/geth.ipc', timeout=100000))
+w3 = Web3(IPCProvider('/home/sourav/test-eth1/geth.ipc', timeout=100000))
 # w3 = Web3(IPCProvider('/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc', timeout=100000))
 
 w3.miner.start(1)
@@ -90,7 +90,7 @@ i=0
 k=4
 # curBlock = w3.eth.getBlock('latest')
 # while curBlock['number'] < 100:
-while i < 1:
+while i < 1000:
     with open('/home/sourav/EVD-Expt/contractAddressList1') as fp:
     # with open('/home/ubuntu/gitRepoEVD/contractAddressList') as fp:
         for line in fp:
