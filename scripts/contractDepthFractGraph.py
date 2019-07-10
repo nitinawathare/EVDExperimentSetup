@@ -4,42 +4,68 @@ which make the nested contract call more than depth 1
 to the total number of contracts
 '''
 
+'''
+Organization of Data:
+
+datadir		:	/ssd/callChain/data1
+start block :	5,000,001
+end block 	:	5,145,039
+note		:	All information are available
+interval	:	1000
+
+
+datadir		:	/ssd/callChain/data2
+start block :	6,500,000
+end block 	:	6,554,960
+note		:	All information are available
+interval	:	1000
+
+'''
 
 import time
 import numpy as np
 import matplotlib.pyplot as plt
 import os 
 
-filePath = '/home/nitin14/EVD-Scripts/data/'
+filePath = '/ssd/callChain/'
 
-blockNumberList = []
-avgNestedContractList = []
-avgTotalContractList=[]
-totalTransactionList = []
-def computeGasLimit(interval):
-	
-	
-	fileName = ""
-	outputFilePath = '/home/nitin14/EVD-Scripts/contractDepth.csv'
+
+def computeGasLimit65(interval, start, end):
+	inputFilePath = filePath+"data2/"
+	outputFilePath = "/home/sourav/EVD-Expt/data/contInt65.csv"
 	outputFile = open(outputFilePath, "w+")
-	outputFile.write("blockHeight,nestedContractTotalRatio,totalContractRatio\n")
-
+	outputFile.write("blockHeight,numTxns,numContTxns,numIntContTxn,intContRatio,totalContRatio\n")
 	
+	computeFraction(interval, start, end, inputFilePath, outputFile)	
+
+def computeGasLimit50(interval, start, end):
+	inputFilePath = filePath+"data1/"
+	outputFilePath = "/home/sourav/EVD-Expt/data/contInt50.csv"
+	outputFile = open(outputFilePath, "w+")
+	outputFile.write("blockHeight,numTxns,numContTxns,numIntContTxn,intContRatio,totalContRatio\n")
+
+	computeFraction(interval, start, end, inputFilePath, outputFile)
+		
+
+def computeFraction(interval, start, end, inputFilePath, outputFile):
+	blockNumberList = []
+	avgNestedContractList = []
+	avgTotalContractList=[]
+	totalTransactionList = []
+
+
 	nestedContract = 0
 	totalContract = 0
 	singleDepthContract = 0
 	nestedContractTotal = 0
 	totalTransactions = 0
 
-	j=1
 
-	for i in range(500,5114):
+	j=0
+	for i in range(start, end):
+		fileName = inputFilePath+'x'+str(i)+".txt"
+		print(fileName)
 		
-		fileName = filePath+'x'+str(i)+".txt"
-		if i==507:
-			i=5073
-		if i==5113:
-			i=6500
 		if os.path.exists(fileName):
 			file = open(fileName, "r")
 			data = file.readlines()
@@ -48,10 +74,8 @@ def computeGasLimit(interval):
 				info = dataItem.split(',')
 
 				blkNumber = int(info[0])
-				#totalTransactions = int(info[0])
-				#nestedContract = str(int(info[4].split('[')[1]))
-				j = j+1
 
+				j = j+1
 				if j%interval == 0:
 					blockNumberList.append(blkNumber)
 					avgNestedContractList.append(nestedContractTotal/totalTransactions)
@@ -59,8 +83,11 @@ def computeGasLimit(interval):
 
 					avgblkNumber = blkNumber - interval/2
 					
-					toWrite = str(avgblkNumber)+","+str(nestedContractTotal/totalTransactions)+","+str(totalContract/totalTransactions)+"\n"
+					print(totalTransactions, totalContract, nestedContractTotal)
+
+					toWrite = str(avgblkNumber)+","+str(totalTransactions/interval)+","+str(totalContract/interval)+","+str(nestedContractTotal/interval)+","+str(nestedContractTotal/totalTransactions)+","+str(totalContract/totalTransactions)+"\n"
 					outputFile.write(toWrite)
+
 
 					nestedContract=0
 					totalContract=0
@@ -75,32 +102,6 @@ def computeGasLimit(interval):
 				totalContract = totalContract + int(info[2])	
 				totalTransactions = totalTransactions + int(info[1])	
 				nestedContractTotal = nestedContractTotal + nestedContract
-				#print(str(blkNumber)+" "+str(int(info[2]))+" "+str(int(info[4].split('[')[1]))+" "+str(int(info[5]))+" "+str(int(info[6]))+" "+str(int(info[7]))+" "+str(int(info[8]))+" "+str(int(info[9]))+" "+str(int(info[10]))+" "+str(nestedContract))
-
-				#print(str(blkNumber)+" "+str(totalContract)+" "+str(singleDepthContract)+" "+str(nestedContract))
-				# j = j+1
-
-				# if j%interval == 0:
-					
-				# 	blockNumberList.append(blkNumber)
-				# 	emptyBlockFract.append(emptyBlockCount/interval)
-				# 	avgblkNumber = blkNumber - interval/2
-
-				# 	toWrite = str(avgblkNumber)+","+str(emptyBlockCount/interval)+","+str(avgGasLimit)+"\n"
-				# 	outputFile.write(toWrite)
-
-				# 	emptyBlockCount = 0
-
-				# gasUsed = float(info[6])
-
-				# if gasUsed == 0:
-				# 	emptyBlockCount = emptyBlockCount+1
-
-	# outputFile.close()
-	# print(blockNumberList)
-	# print("*****************************************************")
-	# print(emptyBlockFract)
-
 
 	plt.figure(1)
 	plt.plot(blockNumberList,avgNestedContractList , label='Nested contracts')
@@ -114,4 +115,5 @@ def computeGasLimit(interval):
 	plt.title('Gas usage and limit with increasing block height')
 	plt.show()
 
-computeGasLimit(1000)
+# computeGasLimit65(5000,6500,6554)
+# computeGasLimit50(5000,5000,5145)

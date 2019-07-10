@@ -41,7 +41,8 @@ pwd 		:	/ssd/data2
 start block :	7,500,001
 max block 	:	7,600,000
 interval	:	1,000
-status		:	Still generating data..............
+note		:	All data available
+
 
 machine		:	Lab machine
 ip			:	sourav@10.129.131.196
