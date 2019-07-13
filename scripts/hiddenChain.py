@@ -417,16 +417,32 @@ def printExperimentInfo(strategy):
 '''
 State s is the state (s/(M+1), s%(M+1)) where M = k+N
 
-Number of adv blocks:
-	(x,x-1) -> (j,0)	x
-	(1,1)	-> 	(0,0)	{0,1}
+Strategy Reset:
+	Number of adv blocks:
+		(x-1,x) -> (j,0)	x
+		(1,1)	-> (0,0)	{0,1}
+		(x, M)	-> (0,0)	M
 
-Number of honest blocks:
-	(0,0)	->	(0,0)	1
-	(1,1)	-> 	(0,0)	{0,1}
+	Number of honest blocks:
+		(0,0)	->	(0,0)	1
+		(1,1)	-> 	(0,0)	{0,1}
 
-Number of Late blocks:
-	(k+n,k+n-1) -> (j,0)	n
+	Number of Late blocks:
+		(k+n-1,k+n) -> (j,0)	n
+
+
+Strategy Mine:
+	Number of adv blocks:
+		(x-1,x) -> (j,0)	x + ....
+		(1,1)	-> (0,0)	{0,1}
+		(x, M)	-> (0,0)	M + ....
+
+	Number of honest blocks:
+		(0,0)	->	(0,0)	1
+		(1,1)	-> 	(0,0)	{0,1}
+
+	Number of Late blocks:
+		(k+n-1,k+n) -> (j,0)	n + ...
 	
 '''
 
