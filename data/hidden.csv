@@ -1,0 +1,375 @@
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 5
+Maximum Queue length: 10
+Number of Iterations: 73.0
+Time Taken: 0.262507
+Thresholds: 1e-09
+
+late: 0.01788061072920126,0.027997744594495846
+adv: 0.2996727140142787,0.46923230061761795
+honest: 0.33897196926911904,0.530767699382382
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 6
+Maximum Queue length: 11
+Number of Iterations: 81.0
+Time Taken: 0.36224599999999985
+Thresholds: 1e-09
+
+late: 0.012815508060523275,0.020184398357642998
+adv: 0.29698336654448587,0.46774818037787946
+honest: 0.3379381125825139,0.5322518196221206
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 7
+Maximum Queue length: 12
+Number of Iterations: 88.0
+Time Taken: 0.5093769999999997
+Thresholds: 1e-09
+
+late: 0.009454811668867701,0.01496619152303085
+adv: 0.29462853756258145,0.4663728137315882
+honest: 0.33711612869523594,0.5336271862684117
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 8
+Maximum Queue length: 13
+Number of Iterations: 95.0
+Time Taken: 0.748537999999999
+Thresholds: 1e-09
+
+late: 0.0071288013708933,0.011333134608956543
+adv: 0.29256630051236526,0.4651123089624788
+honest: 0.3364566147594104,0.5348876910375212
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 9
+Maximum Queue length: 14
+Number of Iterations: 102.0
+Time Taken: 1.0952819999999992
+Thresholds: 1e-09
+
+late: 0.005467358432893413,0.008724276953113706
+adv: 0.2907598892723923,0.46396625207661374
+honest: 0.3359233834247343,0.5360337479233863
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 5
+Maximum Queue length: 10
+Number of Iterations: 73.0
+Time Taken: 0.241417
+Thresholds: 1e-09
+
+late: 0.01788061072920126,0.027997744594495846
+adv: 0.2996727140142787,0.46923230061761795
+honest: 0.33897196926911904,0.530767699382382
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 6
+Maximum Queue length: 11
+Number of Iterations: 81.0
+Time Taken: 0.3317619999999999
+Thresholds: 1e-09
+
+late: 0.012815508060523275,0.020184398357642998
+adv: 0.29698336654448587,0.46774818037787946
+honest: 0.3379381125825139,0.5322518196221206
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 7
+Maximum Queue length: 12
+Number of Iterations: 88.0
+Time Taken: 0.47158000000000033
+Thresholds: 1e-09
+
+late: 0.009454811668867701,0.01496619152303085
+adv: 0.29462853756258145,0.4663728137315882
+honest: 0.33711612869523594,0.5336271862684117
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 8
+Maximum Queue length: 13
+Number of Iterations: 95.0
+Time Taken: 0.6972430000000003
+Thresholds: 1e-09
+
+late: 0.0071288013708933,0.011333134608956543
+adv: 0.29256630051236526,0.4651123089624788
+honest: 0.3364566147594104,0.5348876910375212
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 9
+Maximum Queue length: 14
+Number of Iterations: 102.0
+Time Taken: 1.0302560000000014
+Thresholds: 1e-09
+
+late: 0.005467358432893413,0.008724276953113706
+adv: 0.2907598892723923,0.46396625207661374
+honest: 0.3359233834247343,0.5360337479233863
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 5
+Maximum Queue length: 10
+Number of Iterations: 73.0
+Time Taken: 0.25466600000000006
+Thresholds: 1e-09
+
+late: 0.01788061072920126,0.027997744594495846
+adv: 0.24317738579855921,0.38077101738064506
+honest: 0.3954672974848385,0.6192289826193549
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 6
+Maximum Queue length: 11
+Number of Iterations: 81.0
+Time Taken: 0.327604
+Thresholds: 1e-09
+
+late: 0.012815508060523275,0.020184398357642998
+adv: 0.24066034777789974,0.3790395437697294
+honest: 0.3942611313491,0.6209604562302706
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 7
+Maximum Queue length: 12
+Number of Iterations: 88.0
+Time Taken: 0.5065
+Thresholds: 1e-09
+
+late: 0.009454811668867701,0.01496619152303085
+adv: 0.23844251611015263,0.3774349493484181
+honest: 0.3933021501476648,0.6225650506515819
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 8
+Maximum Queue length: 13
+Number of Iterations: 95.0
+Time Taken: 0.7094449999999997
+Thresholds: 1e-09
+
+late: 0.0071288013708933,0.011333134608956543
+adv: 0.2364901980495306,0.3759643604515626
+honest: 0.39253271722224503,0.6240356395484373
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 9
+Maximum Queue length: 14
+Number of Iterations: 102.0
+Time Taken: 0.9908590000000004
+Thresholds: 1e-09
+
+late: 0.005467358432893413,0.008724276953113706
+adv: 0.2347726586992178,0.37462729408557616
+honest: 0.3919106139979089,0.6253727059144238
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 5
+Maximum Queue length: 10
+Number of Iterations: 73.0
+Time Taken: 0.25319600000000003
+Thresholds: 1e-09
+
+late: 0.01788061072920126,0.02799774459449585
+adv: 0.18668205758283973,0.2923097341436723
+honest: 0.45196262570055795,0.7076902658563278
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 6
+Maximum Queue length: 11
+Number of Iterations: 81.0
+Time Taken: 0.31872999999999996
+Thresholds: 1e-09
+
+late: 0.012815508060523275,0.020184398357642998
+adv: 0.1843373290113136,0.2903309071615794
+honest: 0.45058415011568614,0.7096690928384207
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 7
+Maximum Queue length: 12
+Number of Iterations: 88.0
+Time Taken: 0.48116100000000017
+Thresholds: 1e-09
+
+late: 0.009454811668867701,0.01496619152303085
+adv: 0.18225649465772376,0.28849708496524795
+honest: 0.44948817160009363,0.7115029150347519
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 8
+Maximum Queue length: 13
+Number of Iterations: 95.0
+Time Taken: 0.704078
+Thresholds: 1e-09
+
+late: 0.0071288013708933,0.011333134608956543
+adv: 0.18041409558669594,0.2868164119406464
+honest: 0.4486088196850797,0.7131835880593536
+
+--------------------------------------------------------
+
+Strategy of Adversary: mine
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 9
+Maximum Queue length: 14
+Number of Iterations: 102.0
+Time Taken: 1.0138099999999994
+Thresholds: 1e-09
+
+late: 0.005467358432893413,0.008724276953113706
+adv: 0.17878542812604326,0.28528833609453863
+honest: 0.4478978445710834,0.7147116639054614
+
+--------------------------------------------------------
+
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 5
+Maximum Queue length: 10
+Number of Iterations: 70.0
+Time Taken: 0.255598
+Thresholds: 1e-09
+
+late: 0.00819033795557911,0.013290729737338663
+adv: 0.2784350260301863,0.4518256389964076
+honest: 0.3378093877411183,0.5481743610035924
+
+--------------------------------------------------------
+
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 6
+Maximum Queue length: 11
+Number of Iterations: 77.0
+Time Taken: 0.311125
+Thresholds: 1e-09
+
+late: 0.005857855753233889,0.009520525918650664
+adv: 0.27818435216002496,0.4521212959947762
+honest: 0.33710263968129517,0.5478787040052238
+
+--------------------------------------------------------
+
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 7
+Maximum Queue length: 12
+Number of Iterations: 79.0
+Time Taken: 0.44044099999999997
+Thresholds: 1e-09
+
+late: 0.004315557754581978,0.007022522565383428
+adv: 0.2780328235460281,0.4524309227923604
+honest: 0.3364981679035309,0.5475690772076397
+
+--------------------------------------------------------
+
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 8
+Maximum Queue length: 13
+Number of Iterations: 87.0
+Time Taken: 0.6461429999999999
+Thresholds: 1e-09
+
+late: 0.0032506242456083905,0.005294800368811583
+adv: 0.2779380180792436,0.4527211419840094
+honest: 0.3359896126499188,0.5472788580159906
+
+--------------------------------------------------------
+
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 9
+Maximum Queue length: 14
+Number of Iterations: 95.0
+Time Taken: 0.9448320000000001
+Thresholds: 1e-09
+
+late: 0.002491235950238765,0.004061079193844689
+adv: 0.2778773431014762,0.4529807368916987
+honest: 0.335564510978762,0.5470192631083013
+
+--------------------------------------------------------
+

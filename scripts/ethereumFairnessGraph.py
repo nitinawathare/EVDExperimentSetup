@@ -465,6 +465,28 @@ for i in range(0,lenFileNames):
 	inputFilePath =  dirPath+fileNames[i]
 	computeFairness(inputFilePath, outputFile, 50, 1000, 1, False, 1)
 
+
+dirPath = '/home/sourav/EVD-Segate/ETH-NS-D-15/'
+gasList = [12, 120, 240]
+fileNames =[
+	'ETH-800-NoSkip-1x-15/'
+]
+# fileNames =[
+# 	'ETH-240-Skip-1x/'
+# ]
+
+lenFileNames = len(fileNames)
+outputFilePath = '/home/sourav/EVD-Expt/data/ethSkip1.csv'
+outputFile = open(outputFilePath,"w+")
+outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgAdvExtTime,avgAdvProcTime,expFraction,actFraction\n")
+
+
+for i in range(0,lenFileNames):
+	inputFilePath =  dirPath+fileNames[i]
+	computeFairness(inputFilePath, outputFile, 50, 1000, 0, False, 1)
+
+
+
 # if len(sys.argv) == 1:
 # 	print('\n eth-s\n eth-ns\n eth-all\n evd-s\n evd-ns\n evd-all\n')
 # elif sys.argv[1] == 'eth-s':
