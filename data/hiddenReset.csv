@@ -1,0 +1,75 @@
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 60
+Maximum Queue length: 65
+Number of Iterations: 290.0
+Time Taken: 2190.329002
+Thresholds: 1e-09
+
+late: 4.5286686745335736e-07,7.410536168502306e-07
+adv: 0.2777777038570569,0.45454456246973163
+honest: 0.3333344439767526,0.5454554375302684
+
+--------------------------------------------------------
+
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 65
+Maximum Queue length: 70
+Number of Iterations: 305.0
+Time Taken: 3049.8545959999997
+Thresholds: 1e-09
+
+late: 2.2377263423439058e-07,3.661730875584805e-07
+adv: 0.27777773942051126,0.4545450021028156
+honest: 0.3333338955891274,0.5454549978971845
+
+--------------------------------------------------------
+
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 70
+Maximum Queue length: 75
+Number of Iterations: 320.0
+Time Taken: 4328.151322
+Thresholds: 1e-09
+
+late: 1.1149822581877028e-07,1.8245156275629666e-07
+adv: 0.2777777578475177,0.4545452238907985
+honest: 0.33333361951952717,0.5454547761092015
+
+--------------------------------------------------------
+
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 75
+Maximum Queue length: 80
+Number of Iterations: 332.0
+Time Taken: 5669.435936
+Thresholds: 1e-09
+
+late: 5.595864281098143e-08,9.156866785666987e-08
+adv: 0.27777776741692417,0.4545453364279247
+honest: 0.3333334797028011,0.5454546635720752
+
+--------------------------------------------------------
+
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 80
+Maximum Queue length: 85
+Number of Iterations: 344.0
+Time Taken: 7399.375439000001
+Thresholds: 1e-09
+
+late: 2.826242238086171e-08,4.624759497786019e-08
+adv: 0.27777777238772555,0.4545453938137655
+honest: 0.3333334085156619,0.5454546061862344
+
+--------------------------------------------------------
+
