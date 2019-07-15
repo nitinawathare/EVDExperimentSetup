@@ -32,6 +32,9 @@ Structure of a late block:
 
 '''
 
+def removeEvent(event):
+	print("unimplemented")
+
 def releaseHiddenQueueReset(time):
 	advHead = hiddenQueue[0]['height']
 	initHstLen = len(hstQueue)
@@ -52,8 +55,10 @@ def releaseHiddenQueueReset(time):
 		if initHstLen == 0 and hstQueueLen > 0:
 			heappush(pQueue, [time+tau,'END_PROCESS', hstQueue[0]])
 	if advHead < lastProcessedBlock:
-		
-
+		hstQueue = advHead[:]
+		# To remove the next already available end process event
+		removeEvent('END_PROC')
+		heappush(pQueue, [time+tau, 'END_PROC', hstQueue[0]])
 		
 hstQueue = []
 hstQueueLen = len(hstQueue)
@@ -69,6 +74,7 @@ tau = 5.0
 honestLambd = 1.0/15.0
 globalLambd = honestLambd/(1-advFrac)
 k = 3
+M = 5
 lastProcessedBlock = 0
 
 pQueue = []
@@ -96,19 +102,19 @@ while pQueue:
 			heappush([time+tau, 'END_PROC', blk])
 
 		if lenHiddenQueue == 1:
-			releaseHiddenQueueReset()
+			releaseHiddenQueueReset(time)
 
 		if hiddenQueue[-1]['height'] = blk['height'] + 1:
-			releaseHiddenQueueReset()
+			releaseHiddenQueueReset(time)
 
 		nextBlkTime = exp(honestLambd)
 		heappush([time+nextBlkTime, {'height':blk[0]+1, 'miner':'honest'}])
 
 	elif event == 'ADV_BLOCK':
-
-		
-	elif event == 'RELEASE':
-		####
+		if hiddenQueueLen == M:
+			releaseHiddenQueueReset(time)
+		else:
+			hiddenQueue.append(blk)
 	else:
 		print("Unknown event: ", event, " found. Exiting...")
 		break
