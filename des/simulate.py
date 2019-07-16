@@ -9,17 +9,16 @@ import time
 import math 
 import numpy as np
 import os
+import heapq
 
 from decimal import *
 getcontext().prec = 400
 
 
 events = [
-	'START_PROC',
 	'END_PROC',
 	'HONEST_BLOCK',
 	'ADV_BLOCK',
-	'RELEASE'
 	]
 
 '''
@@ -31,90 +30,279 @@ Structure of a late block:
 	delay: <Size of queue the observes on arrival - K>	
 
 '''
+def computeBlockInterval(beta):
+	nextBlkTime = np.random.exponential(beta)
+	# if beta < 20 and nextBlkTime > 100:
+	# 	print(beta, nextBlkTime)
+	return nextBlkTime
 
-def removeEvent(event):
-	print("unimplemented")
+def removeEvent(event, count):
+	if count not in removedEvents:
+		removedEvents[count] = event
+	
+def deleteEventHistory(count):
+	# if count in removedEvents:
+	del removedEvents[count]
 
 def releaseHiddenQueueReset(time):
+	global hstQueue, hiddenQueue, hstQueueLen, numLateBlocks, hiddenQueueLen, evCount, abCount, hbCount, epCount, lastHonestBlock
+	
 	advHead = hiddenQueue[0]['height']
+	advTail = hiddenQueue[-1]['height']
+
 	initHstLen = len(hstQueue)
+	if advTail < lastHonestBlock:
+		print(advTail, lastHonestBlock, "Wrong call")
+		return
+
 	if advHead > lastProcessedBlock:
+		# print("advHead", advHead, "advTail", advTail, hiddenQueueLen, "lp", lastProcessedBlock)
 		index = 0
+		# Finding the common parent
 		for index in range(0,hstQueueLen):
 			if hstQueue[index]['height'] < advHead:
 				continue
 			break
-		while blk in hiddenQueueLen:
-			hstQueue[index] = blk
+		
+		# Substitute appropriate honest blocks with adversarial blocks
+		# print(hiddenQueueLen, hstQueueLen)
+		while index < hstQueueLen:
+			hstQueue[index] = hiddenQueue[0]
+			index = index + 1	
+			del hiddenQueue[0]
+			hiddenQueueLen = hiddenQueueLen -1
+
+		# Adding extra honest blocks to the queue
+		for i in range(0, hiddenQueueLen):
+			blk = hiddenQueue[0]
+			hstQueue.append(blk)
+			hstQueueLen = hstQueueLen + 1
 			index = index + 1
-			if index >= k:
+			if index > k:
 				lateBlocks.append(blk)
 				numLateBlocks = numLateBlocks + 1 
-			hiddenQueue.delete(0)
-		hstQueueLen = len(hstQueue)
-		if initHstLen == 0 and hstQueueLen > 0:
-			heappush(pQueue, [time+tau,'END_PROCESS', hstQueue[0]])
-	if advHead < lastProcessedBlock:
-		hstQueue = advHead[:]
+			del hiddenQueue[0]
+	
+		hiddenQueue = []
+		hiddenQueueLen = 0
+		if initHstLen <= 1 and hstQueueLen > 0:
+			removeEvent('END_PROC', epCount)
+			evCount = evCount + 1 
+			epCount = evCount
+			heapq.heappush(pQueue, [time+tau, evCount, 'END_PROC', hstQueue[0]])
+
+	else:
 		# To remove the next already available end process event
-		removeEvent('END_PROC')
-		heappush(pQueue, [time+tau, 'END_PROC', hstQueue[0]])
+		# Fill the entire hstQueue with hiddenQueue
+		removeEvent('END_PROC', epCount)
+		hstQueue = hiddenQueue[:]
+		hstQueueLen = hiddenQueueLen
+		hiddenQueue = []
+		hiddenQueueLen = 0
+		evCount = evCount + 1
+		epCount = evCount
+		heapq.heappush(pQueue, [time+tau, evCount, 'END_PROC', hstQueue[0]])
+
+		if hstQueueLen > k:
+			numLateBlocks = numLateBlocks + hstQueueLen - k
+			for j in range(hstQueueLen-k, hstQueueLen):
+				lateBlocks.append(hstQueue[j])
+	
+	removeEvent('HONEST_BLOCK', hbCount)
+	lastHonestBlock = hstQueue[-1]['height']
+	evCount = evCount + 1
+	hbCount = evCount
+	if hstQueueLen > k:
+		timeToProcess = (hstQueueLen - k)*tau
+		nextBlkTime = timeToProcess + computeBlockInterval(1/honestLambd)
+		heapq.heappush(pQueue, [time+nextBlkTime, evCount, 'HONEST_BLOCK', {'height':lastHonestBlock+1, 'miner':'honest'}])	
+		if mine:
+			release = True
+	else:
+		nextBlkTime = computeBlockInterval(1/honestLambd)
+		heapq.heappush(pQueue, [time+nextBlkTime, evCount, 'HONEST_BLOCK', {'height':lastHonestBlock+1, 'miner':'honest'}])
+	
+
+	removeEvent('ADV_BLOCK', abCount)
+	evCount = evCount + 1
+	abCount = evCount
+	nextAdvBlkTime = computeBlockInterval(1/(advFrac*honestLambd))
+	heapq.heappush(pQueue, [time+nextAdvBlkTime, evCount, 'ADV_BLOCK', {'height':lastHonestBlock+1, 'miner':'adv'}])
+
+
+def run():
+	
+	global pQueue, numEvents, lastProcessedBlock, lastHonestBlock, evCount, epCount, abCount, hbCount, hstQueue, hiddenQueue, lateBlocks, numLateBlocks,hstQueueLen, hiddenQueueLen, release
+
+	while pQueue and lastHonestBlock < maxNumBlocks:
+		numEvents = numEvents + 1
+		# if numEvents %10000 == 0:
+		# 	print(numEvents)
+
+		time, count, event, blk = heapq.heappop(pQueue)
+		# Check whether the event is already removed or not
+		# If the event is removed discard its affects.
+		if count in removedEvents:
+			deleteEventHistory(count)
+			continue
+
+		if event == 'END_PROC':
+			lastProcessedBlock = blk['height']
+			del hstQueue[0]
+			hstQueueLen = hstQueueLen - 1
+			if hstQueueLen > 0:
+				evCount = evCount + 1
+				epCount = evCount
+				heapq.heappush(pQueue, [time+tau, evCount, 'END_PROC', hstQueue[0]])
+
+		elif event == 'HONEST_BLOCK':
+			hstQueue.append(blk)
+			hstQueueLen = hstQueueLen + 1
+
+			if blk['height'] > lastHonestBlock:
+				lastHonestBlock = blk['height']
+			else:
+				print("Panic..!!!! A honest block with lower height has been generated")
+
+			if hstQueueLen > k:
+				lateBlocks.append([blk, hstQueueLen])
+				numLateBlocks = numLateBlocks + 1
+				timeToProcess = (hstQueueLen - k)*tau
+				nextBlkTime = timeToProcess + computeBlockInterval(1/honestLambd)
+				evCount = evCount + 1
+				hbCount = evCount
+				heapq.heappush(pQueue, [time+nextBlkTime, evCount, 'HONEST_BLOCK', {'height':lastHonestBlock+1, 'miner':'honest'}])	
+			else:
+				nextBlkTime = computeBlockInterval(1/honestLambd)
+				evCount = evCount + 1
+				hbCount = evCount
+				heapq.heappush(pQueue, [time+nextBlkTime, evCount, 'HONEST_BLOCK', {'height':lastHonestBlock+1, 'miner':'honest'}])
+
+			if hstQueueLen == 1:
+				evCount = evCount + 1
+				epCount = evCount
+				heapq.heappush(pQueue, [time+tau, evCount, 'END_PROC', blk])
+
+			if (hiddenQueueLen == 0):
+				hiddenQueue = []
+				hiddenQueueLen = 0
+				removeEvent('ADV_BLOCK', abCount)
+				nextAdvBlkTime = computeBlockInterval(1/(advFrac*globalLambd))
+				evCount = evCount + 1
+				abCount = evCount
+				heapq.heappush(pQueue, [time+nextAdvBlkTime, evCount, 'ADV_BLOCK', {'height':lastHonestBlock+1, 'miner':'adv'}])
+
+			elif (hiddenQueueLen == 1):
+				releaseHiddenQueueReset(time)
+
+			elif (hiddenQueueLen > 1) and (hiddenQueue[-1]['height'] == lastHonestBlock + 1):
+				releaseHiddenQueueReset(time)
 		
-hstQueue = []
-hstQueueLen = len(hstQueue)
+		elif event == 'ADV_BLOCK':
+			nextBlkHeight = 0
+			if lastHonestBlock >= blk['height']:
+				hiddenQueue = []
+				hiddenQueueLen = 0
+				nextBlkHeight = lastHonestBlock + 1
+			else:
+				if release:
+					if hstQueueLen > k:
+						hstQueue.append(blk)
+						hstQueueLen = hstQueueLen + 1
+					else:
+						release = False
+				if not release:
+					hiddenQueue.append(blk)
+					hiddenQueueLen = hiddenQueueLen + 1
+					nextBlkHeight = blk['height'] + 1
+					if hiddenQueueLen == M:
+						releaseHiddenQueueReset(time)	
+						continue
+			evCount = evCount + 1
+			abCount = evCount
+			nextBlkTime = computeBlockInterval(1/(advFrac*globalLambd))
+			heapq.heappush(pQueue, [time+nextBlkTime, evCount, 'ADV_BLOCK', {'height':nextBlkHeight, 'miner':'adv'}])
+		else:
+			print("Unknown event: ", event, " found. Exiting...")
+			break
+	
 
-hiddenQueue = []
-hiddenQueueLen = len(hiddenQueue)
+def initQueue():
+	global evCount, abCount, hbCount
+	honestTime = computeBlockInterval(1/honestLambd)
+	advTime = computeBlockInterval(1/(advFrac*globalLambd))
 
-lateBlocks = []
-numLateBlocks = len(lateBlocks)
+	hbCount = evCount
+	heapq.heappush(pQueue, [honestTime, evCount, 'HONEST_BLOCK', {'height':1, 'miner':'honest'}])
+
+	evCount = evCount + 1
+	abCount = evCount
+	heapq.heappush(pQueue, [advTime, evCount, 'ADV_BLOCK', {'height':1, 'miner':'adv'}])
+
+def printResult():
+	print("Adversarial Strategy: "+strategy)
+	print("Global Inter arrival: "+str(1/globalLambd))
+	print("adversary fraction: "+str(advFrac))
+	print("K:"+str(k)+"\t maximum K+N: "+str(M))
+	print("Blockchain Height: "+str(lastHonestBlock))
+	print("Late blocks (fraction): "+str(numLateBlocks)+" ("+str(numLateBlocks/lastHonestBlock)+")")
+	print("Simulation Time:"+str(simTime))
+	print("\n-----------------------------------\n")
+
+def writeResult(file):
+	file.write("Adversarial Strategy: "+strategy+"\n")
+	file.write("Global Inter arrival: "+str(1/globalLambd)+"\n")
+	file.write("K:"+str(k)+"\t maximum K+N: "+str(M)+"\n")
+	file.write("adversary fraction: "+str(advFrac)+"\n")
+	file.write("Blockchain Height: "+str(lastHonestBlock)+"\n")
+	file.write("Late blocks (fraction): "+str(numLateBlocks)+" ("+str(numLateBlocks/lastHonestBlock)+")\n")
+	file.write("Simulation Time:"+str(simTime)+"\n")
+	file.write("\n-----------------------------------\n")
+
+
 
 advFrac = 1.0/3.0
 tau = 5.0
 honestLambd = 1.0/15.0
 globalLambd = honestLambd/(1-advFrac)
-k = 3
-M = 5
-lastProcessedBlock = 0
 
-pQueue = []
-epsilon = 10**(-10)
+if len(sys.argv) < 3:
+	print ('maxNumBlocks \n mine')
 
-while pQueue:
-	time, event, blk = heappop(pQueue)
-	if event == 'START_PROC':
-		heappush([time+tau, 'END_PROC'])
-	
-	elif event == 'END_PROC':
-		hstQueue.delete(0)
-		hstQueueLen = hstQueueLen - 1
-		if len(hstQueue > 0):
-			heappush([time+tau, 'END_PROC', blk])
+maxNumBlocks = int(sys.argv[1])
+mine = sys.argv[2] == 'mine'
+release = False
 
-	elif event == 'HONEST_BLOCK':
-		
-		if hstQueueLen > k:
-			lateBlocks.append([blk, hstQueueLen])
+if mine:
+	strategy = 'mine'
+else:
+	strategy = 'reset'
 
-		hstQueue.append(blk)
-		hstQueueLen = hstQueueLen + 1
-		if hstQueueLen == 1:
-			heappush([time+tau, 'END_PROC', blk])
+for k in range(50, 150, 10):
+	M = k + 25
+	pQueue = []
+	hstQueue = []
+	hiddenQueue = []
+	lateBlocks = []
+	hstQueueLen = hiddenQueueLen = numLateBlocks = 0
+	lastProcessedBlock = lastHonestBlock = 0
 
-		if lenHiddenQueue == 1:
-			releaseHiddenQueueReset(time)
+	numEvents = 0
+	evCount = 0
+	epCount = abCount = hbCount = -1
+	removedEvents = {}
 
-		if hiddenQueue[-1]['height'] = blk['height'] + 1:
-			releaseHiddenQueueReset(time)
+	startTime = time.clock()
+	initQueue()
+	run()
+	simTime = time.clock()-startTime
+	printResult()
 
-		nextBlkTime = exp(honestLambd)
-		heappush([time+nextBlkTime, {'height':blk[0]+1, 'miner':'honest'}])
-
-	elif event == 'ADV_BLOCK':
-		if hiddenQueueLen == M:
-			releaseHiddenQueueReset(time)
-		else:
-			hiddenQueue.append(blk)
+	outFilePath =''
+	if mine:
+		outFilePath = '/home/sourav/EVD-Expt/data/simulationMine.dat'	
 	else:
-		print("Unknown event: ", event, " found. Exiting...")
-		break
+		outFilePath = '/home/sourav/EVD-Expt/data/simulationReset.dat'
+
+	outFile = open(outFilePath, "a+")
+	writeResult(outFile)
