@@ -73,3 +73,93 @@ honest: 0.3333334085156619,0.5454546061862344
 
 --------------------------------------------------------
 
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 80
+Maximum Queue length: 90
+Number of Iterations: 350.0
+Time Taken: 9610.71842
+Thresholds: 1e-09
+
+late: 6.888700473976324e-08,1.1272418275924358e-07
+adv: 0.2777777834681921,0.4545454363767957
+honest: 0.3333333645885845,0.5454545636232043
+
+--------------------------------------------------------
+
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 85
+Maximum Queue length: 95
+Number of Iterations: 361.0
+Time Taken: 12182.409103000002
+Thresholds: 1e-09
+
+late: 3.507961236119267e-08,5.740300025090272e-08
+adv: 0.27777778064730413,0.4545454450298343
+honest: 0.33333334956998806,0.5454545549701656
+
+--------------------------------------------------------
+
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 90
+Maximum Queue length: 100
+Number of Iterations: 372.0
+Time Taken: 15537.083206999996
+Thresholds: 1e-09
+
+late: 1.7947379933621704e-08,2.936843941473344e-08
+adv: 0.27777777923861074,0.45454544955867054
+honest: 0.3333333417907871,0.5454545504413295
+
+--------------------------------------------------------
+
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 95
+Maximum Queue length: 105
+Number of Iterations: 383.0
+Time Taken: 19453.032736
+Thresholds: 1e-09
+
+late: 9.22080920752283e-09,1.50885967574124e-08
+adv: 0.27777777853052354,0.45454545193250595
+honest: 0.3333333377495925,0.545454548067494
+
+--------------------------------------------------------
+
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 100
+Maximum Queue length: 110
+Number of Iterations: 362.0
+Time Taken: 22379.916370999992
+Thresholds: 1e-09
+
+late: 4.740640738110091e-09,7.757412084236244e-09
+adv: 0.2777777780510933,0.45454545307833105
+honest: 0.33333333563377804,0.545454546921669
+
+--------------------------------------------------------
+
+Strategy of Adversary: reset
+Fraction of Adversary: 0.3333333333333333
+Global Arrival Rate: 0.09999999999999999
+Allowable Length of Queue: 105
+Maximum Queue length: 115
+Number of Iterations: 379.0
+Time Taken: 27932.740411000006
+Thresholds: 1e-09
+
+late: 2.452726410885192e-09,4.0135522999997626e-09
+adv: 0.2777777778984014,0.4545454537551101
+honest: 0.33333333454065595,0.54545454624489
+
+--------------------------------------------------------
+

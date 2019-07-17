@@ -1,0 +1,90 @@
+Adversarial Strategy: mine
+Global Inter arrival: 10.0
+K:50	 maximum K+N: 75
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 1695 (1.695e-05)
+Simulation Time:720.3702979999999
+
+-----------------------------------
+Adversarial Strategy: mine
+Global Inter arrival: 10.0
+K:60	 maximum K+N: 85
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 412 (4.12e-06)
+Simulation Time:721.3758489999999
+
+-----------------------------------
+Adversarial Strategy: mine
+Global Inter arrival: 10.0
+K:70	 maximum K+N: 95
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 27 (2.7e-07)
+Simulation Time:728.2996389999998
+
+-----------------------------------
+Adversarial Strategy: mine
+Global Inter arrival: 10.0
+K:80	 maximum K+N: 105
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 21 (2.1e-07)
+Simulation Time:715.2314729999998
+
+-----------------------------------
+Adversarial Strategy: mine
+Global Inter arrival: 10.0
+K:90	 maximum K+N: 115
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 2 (2e-08)
+Simulation Time:713.2873340000001
+
+-----------------------------------
+Adversarial Strategy: mine
+Global Inter arrival: 10.0
+K:100	 maximum K+N: 125
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 0 (0.0)
+Simulation Time:715.5737080000004
+
+-----------------------------------
+Adversarial Strategy: mine
+Global Inter arrival: 10.0
+K:110	 maximum K+N: 135
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 0 (0.0)
+Simulation Time:712.4764800000003
+
+-----------------------------------
+Adversarial Strategy: mine
+Global Inter arrival: 10.0
+K:120	 maximum K+N: 145
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 0 (0.0)
+Simulation Time:713.8353619999998
+
+-----------------------------------
+Adversarial Strategy: mine
+Global Inter arrival: 10.0
+K:130	 maximum K+N: 155
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 0 (0.0)
+Simulation Time:711.2238979999993
+
+-----------------------------------
+Adversarial Strategy: mine
+Global Inter arrival: 10.0
+K:140	 maximum K+N: 165
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 0 (0.0)
+Simulation Time:713.8843500000003
+
+-----------------------------------
