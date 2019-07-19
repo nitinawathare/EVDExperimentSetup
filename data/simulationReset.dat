@@ -88,3 +88,93 @@ Late blocks (fraction): 0 (0.0)
 Simulation Time:729.4586170000002
 
 -----------------------------------
+Adversarial Strategy: reset
+Global Inter arrival: 10.0
+K:50	 maximum K+N: unbounded
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 1725 (1.725e-05)
+Simulation Time:830.1490809999999
+
+-----------------------------------
+Adversarial Strategy: reset
+Global Inter arrival: 10.0
+K:60	 maximum K+N: unbounded
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 381 (3.81e-06)
+Simulation Time:815.409026
+
+-----------------------------------
+Adversarial Strategy: reset
+Global Inter arrival: 10.0
+K:70	 maximum K+N: unbounded
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 173 (1.73e-06)
+Simulation Time:830.3432509999998
+
+-----------------------------------
+Adversarial Strategy: reset
+Global Inter arrival: 10.0
+K:80	 maximum K+N: unbounded
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 11 (1.1e-07)
+Simulation Time:820.8247689999998
+
+-----------------------------------
+Adversarial Strategy: reset
+Global Inter arrival: 10.0
+K:90	 maximum K+N: unbounded
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 0 (0.0)
+Simulation Time:815.9082790000002
+
+-----------------------------------
+Adversarial Strategy: reset
+Global Inter arrival: 10.0
+K:100	 maximum K+N: unbounded
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 0 (0.0)
+Simulation Time:821.1210610000007
+
+-----------------------------------
+Adversarial Strategy: reset
+Global Inter arrival: 10.0
+K:110	 maximum K+N: unbounded
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 0 (0.0)
+Simulation Time:816.7008560000004
+
+-----------------------------------
+Adversarial Strategy: reset
+Global Inter arrival: 10.0
+K:120	 maximum K+N: unbounded
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 0 (0.0)
+Simulation Time:817.7336850000002
+
+-----------------------------------
+Adversarial Strategy: reset
+Global Inter arrival: 10.0
+K:130	 maximum K+N: unbounded
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 0 (0.0)
+Simulation Time:821.8579609999997
+
+-----------------------------------
+Adversarial Strategy: reset
+Global Inter arrival: 10.0
+K:140	 maximum K+N: unbounded
+adversary fraction: 0.3333333333333333
+Blockchain Height: 100000000
+Late blocks (fraction): 0 (0.0)
+Simulation Time:821.0554329999995
+
+-----------------------------------

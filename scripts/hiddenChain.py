@@ -115,11 +115,7 @@ def computeTransProbMine(maxQueueLen, queueLen, lambd, advFrac):
 	for si in range(2,numStates):
 		six = si//maxQueueLen
 		siy = si%maxQueueLen
-		sumProb = Decimal(0.0)
 		if siy > queueLen and siy == six+1:
-			transProb[si][0] = Decimal(1)-sumProb
-
-		if siy <= queueLen and siy == six + 1:
 			transProb[si][0] = Decimal(1)
 
 	for si in range(2, numStates):
@@ -249,7 +245,7 @@ def computeExpectedBlocks(lambd, initialCount, tau):
 				probDist[i][j] = probDist[i][j] +  poissonProb(advFrac*lambd, j, k*tau)*probDist[i-1][k]
 	
 	expBlockList = [Decimal(0) for x in range(maxRound)]
-	expBlocks = Decimal(initialCount)
+	expBlocks = Decimal(0.0)
 	for i in range(0, maxRound):
 		expBlock = Decimal(0)
 		for j in range(0, maxBlock):
@@ -263,8 +259,8 @@ def computeLateBlocksMine(stationaryProbs, lambd, tau):
 	for si in range(0,numStates):
 		six = si//maxQueueLen
 		siy = si%maxQueueLen
-		if siy > queueLen and siy == six + 1:
-			totalNumBlocks = siy-queueLen
+		if siy > queueLen+1 and siy == six + 1:
+			totalNumBlocks = siy-(queueLen+1)
 			expectedNumBlocks = computeExpectedBlocks(lambd, totalNumBlocks, tau)
 			totalNumBlocks = totalNumBlocks + expectedNumBlocks
 			numLateBlocks = numLateBlocks + stationaryProbs[si]*Decimal(totalNumBlocks)
@@ -275,8 +271,8 @@ def computeLateBlocksReset(stationaryProbs):
 	for si in range(0,numStates):
 		six = si//maxQueueLen
 		siy = si%maxQueueLen
-		if siy > queueLen and siy == six + 1:
-			numLateBlocks = numLateBlocks + stationaryProbs[si]*Decimal(siy-queueLen)
+		if siy > queueLen+1 and siy == six + 1:
+			numLateBlocks = numLateBlocks + stationaryProbs[si]*Decimal(siy-queueLen-1)
 	return numLateBlocks
 
 
@@ -291,17 +287,19 @@ def computeAdvBlocksMine(stationaryProbs, lambd, tau, acceptProb):
 		six = si//maxQueueLen
 		siy = si%maxQueueLen
 
-		if siy <= queueLen and siy == six + 1:
+		if siy <= queueLen+1 and siy == six + 1:
 			numAdvBlocks = numAdvBlocks + stationaryProbs[si]*Decimal(siy)
 
-		if siy > queueLen and siy == six + 1:
+		if siy > queueLen+1 and siy == six + 1:
 			totalNumBlocks = siy
-			expectedNumBlocks =  computeExpectedBlocks(lambd, totalNumBlocks-queueLen, tau)
+			expectedNumBlocks =  computeExpectedBlocks(lambd, totalNumBlocks-queueLen-1, tau)
+			totalNumBlocks = totalNumBlocks + expectedNumBlocks
 			numAdvBlocks = numAdvBlocks + stationaryProbs[si]*Decimal(totalNumBlocks)
 
 		if siy == maxQueueLen-1 and six < siy-1:
 			totalNumBlocks = siy
-			expectedNumBlocks =  computeExpectedBlocks(lambd, totalNumBlocks-queueLen, tau)
+			expectedNumBlocks =  computeExpectedBlocks(lambd, totalNumBlocks-queueLen-1, tau)
+			totalNumBlocks = totalNumBlocks + expectedNumBlocks
 			numAdvBlocks = numAdvBlocks + stationaryProbs[si]*Decimal(totalNumBlocks)
 	return numAdvBlocks
 
@@ -312,35 +310,26 @@ def computeAdvBlocksReset(stationaryProbs, acceptProb):
 	for si in range(2,numStates):
 		if si == maxQueueLen + 1:
 			numAdvBlocks = numAdvBlocks + stationaryProbs[si]*transProb[maxQueueLen+1][0]*Decimal(acceptProb)
-			# numAdvBlocks1 = numAdvBlocks1 + Decimal(acceptProb)
 			continue
 		six = si//maxQueueLen
 		siy = si%maxQueueLen
 	
 		if siy == six + 1:
 			numAdvBlocks = numAdvBlocks + stationaryProbs[si]*Decimal(siy)
-			# numAdvBlocks1 = numAdvBlocks1 + Decimal(siy)
 			continue
 
 		if siy == maxQueueLen-1 and six < siy-1:
 			numAdvBlocks = numAdvBlocks + stationaryProbs[si]*transProb[si][0]*Decimal(siy+1)
-			# numAdvBlocks1 = numAdvBlocks1 + Decimal(siy)
-
-	# print("a:",numAdvBlocks1)
+			
 	return numAdvBlocks
 
 def computeHonestBlocksMine(stationaryProbs, lambd, tau, acceptProb):
 	numHonestBlocks = stationaryProbs[0]*transProb[0][0] + stationaryProbs[maxQueueLen+1]*transProb[maxQueueLen+1][0]*Decimal(1-acceptProb)
-	# numHonestBlocks1 = Decimal(1) + Decimal(1-acceptProb)
-	# print("h::", numHonestBlocks1)
 	return numHonestBlocks
 
 def computeHonestBlocksReset(stationaryProbs, acceptProb):
 	numHonestBlocks = stationaryProbs[0]*transProb[0][0] + stationaryProbs[maxQueueLen+1]*transProb[maxQueueLen+1][0]*Decimal(1-acceptProb)
-	# numHonestBlocks1 = Decimal(1) + Decimal(1-acceptProb)
-	# print("h::", numHonestBlocks1)
 	return numHonestBlocks
-
 
 def printTransProb():
 	for i in range(0,numStates):
@@ -387,33 +376,26 @@ def writeExperimentInfo(strategy, file):
 	file.write("Strategy of Adversary: "+strategy+"\n")
 	file.write("Fraction of Adversary: "+str(advFrac)+"\n")
 	file.write("Global Arrival Rate: "+str(globalLambda)+"\n")
-	file.write("Allowable Length of Queue: "+str(queueLen)+"\n")
-	file.write("Maximum Queue length: "+str(maxQueueLen-1)+"\n")
-	file.write("Number of Iterations: "+str(numitr)+"\n")
-	file.write("Time Taken: "+str(timeTaken)+"\n")
-	file.write("Thresholds: "+str(stationaryTh)+"\n\n")
-
-	file.write("late: "+str(numLateBlocks)+","+str(lateFraction)+"\n")
-	file.write("adv: "+str(numAdvBlocks)+","+str(advFraction)+"\n")
-	file.write("honest: "+str(numHonestBlocks)+","+str(honestFraction)+"\n\n")
+	file.write("tau: "+str(tau)+"\n")
+	file.write("Thresholds: "+str(stationaryTh)+"\n")
+	file.write("--------------------------------------------------------\n")
+	file.write("queueLen,maxQueueLen,numItr,lateRaw,honestRaw,advRaw,lateFrac,honestFrac,advFrac,time\n")
 
 def printExperimentInfo(strategy):
 	print("Strategy of Adversary: "+strategy)
 	print("Fraction of Adversary: "+str(advFrac))
+	print("tau: "+str(tau))
 	print("Global Inter arrival: "+str(1/globalLambda))
-	print("Allowable Length of Queue: "+str(queueLen))
-	print("Maximum Queue length: "+str(maxQueueLen-1))
-	print("Number of Iterations: "+str(numitr))
-	print("Time Taken: "+str(timeTaken))
 	print("Thresholds: "+str(stationaryTh))
-	print()
-	print("late", numLateBlocks, lateFraction)
-	print("adv", numAdvBlocks, advFraction)
-	print("honest", numHonestBlocks, honestFraction)
-	print()
 	print("----------------------------------------------")
-	print()
+	print("queueLen,maxQueueLen,numItr,lateRaw,honestRaw,advRaw,lateFrac,honestFrac,advFrac,time")
 
+def writeResults(file):
+	file.write(str(queueLen)+","+str(maxQueueLen-1)+","+str(numitr)+","+str(numLateBlocks)+","+str(numHonestBlocks)+","+str(numAdvBlocks)+","+str(lateFraction)+","+str(honestFraction)+","+str(advFraction)+","+str(timeTaken)+"\n")
+	file.close()
+
+def printResults():
+	print(str(queueLen)+","+str(maxQueueLen-1)+","+str(numitr)+","+str(numLateBlocks)+","+str(numHonestBlocks)+","+str(numAdvBlocks)+","+str(lateFraction)+","+str(honestFraction)+","+str(advFraction)+","+str(timeTaken))
 
 '''
 State s is the state (s/(M+1), s%(M+1)) where M = k+N
@@ -451,37 +433,42 @@ if len(sys.argv) < 2:
 	print("\n mine \n reset\n")
 	exit()
 
-for i in range(60,85,5):
-	queueLen = i
-	maxQueueLen = i+5+1
+advStrategy = sys.argv[1]
+if advStrategy != 'mine' and advStrategy != 'reset':
+	print("\n mine \n reset\n")
+	exit()
 
-	advFrac = 1/3.0
-	stationaryTh = 10**(-9)
-	checkMatrixTh = 1-10**(-15)
-	honestLambda = 1/15.0
-	globalLambda = honestLambda + (advFrac/(1-advFrac))*honestLambda
-	tau = 5
+advFrac = 1/3.0
+stationaryTh = 10**(-9)
+checkMatrixTh = 1-10**(-15)
+honestLambda = 1/15.0
+globalLambda = honestLambda/(1-advFrac)
+tau = 5
+
+outputFilePath = os.environ["HOME"]+"/EVD-Expt/data/theo/hidden-"+str(advStrategy)+".txt"
+outputFile = open(outputFilePath, 'a+')
+outputFilePathRaw = os.environ["HOME"]+"/EVD-Expt/data/theo/hidden-raw-"+str(advStrategy)+".txt"
+outputFileRaw = open(outputFilePathRaw, 'a+')
+printExperimentInfo(advStrategy)
+writeExperimentInfo(advStrategy, outputFile)
+writeExperimentInfo(advStrategy, outputFileRaw)
+
+for k in range(10,35,10):
+	queueLen = k
+	maxQueueLen = k+25+1
 	numStates = maxQueueLen*maxQueueLen
 	transProb = [[Decimal(0) for x in range(numStates)] for y in range(numStates)] 
 	zeroRows = []
 
-	advStrategy = sys.argv[1]
-	print("Started Computing Transition Probability...")
 	if advStrategy =='mine':
 		computeTransProbMine(maxQueueLen, queueLen, globalLambda, advFrac)
-	elif advStrategy == 'reset':
-		computeTransProbReset(maxQueueLen, queueLen, globalLambda, advFrac, tau)
 	else:
-		print("\n mine \n reset\n")
-		exit()
-	print("Finished Computing Transition Probability...")
-
+		computeTransProbReset(maxQueueLen, queueLen, globalLambda, advFrac, tau)
+	
 	checkTransitionMatrix(True, transProb, numStates, checkMatrixTh)
-	print("Started Computing Stationary Probability...")
 	startTime = time.clock()
 	numitr, probs = computeStationaryProb(transProb,stationaryTh, numStates)
 	endTime = time.clock()
-	print("Finished Computing Stationary Probability...")
 	timeTaken = endTime-startTime
 
 	acceptProb = 1.0
@@ -489,48 +476,22 @@ for i in range(60,85,5):
 	numAdvBlocks = 0.0
 	numHonestBlocks = 0.0
 
-
 	if advStrategy =='mine':
 		numLateBlocks = float(computeLateBlocksMine(probs, globalLambda, tau))
 		numAdvBlocks = float(computeAdvBlocksMine(probs, globalLambda, tau, acceptProb))
 		numHonestBlocks = float(computeHonestBlocksMine(probs, globalLambda, tau, acceptProb))
-	elif advStrategy == 'reset':
+	else:
 		numLateBlocks = float(computeLateBlocksReset(probs))
 		numAdvBlocks = float(computeAdvBlocksReset(probs, acceptProb))
 		numHonestBlocks = float(computeHonestBlocksReset(probs, acceptProb))
-	else:
-		print("\n mine \n reset\n")
-		exit()
-
+	
 	lateFraction = numLateBlocks/(numAdvBlocks + numHonestBlocks)
 	advFraction = numAdvBlocks/(numAdvBlocks + numHonestBlocks)
 	honestFraction = numHonestBlocks/(numAdvBlocks + numHonestBlocks)
 
-
-
-	if advStrategy =='mine':
-		outputFilePath = os.environ["HOME"]+'/EVD-Expt/data/hiddenMine.csv'
-		outputFile = open(outputFilePath, 'a+')
-		outputFilePath1 = os.environ["HOME"]+'/EVD-Expt/data/hiddenMineRaw.csv'
-		outputFile1 = open(outputFilePath1, 'a+')
-
-		printExperimentInfo(advStrategy)
-		writeExperimentInfo(advStrategy, outputFile)
-		writeExperimentInfo(advStrategy, outputFile1)
-		writeRawStationaryProb(probs, outputFile1)
-		outputFile.write("--------------------------------------------------------\n\n")
-	elif advStrategy == 'reset':
-		outputFilePath = os.environ["HOME"]+'/EVD-Expt/data/hiddenReset.csv'
-		outputFile = open(outputFilePath, 'a+')
-		outputFilePath1 = os.environ["HOME"]+'/EVD-Expt/data/hiddenResetRaw.csv'
-		outputFile1 = open(outputFilePath1, 'a+')
-	
-		printExperimentInfo(advStrategy)
-		writeExperimentInfo(advStrategy, outputFile)
-		writeExperimentInfo(advStrategy, outputFile1)
-		writeRawStationaryProb(probs, outputFile1)
-		outputFile.write("--------------------------------------------------------\n\n")
-	else:
-		print("\n mine \n reset\n")
-		exit()
-
+	printResults()
+	outputFile = open(outputFilePath, 'a+')
+	writeResults(outputFile)
+	outputFileRaw = open(outputFilePathRaw, 'a+')
+	writeRawStationaryProb(probs, outputFileRaw)
+	writeResults(outputFileRaw)
