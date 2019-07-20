@@ -287,13 +287,13 @@ if mine:
 else:
 	strategy = 'reset'
 
-for k in range(25,85,10):
+for k in range(10,85,10):
 	outFilePath = os.environ["HOME"]+"/EVD-Expt/data/simData1/sim-res-"+str(strategy)+str(k)+".txt"
 	outFile = open(outFilePath, "a+")
 	print(outFilePath)
 	printExptInfo()
 	writeExptInfo(outFile)
-	for i in range(0, 100, 1):
+	for i in range(0, 1, 1):
 		np.random.seed(i)
 		pQueue = []
 		hstQueue = []
