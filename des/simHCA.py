@@ -45,7 +45,7 @@ def deleteEventHistory(count):
 	del removedEvents[count]
 
 def releaseHiddenQueueReset(time):
-	global release, hstQueue, hiddenQueue, hstQueueLen, numLateBlocks, hiddenQueueLen, evCount, abCount, hbCount, epCount, lastHonestBlock
+	global removedEvents, pQueue, release, hstQueue, hiddenQueue, hstQueueLen, numLateBlocks, hiddenQueueLen, evCount, abCount, hbCount, epCount, lastHonestBlock
 	
 	advHead = hiddenQueue[0]['height']
 	advTail = hiddenQueue[-1]['height']
@@ -123,7 +123,7 @@ def releaseHiddenQueueReset(time):
 	removeEvent('ADV_BLOCK', abCount)
 	evCount = evCount + 1
 	abCount = evCount
-	nextAdvBlkTime = computeBlockInterval(1/(advFrac*honestLambd))
+	nextAdvBlkTime = computeBlockInterval(1/(advFrac*globalLambd))
 	heapq.heappush(pQueue, [time+nextAdvBlkTime, evCount, 'ADV_BLOCK', {'height':lastHonestBlock+1, 'miner':'adv'}])
 
 def run():
@@ -287,13 +287,14 @@ if mine:
 else:
 	strategy = 'reset'
 
-for k in range(10,85,10):
+for k in range(25,75,10):
 	outFilePath = os.environ["HOME"]+"/EVD-Expt/data/simData1/sim-res-"+str(strategy)+str(k)+".txt"
 	outFile = open(outFilePath, "a+")
+	numRuns = 100
 	print(outFilePath)
 	printExptInfo()
 	writeExptInfo(outFile)
-	for i in range(0, 1, 1):
+	for i in range(0, numRuns, 1):
 		np.random.seed(i)
 		pQueue = []
 		hstQueue = []

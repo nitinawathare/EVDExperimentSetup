@@ -1,4 +1,4 @@
- 	 		'''
+'''
 This file extracts useful information from the results
 of discrete event simulation
 
