@@ -335,25 +335,24 @@ def printExptInfo():
 	print("Block Processing Time: "+str(tau))
 	# print("K:"+str(k)+"\t maximum K+N: "+str('unbounded'))
 	print("-----------------------------------")
-	print("QueueLen,ConstTh,ResetTh,NumBlocks,NumAttack,NumSuccessAttack,fracSuccessAttack,SimTime")
+	print("itr,QueueLen,ConstTh,ResetTh,NumBlocks,NumAttack,NumSuccessAttack,fracSuccessAttack,SimTime")
 
 def writeExptInfo(file):
-	# file.write("-----------------------------------\n")
-	# file.write("Adversarial Strategy: "+strategy+"\n")
-	# file.write("Global Inter arrival: "+str(1/globalLambd)+"\n")
-	# file.write("K:"+str(k)+"\t maximum K+N: "+str('unbounded')+"\n")
-	# file.write("adversary fraction: "+str(advFrac)+"\n")
-	# file.write("Block Processing Time: "+str(tau)+"\n")
-	# file.write("-----------------------------------\n")
-	# file.write("QueueLen,ConstTh,ResetTh,NumBlocks,NumAttack,NumSuccessAttack,fracSuccessAttack,SimTime\n")
+	file.write("-----------------------------------\n")
+	file.write("Adversarial Strategy: "+strategy+"\n")
+	file.write("Global Inter arrival: "+str(1/globalLambd)+"\n")
+	file.write("adversary fraction: "+str(advFrac)+"\n")
+	file.write("Block Processing Time: "+str(tau)+"\n")
+	file.write("-----------------------------------\n")
+	file.write("itr,QueueLen,ConstTh,ResetTh,NumBlocks,NumAttack,NumSuccessAttack,fracSuccessAttack,SimTime\n")
 	file.close()
 
 def printResult(itr):
 	# print(str(itr)+","+str(lastHonestBlock)+","+str(numLateBlocks)+","+str(numLateBlocks/lastHonestBlock)+","+str(simTime))
-	print(str(itr)+","+str(k)+","+str(constTh)+","+str(resetTh)+","+str(lastHonestBlock)+","+str(numAttack)+","+str(numSuccessAttack)+","+str(numAttack/numSuccessAttack)+","+str(simTime))
+	print(str(itr)+","+str(k)+","+str(constTh)+","+str(resetTh)+","+str(lastHonestBlock)+","+str(numAttack)+","+str(numSuccessAttack)+","+str(numSuccessAttack/numAttack)+","+str(simTime))
 
 def writeResult(file, itr):
-	# file.write(str(itr)+","+str(lastHonestBlock)+","+str(numLateBlocks)+","+str(numLateBlocks/lastHonestBlock)+","+str(simTime)+"\n")
+	file.write(str(itr)+","+str(k)+","+str(constTh)+","+str(resetTh)+","+str(lastHonestBlock)+","+str(numAttack)+","+str(numSuccessAttack)+","+str(numSuccessAttack/numAttack)+","+str(simTime)+"\n")
 	file.close()
 
 advFrac = 0.30
@@ -371,49 +370,50 @@ print(dst)
 maxNumAttack = int(sys.argv[1])
 release = False
 outFilePath =''
-strategy = 'consistency'
+strategy = 'ds'
 
 confirmProbsRosen = comuteConfirmationProbsRosen(5,30,5)
 print(confirmProbsRosen)
 # exit()
 printExptInfo()
-for j in range(5,20,5):
-	# outFilePath = os.environ["HOME"]+"/EVD-Expt/data/simDS/sim-res-"+str(strategy)+str(k)+".txt"
-	# outFile = open(outFilePath, "a+")
-	# writeExptInfo(outFile)
-	numRuns = 10
-	constTh = j
-	# resetThs = [j/4,j/2,j,2*j,4*j,5*j,6*j,7*j,8*j,9*j,10*j]
-	resetThs = [j,2*j, 4*j]
-	k=10
-	for resetTh in resetThs:
-		avgSuccessProb = 0.0
-		for i in range(0, numRuns, 1):
-			np.random.seed(i+1000)
-			pQueue = []
-			hstQueue = []
-			hiddenQueue = []
-			hstQueueLen = hiddenQueueLen = 0
-			lastProcessedBlock = lastHonestBlock = 0
-			numSuccessAttack = numUnsuccessAttack = attackHead = lastAdvBlock = 0
-			numAttack = 0
-			lateBlocks = []
-			numLateBlocks = 0
-			
-			numEvents = 0
-			evCount = 0
-			epCount = abCount = hbCount = -1
-			removedEvents = {}
-			startTime = time.clock()
-			initQueue()
-			if dst:
-				runDST()
-			else:
-				runDS()
-			simTime = time.clock()-startTime
-			avgSuccessProb = avgSuccessProb + (numSuccessAttack/numAttack)
-			# outFile = open(outFilePath, "a+")
-			# writeResult(outFile, i)
-			# printResult(i)
-			# print(i,numSuccessAttack,numAttack)
-		print(constTh,resetTh,k,avgSuccessProb/numRuns,numLateBlocks/lastHonestBlock)
+
+for k in range(15,70,10):
+	for j in range(15,70,10):
+		outFilePath = os.environ["HOME"]+"//EVD-Expt/des/dsData/k"+str(k)+"/sim-res-"+str(strategy)+str(j)+".txt"
+		outFile = open(outFilePath, "a+")
+		writeExptInfo(outFile)
+		numRuns = 100
+		constTh = j
+		resetThs = [j/2,j,2*j,4*j,8*j]
+		# resetThs = [j,2*j]
+		for resetTh in resetThs:
+			# avgSuccessProb = 0.0
+			for i in range(0, numRuns, 1):
+				np.random.seed(i+1000)
+				pQueue = []
+				hstQueue = []
+				hiddenQueue = []
+				hstQueueLen = hiddenQueueLen = 0
+				lastProcessedBlock = lastHonestBlock = 0
+				numSuccessAttack = numUnsuccessAttack = attackHead = lastAdvBlock = 0
+				numAttack = 0
+				lateBlocks = []
+				numLateBlocks = 0
+				
+				numEvents = 0
+				evCount = 0
+				epCount = abCount = hbCount = -1
+				removedEvents = {}
+				startTime = time.clock()
+				initQueue()
+				if dst:
+					runDST()
+				else:
+					runDS()
+				simTime = time.clock()-startTime
+				# avgSuccessProb = avgSuccessProb + (numSuccessAttack/numAttack)
+				outFile = open(outFilePath, "a+")
+				writeResult(outFile, i)
+				printResult(i)
+				# print(i,numSuccessAttack,numAttack)
+			# print(constTh,resetTh,k,avgSuccessProb/numRuns,numLateBlocks/lastHonestBlock)
