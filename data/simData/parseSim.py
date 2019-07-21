@@ -37,18 +37,19 @@ def analyzeResults(strategy, queueLen):
 	if os.path.exists(fileName):
 		file = open(fileName, "r")
 		data = file.readlines()
-
+		# print(len(data))
+		dataFound = True
 		i = 0
 		for dataItem in data:
 			# Skipping first few additional Information
-			if dataItem[0] != '0':
+			if not dataItem[0].isdigit():
 				continue 
 			info = dataItem.rstrip().split(',')
-			lateBlocks[i] = float(info[3])
+			lateBlocks[0][i] = float(info[3])
 			i = i+1
-
-		avgLateBlock = np.mean(lateBlocks)
-		stdDev = np.std(lateBlocks)
+		avgLateBlock = np.mean(lateBlocks[0])
+		stdDev = np.std(lateBlocks[0])
+		# print(i, stdDev)
 		confidenceInterVal = 1.984*stdDev/math.sqrt(numData)
 	else:
 		print(fileName," file not found!!")

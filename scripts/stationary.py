@@ -77,8 +77,8 @@ def computeHonestStationaryProb(matrix, th):
 		difference = computeAbsDifference(currVector, prevVector)
 		prevVector = currVector
 		it = it+1
-		if it%10 == 0:
-			print(it, float(difference))
+		# if it%10 == 0:
+		# 	print(it, float(difference))
 	prevVector = [x/sum(prevVector) for x in prevVector]
 	return (it, prevVector)
 
@@ -173,6 +173,13 @@ def checkTransitionMatrix(rowCheck, matrix, numRows, th):
 
 initProb = [0.3297630187360915, 0.16161252867434858, 0.15059349262825678, 0.05715206695815737, 0.056711305516792994, 0.04407614418436712, 0.04143157553318527, 0.03526091534709429, 0.026078385308518044, 0.018365060077152478, 0.013421185904173738, 0.013222843254910724, 0.01248824085230392, 0.010504814363667899, 0.008080626433667502, 0.005939260428950312, 0.0015793951668028662, 0.0011019036049087372, 0.0008815228837272837, 0.0008741768594216269, 0.000844792763197531, 0.0008080626436663093, 0.0008080626436663093, 0.0007346024026068043, 0.0007346024026068043, 0.0006244120430146082, 0.0005876819224848558, 0.0005876819224848558, 0.0005771036480039461, 0.00044076144136437643, 0.00036730120130340217, 0.00036730120130340217, 0.00036730120130340217, 0.00035995517799627627, 0.00035995517799627627, 0.0002277267444885795, 0.0001542665044276052, 0.00014692048012194853, 0.00014692048012194853, 0.00014692048012194853, 0.00014692048012194853, 0.00014692048012194853, 0.00014692048012194853, 0.00014692048012194853, 0.00014692048012194853, 0.00014692048012194853, 0.00014692048012194853, 0.00014692048012194853, 0.00014692048012194853, 0.00014692048012194853]
 
+# initProb = [0.5, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01]
+
+# initProb = [0.9,0.1]
+
+
+
+
 processTime = [4]
 recipLambd = 15.0
 globalLambd = 1.0/recipLambd
@@ -180,8 +187,10 @@ numNodes = len(initProb)
 checkMatrixTh = 1-10**(-15)
 stationaryTh = 10**(-14)
 
-honestTranstion = [[0]*numNodes]*numNodes
-skipTranstion = [[0]*numNodes]*numNodes
+honestTranstion = [[Decimal(0) for x in range(numNodes)] for y in range(numNodes)] 
+skipTranstion = [[Decimal(0) for x in range(numNodes)] for y in range(numNodes)] 
+
+
 
 honestResults = {}
 honestResultsExtended = {}
@@ -190,28 +199,44 @@ skipResults = {}
 skipResultsExtended = {}
 
 
-processTime = [0.0, 0.2, 0.5, 1, 2, 4]
-for t in processTime:
-	computeHonestTransition(t, globalLambd)
-	checkTransitionMatrix(True, honestTranstion, numNodes, checkMatrixTh)
-	numitr, probs = computeHonestStationaryProb(honestTranstion, stationaryTh)
-	honestResultsExtended[t] = float(probs[0])
+# processTime = [0.0, 0.2, 0.5, 1, 2, 4]
+
+processTime = [4.3]
+# for t in processTime:
+# 	computeHonestTransition(t, globalLambd)
+# 	checkTransitionMatrix(True, honestTranstion, numNodes, checkMatrixTh)
+# 	numitr, probs = computeHonestStationaryProb(honestTranstion, stationaryTh)
+# 	honestResultsExtended[t] = float(probs[0])
 
 
-	computeSkipTransition(2*t, globalLambd)
-	checkTransitionMatrix(True, skipTranstion, numNodes, checkMatrixTh)
-	numitr, probs = computeSkipStationaryProb(skipTranstion, stationaryTh)
-	skipResultsExtended[t] = float(probs[0])
+# 	computeSkipTransition(2*t, globalLambd)
+# 	checkTransitionMatrix(True, skipTranstion, numNodes, checkMatrixTh)
+# 	numitr, probs = computeSkipStationaryProb(skipTranstion, stationaryTh)
+# 	skipResultsExtended[t] = float(probs[0])
 
 
 for t in processTime:
 	globalLambd = 1.0/(recipLambd-2*t)
-
+	print(t,1/globalLambd)
 	computeHonestTransition(t, globalLambd)
 	checkTransitionMatrix(True, honestTranstion, numNodes, checkMatrixTh)
+	# print(honestTranstion)
+
+	# for i in range(0,numNodes):
+	# 	for j in range(0,numNodes):
+	# 		print(round(float(honestTranstion[i][j]),4), end="\t")
+	# 	print("\n")
 	numitr, probs = computeHonestStationaryProb(honestTranstion, stationaryTh)
 	honestResults[t] = float(probs[0])
+	# exit()
 
+	for j in range(0,numNodes):
+		print(round(float(probs[j])/initProb[j],4), end=" ")
+	print("\n")
+
+	# statProbFloat = [round(float(x),4) for x in probs]
+	# print(statProbFloat)
+	exit()
 
 	computeSkipTransition(2*t, globalLambd)
 	checkTransitionMatrix(True, skipTranstion, numNodes, checkMatrixTh)
@@ -222,7 +247,7 @@ for t in processTime:
 # numitr, probs = computeSkipStationaryProb(skipTranstion, stationaryTh)
 
 file = open('/home/sourav/EVD-Expt/stationary.csv', 'w+')
-file.write("hE,h,sE,s\n")
+file.write("tau,hE,h,sE,s\n")
 for t in processTime:
 	file.write(str(t)+","+str(honestResultsExtended[t])+","+str(honestResults[t])+","+str(skipResultsExtended[t])+","+str(skipResults[t])+"\n")
 

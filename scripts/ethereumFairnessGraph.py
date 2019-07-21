@@ -188,6 +188,7 @@ def computeFairness(inputFilePath, outputFile, startBlk, endBlk, exIndex, evd, d
 		if exIndex == 1:
 			outputFile.write(str(totalBlkCount)+","+str(delay)+","+str(avgHonestExTime)+","+str(avgHonestProcTime)+","+str(avgAdvExtTime)+","+str(avgAdvProcTime)+","+str(expFraction)+","+str( actFraction)+"\n")
 		elif exIndex == 0:
+			print(avgAdvExtTime,avgAdvExtTime)
 			outputFile.write(str(totalBlkCount)+","+str(delay)+","+str(avgHonestExTime)+","+str(avgHonestProcTime)+","+str(expFraction)+","+str( actFraction)+"\n")
 	
 def computeEthExecutionTime(inputFilePath, outputFile, startBlk, endBlk, exIndex):
@@ -446,46 +447,47 @@ hashPowers = readHashPower('/home/sourav/EVD-Expt/hashPower')
 hashPowers = [x/sum(hashPowers) for x in hashPowers]
 
 
-dirPath = '/home/sourav/EVD-Segate/ETH-S-D-15/'
-gasList = [12, 120, 240]
-fileNames =[
-	'ETH-240-Skip-1x/'
-]
+# dirPath = '/home/sourav/EVD-Segate/ETH-S-D-15/'
+# gasList = [12, 120, 240]
 # fileNames =[
 # 	'ETH-240-Skip-1x/'
 # ]
+# # fileNames =[
+# # 	'ETH-240-Skip-1x/'
+# # ]
 
-lenFileNames = len(fileNames)
-outputFilePath = '/home/sourav/EVD-Expt/data/ethSkip1.csv'
-outputFile = open(outputFilePath,"w+")
-outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgAdvExtTime,avgAdvProcTime,expFraction,actFraction\n")
-
-
-for i in range(0,lenFileNames):
-	inputFilePath =  dirPath+fileNames[i]
-	computeFairness(inputFilePath, outputFile, 50, 1000, 1, False, 1)
+# lenFileNames = len(fileNames)
+# outputFilePath = '/home/sourav/EVD-Expt/data/ethSkip1.csv'
+# outputFile = open(outputFilePath,"w+")
+# outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgAdvExtTime,avgAdvProcTime,expFraction,actFraction\n")
 
 
-dirPath = '/home/sourav/EVD-Segate/ETH-NS-D-15/'
-gasList = [12, 120, 240]
-fileNames =[
-	'ETH-800-NoSkip-1x-15/'
-]
+# for i in range(0,lenFileNames):
+# 	inputFilePath =  dirPath+fileNames[i]
+# 	computeFairness(inputFilePath, outputFile, 50, 1000, 1, False, 1)
+
+
+# dirPath = '/home/sourav/EVD-Segate/ETH-NS-D-15/'
+# gasList = [12, 120, 240]
 # fileNames =[
-# 	'ETH-240-Skip-1x/'
+# 	'ETH-800-NoSkip-1x-15/'
 # ]
+# # fileNames =[
+# # 	'ETH-240-Skip-1x/'
+# # ]
 
-lenFileNames = len(fileNames)
-outputFilePath = '/home/sourav/EVD-Expt/data/ethSkip1.csv'
-outputFile = open(outputFilePath,"w+")
-outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgAdvExtTime,avgAdvProcTime,expFraction,actFraction\n")
-
-
-for i in range(0,lenFileNames):
-	inputFilePath =  dirPath+fileNames[i]
-	computeFairness(inputFilePath, outputFile, 50, 1000, 0, False, 1)
+# lenFileNames = len(fileNames)
+# outputFilePath = '/home/sourav/EVD-Expt/data/ethSkip1.csv'
+# outputFile = open(outputFilePath,"w+")
+# outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgAdvExtTime,avgAdvProcTime,expFraction,actFraction\n")
 
 
+# for i in range(0,lenFileNames):
+# 	inputFilePath =  dirPath+fileNames[i]
+# 	computeFairness(inputFilePath, outputFile, 50, 1000, 0, False, 1)
+
+
+computeEthNoSkip()
 
 # if len(sys.argv) == 1:
 # 	print('\n eth-s\n eth-ns\n eth-all\n evd-s\n evd-ns\n evd-all\n')

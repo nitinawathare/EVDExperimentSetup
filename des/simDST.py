@@ -355,7 +355,7 @@ def writeResult(file, itr):
 	file.write(str(itr)+","+str(k)+","+str(constTh)+","+str(resetTh)+","+str(lastHonestBlock)+","+str(numAttack)+","+str(numSuccessAttack)+","+str(numSuccessAttack/numAttack)+","+str(simTime)+"\n")
 	file.close()
 
-advFrac = 0.30
+advFrac = 1/3.0
 tau = 5.0
 honestLambd = 1.0/15.0
 globalLambd = honestLambd/(1-advFrac)
@@ -372,7 +372,7 @@ release = False
 outFilePath =''
 strategy = 'ds'
 
-confirmProbsRosen = comuteConfirmationProbsRosen(5,30,5)
+confirmProbsRosen = comuteConfirmationProbsRosen(15,70,10)
 print(confirmProbsRosen)
 # exit()
 printExptInfo()
@@ -384,8 +384,8 @@ for k in range(15,70,10):
 		writeExptInfo(outFile)
 		numRuns = 100
 		constTh = j
-		resetThs = [j/2,j,2*j,4*j,8*j]
-		# resetThs = [j,2*j]
+		# resetThs = [j/2,j,2*j,4*j,8*j]
+		resetThs = [64]
 		for resetTh in resetThs:
 			# avgSuccessProb = 0.0
 			for i in range(0, numRuns, 1):
