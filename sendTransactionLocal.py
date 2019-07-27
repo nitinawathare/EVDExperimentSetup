@@ -29,7 +29,7 @@ def sendSortTransaction(address):
     
     # contract_source_path = '/home/ubuntu/gitRepoEVD/cpuheavy.sol'
     # contract_source_path = '/home/sourav/EVD-Expt/cpuheavy.sol'
-    contract_source_path = '/home/sourav/EVD-Expt/sortMemory.sol'
+    contract_source_path = '/home/nitin14/EVDExperimentSetup/cpuheavy.sol'
 
     compiled_sol = compile_source_file(contract_source_path)
 
@@ -38,7 +38,7 @@ def sendSortTransaction(address):
     sort_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = sort_contract.functions.sort().transact({'txType':"0x1", 'from':w3.eth.accounts[0], 'gas':8000000})
+    tx_hash = sort_contract.functions.sort().transact({'txType':"0x1", 'from':w3.eth.accounts[0], 'gas':2409638})
     return tx_hash
 
 def sendMatrixTransaction(address):
@@ -46,7 +46,7 @@ def sendMatrixTransaction(address):
     
     # contract_source_path = '/home/ubuntu/gitRepoEVD/matrixMultiplication.sol'
     # contract_source_path = '/home/sourav/EVD-Expt/matrixMultiplication.sol'
-    contract_source_path = '/home/sourav/EVD-Expt/matrixMemory.sol'
+    contract_source_path = '/home/nitin14/EVDExperimentSetup/matrixMultiplication.sol'
     compiled_sol = compile_source_file(contract_source_path)
 
     contract_id, contract_interface = compiled_sol.popitem()
@@ -54,14 +54,14 @@ def sendMatrixTransaction(address):
     sort_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = sort_contract.functions.multiply().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':8000000})
+    tx_hash = sort_contract.functions.multiply().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':2409638})
     return tx_hash
 
 def sendEmptyLoopTransaction(address):
 
     
     # contract_source_path = '/home/ubuntu/gitRepoEVD/emptyLoop.sol'
-    contract_source_path = '/home/sourav/EVD-Expt/emptyLoop.sol'
+    contract_source_path = '/home/nitin14/EVDExperimentSetup/emptyLoop.sol'
     compiled_sol = compile_source_file(contract_source_path)
 
     contract_id, contract_interface = compiled_sol.popitem()
@@ -69,14 +69,14 @@ def sendEmptyLoopTransaction(address):
     sort_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = sort_contract.functions.runLoop().transact({'txType':"0x3", 'from':w3.eth.accounts[0], 'gas':8000000})
+    tx_hash = sort_contract.functions.runLoop().transact({'txType':"0x3", 'from':w3.eth.accounts[0], 'gas':2409638})
     return tx_hash
 
 
 
 
 print("Starting Transaction Submission")
-w3 = Web3(IPCProvider('/home/sourav/test-eth3/geth.ipc', timeout=100000))
+w3 = Web3(IPCProvider('/home/nitin14/EVDSetup/test-eth1/geth.ipc', timeout=100000))
 # w3 = Web3(IPCProvider('/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc', timeout=100000))
 
 w3.miner.start(1)
@@ -91,7 +91,7 @@ i=0
 # curBlock = w3.eth.getBlock('latest')
 # while curBlock['number'] < 100:
 while i < 1:
-    with open('/home/sourav/EVD-Expt/contractAddressList1') as fp:
+    with open('/home/nitin14/EVDExperimentSetup/contractAddressList1') as fp:
     # with open('/home/ubuntu/gitRepoEVD/contractAddressList') as fp:
         for line in fp:
             #print(line)

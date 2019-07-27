@@ -9,6 +9,29 @@ from solc import compile_source
 '''
 Parameters for Experiments:
 
+1. 400 Million Block measurement time.
++------------+---------------+--------------+------------- +-------------+
+|  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | 
++------------+---------------+--------------+------------- +-------------+
+|  sort      |      160      |  ----------  |    2809638   |    2372157  | 
++------------+---------------+--------------+------------- +-------------+
+|  Matrix    |      6        |  ----------  |    2409638   |    2095287  | 
++------------+---------------+--------------+------------- +-------------+
+|  Empty     |      170      |  ----------  |    2409638   |    2359158  | 
++------------+---------------+--------------+------------- +-------------+
+
+1. 500 Million Block measurement time.
++------------+---------------+--------------+------------- +-------------+
+|  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | 
++------------+---------------+--------------+------------- +-------------+
+|  sort      |      180      |  ----------  |    3209638   |    2372157  | 
++------------+---------------+--------------+------------- +-------------+
+|  Matrix    |      6        |  ----------  |    2409638   |    2095287  | 
++------------+---------------+--------------+------------- +-------------+
+|  Empty     |      170      |  ----------  |    2409638   |    2359158  | 
++------------+---------------+--------------+------------- +-------------+
+
+
 1. 40 Million Block measurement time.
 +------------+---------------+--------------+------------- +-------------+
 |  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | 
@@ -129,11 +152,11 @@ def read_address_file(file_path):
 
 
 def connectWeb3():
-    # w3 = Web3(IPCProvider('/home/nitin14/EVDEthereum/.ethereum/geth.ipc', timeout=100000))
+    # w3 = Web3(IPCProvider('/home/nitin14/EVDSetup/.ethereum/geth.ipc', timeout=100000))
     # w3 = Web3(IPCProvider('/home/ubuntu/gitRepoEVD/.ethereum/geth.ipc', timeout=100000))
 
     # w31 = Web3(IPCProvider('/home/sourav/test-eth3/geth.ipc', timeout=100000))
-    return Web3(IPCProvider('/home/sourav/test-eth3/geth.ipc', timeout=100000))
+    return Web3(IPCProvider('/home/nitin14/EVDSetup/test-eth1/geth.ipc', timeout=100000))
     # w3 = Web3(IPCProvider('/home/sourav/test-eth2/geth.ipc', timeout=100000))
 
 def deploySortContract(contract_source_path, w3, account):
@@ -141,7 +164,7 @@ def deploySortContract(contract_source_path, w3, account):
     contract_id, contract_interface1 = compiled_sol.popitem()
     tx_hash = w3.eth.contract(
             abi=contract_interface1['abi'],
-            bytecode=contract_interface1['bin']).constructor(30).transact({'txType':"0x0", 'from':account, 'gas':8500000})
+            bytecode=contract_interface1['bin']).constructor(145).transact({'txType':"0x0", 'from':account, 'gas':8500000})
     return tx_hash
 
 
@@ -151,7 +174,7 @@ def deployMatrixContract(contract_source_path, w3, account):
     curBlock = w3.eth.getBlock('latest')
     tx_hash = w3.eth.contract(
             abi=contract_interface2['abi'],
-            bytecode=contract_interface2['bin']).constructor(20).transact({'txType':"0x0", 'from':account, 'gas':4000000})
+            bytecode=contract_interface2['bin']).constructor(6).transact({'txType':"0x0", 'from':account, 'gas':4000000})
     return tx_hash
 
 def deployEmptyContract(contract_source_path, w3, account):
@@ -160,7 +183,7 @@ def deployEmptyContract(contract_source_path, w3, account):
     curBlock = w3.eth.getBlock('latest')
     tx_hash = w3.eth.contract(
             abi=contract_interface3['abi'],
-            bytecode=contract_interface3['bin']).constructor(4).transact({'txType':"0x0", 'from':account, 'gas':1000000})
+            bytecode=contract_interface3['bin']).constructor(170).transact({'txType':"0x0", 'from':account, 'gas':1000000})
     return tx_hash
 
 def deployContracts(w3, account):
@@ -190,20 +213,20 @@ def deployContracts(w3, account):
         print("empty:{0}".format(receipt3['contractAddress']))
 
 
-# contract_source_path = '/home/ubuntu/gitRepoEVD/cpuheavy.sol'
-# sort_source_path = '/home/sourav/EVD-Expt/cpuheavy.sol'
-sort_source_path = '/home/sourav/EVD-Expt/sortMemory.sol'
+sort_source_path = '/home/nitin14/EVDExperimentSetup/cpuheavy.sol'
+#sort_source_path = '/home/sourav/EVD-Expt/cpuheavy.sol'
+#sort_source_path = '/home/sourav/EVD-Expt/sortMemory.sol'
 # contract_source_path = '/home/sourav/EVD-Prototype/scripts/contracts/simplestorage.sol'
 
-# contract_source_path = '/home/nitin14/NewEVD/matrixMultiplication.sol'
+matrix_source_path = '/home/nitin14/EVDExperimentSetup/matrixMultiplication.sol'
 # contract_source_path = '/home/ubuntu/gitRepoEVD/matrixMultiplication.sol'
 # matrix_source_path = '/home/sourav/EVD-Expt/matrixMultiplication.sol'
-matrix_source_path = '/home/sourav/EVD-Expt/matrixMemory.sol'
+#matrix_source_path = '/home/sourav/EVD-Expt/matrixMemory.sol'
 # contract_source_path = '/home/sourav/EVD-Prototype/scripts/contracts/simplestorage.sol'
 
 # contract_source_path = '/home/nitin14/NewEVD/emptyLoop.sol'
 # contract_source_path = '/home/ubuntu/gitRepoEVD/emptyLoop.sol'
-empty_source_path = '/home/sourav/EVD-Expt/emptyLoop.sol'
+empty_source_path = '/home/nitin14/EVDExperimentSetup/emptyLoop.sol'
 # contract_source_path = '/home/sourav/EVD-Prototype/scripts/contracts/simplestorage.sol'
 
 w3 = connectWeb3()

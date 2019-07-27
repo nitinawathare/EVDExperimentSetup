@@ -10,7 +10,7 @@ do
 		echo $REMOTE_SERVER ":" $(ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "tail -n 1 /home/ubuntu/gitRepoEVD/processPreviousTime" ) &
 
 	elif [ "$1" = "mc" ]; then
-		echo $REMOTE_SERVER ":" $(ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "tail -n 1 /home/ubuntu/gitRepoEVD/minersInChain" ) &
+		echo $REMOTE_SERVER ":" $(ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "tail -n 1 /home/ubuntu/gitRepoEVD/minersInChai"n ) &
 
 	elif [ "$1" = "mi" ]; then
 		echo $REMOTE_SERVER ":" $(ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "tail -n 1 /home/ubuntu/gitRepoEVD/miningInfo" ) &

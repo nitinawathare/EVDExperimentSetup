@@ -1,7 +1,7 @@
 SERVER_LIST=ipList
 
 
-python insertDelay.py 
+python3 insertDelay.py 
 
 var=0
 while read REMOTE_SERVER

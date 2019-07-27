@@ -175,8 +175,8 @@ MAX = 100 + 1
 # lambda20 = Decimal(1)/Decimal(2.5)
 # kValues20 , betaValues20 = computeKValuses(lambda10, MAX, 32)
 
-lambda1 = Decimal(1)/Decimal(50)
-kValues1 , betaValues1 = computeKValuses(lambda1, MAX, 32)
+lambda1 = Decimal(1)/Decimal(1.25)
+kValues1 , betaValues1 = computeKValuses(lambda1, MAX, 10)
 
 # plt.figure(1)
 # # plt.plot(ks, probHonest, label='Probability')

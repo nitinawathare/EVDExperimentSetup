@@ -24,11 +24,12 @@ SERVER_LIST=ipList
 # 240M	= E4E1C00
 # 400M = 17D78400
 # 800M	= 2FAF0800 
+# 1000M = 3B9ACA01
 
 var=0
 hashPowerVar=0
 cacheVar=$((4096*4))
-behavior=0
+behavior=1
 # cacheVar=2048
 # rm -r GLogs
 # mkdir GLogs
@@ -48,7 +49,7 @@ do
 	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "pkill -f automate2.py;"
 	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "killall geth; sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/chaindata/"
 	# ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "killall geth; sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/lightchaindata/"
-	hashPowerVar=$(sed  "$((var+1))q;d" /home/sourav/EVD-Expt/hashPower)
+	hashPowerVar=$(sed  "$((var+1))q;d" /home/nitin14/EVDExperimentSetup/hashPower)
 	# echo "hashPower $hashPowerVar"
 	#echo "new hashpower calculated is "
 
@@ -77,7 +78,7 @@ do
 	# 	sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/ethash/;
 	# 	sudo rm /home/ubuntu/gitRepoEVD/.ethereum/geth/LOCK;
 	# 	sudo rm /home/ubuntu/gitRepoEVD/.ethereum/geth/transactions.rlp;
-	# 	nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --k 10 init /home/ubuntu/gitRepoEVD/genesis.json; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22000 --port 21000 --verbosity 3 --gcmode archive --hashpower $hashPowerVar --k 10 --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt" > /home/sourav/EVD-Expt/Logs/log$var.txt 2>&1 &
+	# 	nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --k 10 init /home/ubuntu/gitRepoEVD/genesis.json; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22000 --port 21000 --verbosity 3 --gcmode archive --hashpower $hashPowerVar --k 10 --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt" > /home/nitin14/EVDExperimentSetup/Logs/log$var.txt 2>&1 &
 
 	# to run go-ethereum
 	nohup ssh -n -i quorum2.key ubuntu@$REMOTE_SERVER "
@@ -87,7 +88,7 @@ do
 		sudo rm -r /home/ubuntu/gitRepoEVD/.ethereum/geth/ethash/;
 		sudo rm /home/ubuntu/gitRepoEVD/.ethereum/geth/LOCK;
 		sudo rm /home/ubuntu/gitRepoEVD/.ethereum/geth/transactions.rlp;
-		nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum init /home/ubuntu/gitRepoEVD/genesis.json; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22000 --port 21000 --nodiscover --interarrival 15 --k 7 --verbosity 4 --gcmode archive --cache $cacheVar --hashpower $hashPowerVar --behavior $behavior --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt > /home/ubuntu/gitRepoEVD/log.txt 2>&1" &
+		nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum init /home/ubuntu/gitRepoEVD/genesis.json; nohup geth --datadir /home/ubuntu/gitRepoEVD/.ethereum --rpc --rpcport 22000 --port 21000 --nodiscover --interarrival 15 --verbosity 4 --gcmode archive --cache $cacheVar --hashpower $hashPowerVar --behavior $behavior --allow-insecure-unlock --unlock 0 --password /home/ubuntu/gitRepoEVD/passwords.txt > /home/ubuntu/gitRepoEVD/log.txt 2>&1" &
 	
 	cacheVar=2048
 	behavior=0

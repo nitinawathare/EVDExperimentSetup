@@ -3,12 +3,12 @@ pragma solidity ^0.4.24;
 contract Sorter {
     uint public size;
     uint public storedData;
-    uint[3][3] public data;
-    uint[3][3] public data1;
-    uint[3][3] public result;
+    uint[19][19] public data;
+    uint[19][19] public data1;
+    uint[19][19] public result;
 
     constructor(uint initVal) public {
-    	size=3;
+    	size=19;
         storedData = initVal;
         for (uint x = 0; x < size; x++)
         	for (uint y = 0; y < size; y++)

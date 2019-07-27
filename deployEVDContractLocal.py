@@ -97,6 +97,21 @@ For EVD Experiment
 |  Empty     |      660      |  ----------  |    148003    |    138067   | 
 +------------+---------------+--------------+------------- +-------------+
 
+
+
+Memory Contract
+
+1. 12 Million Block measurement time.
++------------+---------------+--------------+------------- +-------------+
+|  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | 
++------------+---------------+--------------+------------- +-------------+
+|  sort      |      145      |  ----------  |    4305255   |    4205255  | 
++------------+---------------+--------------+------------- +-------------+
+|  Matrix    |      6        |  ----------  |    1932171   |    1832171  | 
++------------+---------------+--------------+------------- +-------------+
+|  Empty     |      170      |  ----------  |    148003    |    138003   | 
++------------+---------------+--------------+------------- +-------------+
+
 '''
 
 def maximum(a, b, c): 
@@ -135,7 +150,7 @@ def deploySortContract(contract_source_path, w3, account):
     contract_id, contract_interface1 = compiled_sol.popitem()
     tx_hash = w3.eth.contract(
             abi=contract_interface1['abi'],
-            bytecode=contract_interface1['bin']).constructor(35).transact({'txType':"0x2", 'from':account, 'gas':242231})
+            bytecode=contract_interface1['bin']).constructor(35).transact({'txType':"0x2", 'from':account, 'gas':11607685})
     return tx_hash
 
 
@@ -145,7 +160,7 @@ def deployMatrixContract(contract_source_path, w3, account):
     curBlock = w3.eth.getBlock('latest')
     tx_hash = w3.eth.contract(
             abi=contract_interface2['abi'],
-            bytecode=contract_interface2['bin']).constructor(4).transact({'txType':"0x2", 'from':account, 'gas':263242})
+            bytecode=contract_interface2['bin']).constructor(4).transact({'txType':"0x2", 'from':account, 'gas':11758781})
     return tx_hash
 
 def deployEmptyContract(contract_source_path, w3, account):
@@ -154,7 +169,7 @@ def deployEmptyContract(contract_source_path, w3, account):
     curBlock = w3.eth.getBlock('latest')
     tx_hash = w3.eth.contract(
             abi=contract_interface3['abi'],
-            bytecode=contract_interface3['bin']).constructor(4).transact({'txType':"0x2", 'from':account, 'gas':138003})
+            bytecode=contract_interface3['bin']).constructor(4).transact({'txType':"0x2", 'from':account, 'gas':1709158})
     return tx_hash
 
 def deployContracts(w3, account):

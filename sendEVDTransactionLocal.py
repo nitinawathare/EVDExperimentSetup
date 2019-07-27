@@ -22,6 +22,21 @@ from solc import compile_source
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 1. 800 Million Block measurement time.
 +------------+---------------+--------------+------------- +-------------+
 |  Contract  |  Dep. param   |  Txn. param  |    Gaslimit  |    Gasused  | 
@@ -87,26 +102,26 @@ def compile_source_file(file_path):
 
 def sendSortTransaction(address):
     # contract_source_path = '/home/ubuntu/gitRepoEVD/cpuheavy.sol'
-    contract_source_path = '/home/nitin14/EVDExperimentSetup/cpuheavy.sol'
-    # contract_source_path = '/home/nitin14/EVDExperimentSetup/sortMemory.sol'
+    #contract_source_path = '/home/nitin14/EVDExperimentSetup/cpuheavy.sol'
+    contract_source_path = '/home/nitin14/EVDExperimentSetup/sortMemory.sol'
     compiled_sol = compile_source_file(contract_source_path)
     contract_id, contract_interface = compiled_sol.popitem()
     sort_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = sort_contract.functions.sort().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':77002})
+    tx_hash = sort_contract.functions.sort().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':6128919})
     return tx_hash
 
 def sendMatrixTransaction(address):
     # contract_source_path = '/home/ubuntu/gitRepoEVD/matrixMultiplication.sol'
-    contract_source_path = '/home/nitin14/EVDExperimentSetup/matrixMultiplication.sol'
-    # contract_source_path = '/home/nitin14/EVDExperimentSetup/matrixMemory.sol'
+    #contract_source_path = '/home/nitin14/EVDExperimentSetup/matrixMultiplication.sol'
+    contract_source_path = '/home/nitin14/EVDExperimentSetup/matrixMemory.sol'
     compiled_sol = compile_source_file(contract_source_path)
     contract_id, contract_interface = compiled_sol.popitem()
     matrix_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = matrix_contract.functions.multiply().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':57681})
+    tx_hash = matrix_contract.functions.multiply().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':5549244})
     return tx_hash
 
 def sendEmptyLoopTransaction(address):
@@ -117,7 +132,7 @@ def sendEmptyLoopTransaction(address):
     empty_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = empty_contract.functions.runLoop().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':76658})
+    tx_hash = empty_contract.functions.runLoop().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':5797658})
     return tx_hash
 
 print("Starting Transaction Submission")

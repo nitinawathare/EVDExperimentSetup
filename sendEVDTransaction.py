@@ -70,7 +70,7 @@ def compile_source_file(file_path):
    return compile_source(source)
 
 def sendSortTransaction(address):
-    contract_source_path = '/home/ubuntu/gitRepoEVD/cpuheavy.sol'
+    contract_source_path = '/home/ubuntu/gitRepoEVD/sortMemory.sol'
     # contract_source_path = '/home/sourav/EVD-Expt/cpuheavy.sol'
     # contract_source_path = '/home/sourav/EVD-Expt/sortMemory.sol'
     compiled_sol = compile_source_file(contract_source_path)
@@ -78,11 +78,11 @@ def sendSortTransaction(address):
     sort_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = sort_contract.functions.sort().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':350000})
+    tx_hash = sort_contract.functions.sort().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':78002})
     return tx_hash
 
 def sendMatrixTransaction(address):
-    contract_source_path = '/home/ubuntu/gitRepoEVD/matrixMultiplication.sol'
+    contract_source_path = '/home/ubuntu/gitRepoEVD/matrixMemory.sol'
     # contract_source_path = '/home/sourav/EVD-Expt/matrixMultiplication.sol'
     # contract_source_path = '/home/sourav/EVD-Expt/matrixMemory.sol'
     compiled_sol = compile_source_file(contract_source_path)
@@ -90,7 +90,7 @@ def sendMatrixTransaction(address):
     matrix_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = matrix_contract.functions.multiply().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':350000})
+    tx_hash = matrix_contract.functions.multiply().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':58681})
     return tx_hash
 
 def sendEmptyLoopTransaction(address):
@@ -101,7 +101,7 @@ def sendEmptyLoopTransaction(address):
     empty_contract = w3.eth.contract(
     address=address,
     abi=contract_interface['abi'])
-    tx_hash = empty_contract.functions.runLoop().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':350000})
+    tx_hash = empty_contract.functions.runLoop().transact({'txType':"0x2", 'from':w3.eth.accounts[0], 'gas':77658})
     return tx_hash
 
 print("Starting Transaction Submission")
@@ -114,7 +114,7 @@ file.write("Experiment Start Time"+str(datetime.datetime.now())+"\n")
 w3.miner.start(1)
 
 i=0
-k=7
+k=11
 # curBlock = w3.eth.getBlock('latest')
 while w3.eth.blockNumber < 1050:
 # while i < 2000:
