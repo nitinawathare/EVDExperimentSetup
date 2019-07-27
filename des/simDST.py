@@ -374,15 +374,15 @@ strategy = 'ds'
 
 confirmProbsRosen = comuteConfirmationProbsRosen(15,70,10)
 print(confirmProbsRosen)
-# exit()
 printExptInfo()
 
-for k in range(15,70,10):
-	for j in range(15,70,10):
+for k in range(65,70,10):
+	jList = [15,25,35,45,55,65]
+	for j in jList:
 		outFilePath = os.environ["HOME"]+"//EVD-Expt/des/dsData/k"+str(k)+"/sim-res-"+str(strategy)+str(j)+".txt"
 		outFile = open(outFilePath, "a+")
 		writeExptInfo(outFile)
-		numRuns = 100
+		numRuns = 10
 		constTh = j
 		# resetThs = [j/2,j,2*j,4*j,8*j]
 		resetThs = [64]

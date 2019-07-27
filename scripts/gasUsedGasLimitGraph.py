@@ -11,7 +11,7 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 
-filePath = '/home/nitin14/EVD-Scripts/TxGasUsage/'
+filePath = '/ssd/data-58-78/d59/'
 
 blockNumberList = []
 totalTxnList = []
@@ -25,7 +25,7 @@ def computeGasLimit(interval):
 	
 	
 	fileName = ""
-	outputFilePath = '/home/nitin14/EVD-Scripts/gasUsedGasLimitFract.csv'
+	outputFilePath = '/home/sourav/EVD-Expt/data/gasUsedGasLimitFract.csv'
 	outputFile = open(outputFilePath, "w+")
 	outputFile.write("blockHeight,gasLimit,gasUsed\n")
 
@@ -38,7 +38,7 @@ def computeGasLimit(interval):
 	blkGasUsed = 0
 	blkGasLimit = 0
 
-	for i in range(0,56):
+	for i in range(5900001,5999001, 1000):
 		
 		fileName = filePath+'gasLimitGasUsed_'+str(i)+".txt"
 		file = open(fileName, "r")
@@ -120,4 +120,4 @@ def computeGasLimit(interval):
 	plt.title('Gas usage and limit with increasing block height')
 	plt.show()
 
-computeGasLimit(10000)
+computeGasLimit(100)
