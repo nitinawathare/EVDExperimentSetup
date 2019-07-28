@@ -256,7 +256,6 @@ initProb = [0.3297630187360915, 0.16161252867434858, 0.15059349262825678, 0.0571
 
 processTime = [4]
 recipLambd = 15.0
-globalLambd = 1.0/recipLambd
 numNodes = len(initProb)
 checkMatrixTh = 1-10**(-15)
 stationaryTh = 10**(-14)
@@ -275,8 +274,10 @@ skipResultsExtended = {}
 
 strategy = sys.argv[1]
 # processTime = [0.0, 0.2, 0.5, 1, 2, 4]
-processTime = [5.1]
+processTime = [0.16562, 2.4297600000000004, 5.19912]
 cList = [0.6]
+# interArrivals = [15.33124, 19.85952, 25.39824]
+
 
 
 stationaryResults ={}
@@ -288,6 +289,7 @@ for t in processTime:
 		checkTransitionMatrix(True, skipTranstion, numNodes, checkMatrixTh)
 		numitr, probs = computeStationaryProb(skipTranstion, stationaryTh)
 		stationaryResults[t] = probs[0]
+		print(probs[0])
 		continue
 	else:
 		stationaryResults[t] = {}
@@ -300,6 +302,7 @@ for t in processTime:
 				checkTransitionMatrix(True, honestTranstion, numNodes, checkMatrixTh)
 				numitr, probs = computeStationaryProb(honestTranstion, stationaryTh)
 				stationaryResults[t][c] = probs[0]
+				print(probs[0])
 			elif strategy == 'advc':
 				computeSkipCreateTransition(t, c, globalLambd)
 				checkTransitionMatrix(True, skipTranstion, numNodes, checkMatrixTh)
