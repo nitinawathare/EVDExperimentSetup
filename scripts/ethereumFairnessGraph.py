@@ -1,44 +1,35 @@
 ''' 
 Note : Here you may have to rename the data folder accordingly 
-
 This script calculates the fraction of blocks mined by miner 
 in the main chain and expected number of block mined by 
 a miner present in the main chain based on his mining power
-
 ETH-NS-D-HET:
 ETH-400-NoSkip-1x-Het
-
 ETH-NS-D-HOMO:
 ETH-40-NoSkip-1x-Homo
-
 ETH-NS-ND-HET:
 ETH-40-NoSkip-1x-Het  ETH-800-NoSkip-1x-Het
-
 ETH-NS-ND-HOMO:
 ETH-40-NoSkip-XX-Homo
-
 ETH-S-ND:
 ETH-120-Skip-1x  ETH-12-Skip-1x  ETH-240-Skip-1x
-
 EVD-NS-D:
 EVD800_1xDelay  EVD800_2xDelay  EVD800_4xDelay
-
 EVD-NS-ND:
 EVD-400-NoSkip-1x-Het  EVD-40-NoSkip-1x-Het  EVD-800-NoSkip-1x-Het
-
 EVD-S-D:
 EVD120_1xDelay_With_skip  EVD12_1xDelay_With_skip  EVD240_1xDelay_With_skip
-
 '''
 
 import time
+import math
 import numpy as np
 import matplotlib.pyplot as plt
 import os 
 import sys
 
 
-filePath = '/home/sourav/EVD-Segate/'
+filePath = '/home/nitin14/EVD-Segate/'
 
 ethDir = [
 	'ETH-NS-D-HET',
@@ -53,11 +44,13 @@ evdDir = [
 	'EVD-NS-ND',
 	'EVD-S-D'
 ]
+#computeFairness(inputFilePath, outputFile, 50, 1000, 0, False, 1)
+blockFractList = []#np.zeros(10)
 
-def computeFairness(inputFilePath, outputFile, startBlk, endBlk, exIndex, evd, delay):
-	
+def computeFairness(inputFilePath, outputFile, startBlk, endBlk, exIndex, evd, delay,isWrite):
+	#print(evd)
 	# 0xdb719d2e7cc1390e46f141a2e4978e9f49f16d63242c5d66f99aa33fef2e5300 15 282 400000000 396576869 0xbd611E337D54dfdbe9A052Fe689a7486cB59156c 664.650ms
-
+	#blockFractList.clear()
 	# Extracting address of the first node
 	fileName = inputFilePath+'Mi/0.dat'
 	firstMiner = ""
@@ -94,6 +87,8 @@ def computeFairness(inputFilePath, outputFile, startBlk, endBlk, exIndex, evd, d
 	# Compute the effective active hash power at every block.
 	for j in range(1,49):
 		fileName = inputFilePath+'Mc/'+str(j)+'.dat'
+		if fileName == str("/home/nitin14/EVD-Scripts/statsData/EVD500M-2x/Mc/34.dat"):
+			continue
 		if os.path.exists(fileName):
 			file =  open(fileName, "r")
 			data = file.readlines()
@@ -164,33 +159,36 @@ def computeFairness(inputFilePath, outputFile, startBlk, endBlk, exIndex, evd, d
 
 	expFraction = exptBlkCount/totalBlkCount
 	actFraction = (miningFrac[firstMiner]/totalBlkCount)*hashPowers[0]/trueMiningPower
+	
+	blockFractList.append(actFraction)
 
 	avgAdvExtTime = exTimes[0][0]
 	avgAdvProcTime = exTimes[0][1]
+	if isWrite:
+		if evd:
+			avgHonestExTime = exTimes[2]
+			avgHonestProcTime = exTimes[3]
+			avgAdvExtTime = exTimes[0][0]
+			avgAdvProcTime = exTimes[0][1]
+			
+			avgHonestPrevTime = exTimes[4]
+			avgAdvPrevTime = exTimes[1]
 
-	if evd:
-		avgHonestExTime = exTimes[2]
-		avgHonestProcTime = exTimes[3]
-		avgAdvExtTime = exTimes[0][0]
-		avgAdvProcTime = exTimes[0][1]
-		
-		avgHonestPrevTime = exTimes[4]
-		avgAdvPrevTime = exTimes[1]
+			if exIndex == 1: # Adversary Skips processing
+				outputFile.write(str(totalBlkCount)+","+str(delay)+","+str(avgHonestExTime)+","+str(avgHonestProcTime)+","+str(avgHonestPrevTime)+","+str(avgAdvExtTime)+","+str(avgAdvProcTime)+","+str(avgAdvPrevTime)+","+str(expFraction)+","+str( actFraction)+",")
+			
+			elif exIndex == 0:
+				outputFile.write(str(totalBlkCount)+","+str(delay)+","+str(avgHonestExTime)+","+str(avgHonestProcTime)+","+str(avgHonestPrevTime)+","+str(expFraction)+","+str( actFraction)+",")
+		else:
+			avgHonestExTime = exTimes[1]
+			avgHonestProcTime = exTimes[2]
+			if exIndex == 1:
+				outputFile.write(str(totalBlkCount)+","+str(delay)+","+str(avgHonestExTime)+","+str(avgHonestProcTime)+","+str(avgAdvExtTime)+","+str(avgAdvProcTime)+","+str(expFraction)+","+str( actFraction)+",")
+			elif exIndex == 0:
+				print(avgAdvExtTime,avgAdvExtTime)
+				outputFile.write(str(totalBlkCount)+","+str(delay)+","+str(avgHonestExTime)+","+str(avgHonestProcTime)+","+str(expFraction)+","+str( actFraction)+",")
+			print("*****************************")
 
-		if exIndex == 1: # Adversary Skips processing
-			outputFile.write(str(totalBlkCount)+","+str(delay)+","+str(avgHonestExTime)+","+str(avgHonestProcTime)+","+str(avgHonestPrevTime)+","+str(avgAdvExtTime)+","+str(avgAdvProcTime)+","+str(avgAdvPrevTime)+","+str(expFraction)+","+str( actFraction)+"\n")
-		
-		elif exIndex == 0:
-			outputFile.write(str(totalBlkCount)+","+str(delay)+","+str(avgHonestExTime)+","+str(avgHonestProcTime)+","+str(avgHonestPrevTime)+","+str(expFraction)+","+str( actFraction)+"\n")
-	else:
-		avgHonestExTime = exTimes[1]
-		avgHonestProcTime = exTimes[2]
-		if exIndex == 1:
-			outputFile.write(str(totalBlkCount)+","+str(delay)+","+str(avgHonestExTime)+","+str(avgHonestProcTime)+","+str(avgAdvExtTime)+","+str(avgAdvProcTime)+","+str(expFraction)+","+str( actFraction)+"\n")
-		elif exIndex == 0:
-			print(avgAdvExtTime,avgAdvExtTime)
-			outputFile.write(str(totalBlkCount)+","+str(delay)+","+str(avgHonestExTime)+","+str(avgHonestProcTime)+","+str(expFraction)+","+str( actFraction)+"\n")
-	
 def computeEthExecutionTime(inputFilePath, outputFile, startBlk, endBlk, exIndex):
 	# 0x8414b5ad8f95e31473f5ab3372729317a07567edd2d9501ad8908105dda110bb 13 0 400000000 0 0x6F75AeB2465dAac2B630667efF18481BE2dEfabd false 0.21846 1.32698
 	# Compute the average Execution time:
@@ -328,7 +326,7 @@ def computeEVDExecutionTime(inputFilePath, outputFile, startBlk, endBlk, exIndex
 
 
 def computeEthSkip():
-	dirPath = '/home/sourav/EVD-Segate/ETH-S-ND/'
+	dirPath = '/home/nitin14/EVD-Scripts/statsData/ETH'
 	gasList = [12, 120, 240]
 	fileNames =[
 		'ETH-12-Skip-1x/',
@@ -339,39 +337,71 @@ def computeEthSkip():
 	# 	'ETH-240-Skip-1x/'
 	# ]
 
-	lenFileNames = len(fileNames)
-	outputFilePath = '/home/sourav/EVD-Expt/data/ethSkip.csv'
+	lenFileNames = len(gasList)
+	outputFilePath = '/home/nitin14/EVD-Scripts/ethSkip.csv'
 	outputFile = open(outputFilePath,"w+")
-	outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgAdvExtTime,avgAdvProcTime,expFraction,actFraction\n")
+	outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgAdvExtTime,avgAdvProcTime,expFraction,actFraction,cfi\n")
 
 
 	for i in range(0,lenFileNames):
-		inputFilePath =  dirPath+fileNames[i]
-		computeFairness(inputFilePath, outputFile, 50, 1000, 1, False, 1)
+		inputFilePath =  dirPath+str(gasList[i])+"M-skip/"
+		startBlk = 50
+		endBlk = startBlk+95
+
+		for j in range(0,10):
+			computeFairness(inputFilePath, outputFile, startBlk, endBlk, 1, False, 1,False)
+			startBlk = endBlk+1
+			endBlk = startBlk+95
+
+		avgLateBlock = np.mean(blockFractList)
+		stdDev = np.std(blockFractList)
+		confidenceInterVal = 1.984*stdDev/math.sqrt(10)
+
+		computeFairness(inputFilePath, outputFile, 50, 1000, 1, False, 1,True)
+		print(avgLateBlock, stdDev, confidenceInterVal)
+		outputFile.write(str(confidenceInterVal)+"\n")
+		print("\n&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n\n")	
+		blockFractList.clear()
 
 def computeEthNoSkip():
-	dirPath = '/home/sourav/EVD-Segate/ETH-NS-ND-HET/'
-	dirPath = ''
-	gasList = [40, 400, 800]
+	dirPath = '/home/nitin14/EVD-Scripts/statsData/ETH'
+	#dirPath = ''
+	gasList = [12, 120, 240]
 	fileNames =[
-		'/home/sourav/EVD-Segate/ETH-NS-ND-HET/ETH-40-NoSkip-1x-Het/',
-		'/home/sourav/EVD-Segate/ETH-NS-D-HET/ETH-400-NoSkip-1x-Het/',
-		'/home/sourav/EVD-Segate/ETH-NS-ND-HET/ETH-800-NoSkip-1x-Het/'
+		'/home/nitin14/EVD-Segate/ETH-NS-ND-HET/ETH-40-NoSkip-1x-Het/',
+		'/home/nitin14/EVD-Segate/ETH-NS-D-HET/ETH-400-NoSkip-1x-Het/',
+		'/home/nitin14/EVD-Segate/ETH-NS-ND-HET/ETH-800-NoSkip-1x-Het/'
 	]
 
 
-	lenFileNames = len(fileNames)
-	outputFilePath = '/home/sourav/EVD-Expt/data/ethNoSkip.csv'
+	lenFileNames = len(gasList)
+	outputFilePath = '/home/nitin14/EVD-Scripts/ethNoSkip.csv'
 	outputFile = open(outputFilePath,"w+")
-	outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,expFraction,actFraction\n")
+	outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,expFraction,actFraction,meanActFract,cfi\n")
 
 	for i in range(0,lenFileNames):
-		inputFilePath =  dirPath+fileNames[i]
-		computeFairness(inputFilePath, outputFile, 50, 1000, 0, False, 1)
+		inputFilePath =  dirPath+str(gasList[i])+"M/"
+		startBlk = 50
+		endBlk = startBlk+95
+		for j in range(0,10):
+			
+			computeFairness(inputFilePath, outputFile, startBlk, endBlk, 0, False, 1,False)
+			startBlk = endBlk+1
+			endBlk = startBlk+95
 
+		avgLateBlock = np.mean(blockFractList)
+		stdDev = np.std(blockFractList)
+		confidenceInterVal = 1.984*stdDev/math.sqrt(10)
+
+		computeFairness(inputFilePath, outputFile, 50, 1000, 0, False, 1,True)
+
+		print(avgLateBlock, stdDev, confidenceInterVal)
+		outputFile.write(str(avgLateBlock)+","+str(confidenceInterVal)+"\n")
+		print("\n&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n\n")	
+		blockFractList.clear()
 
 def computeEVDSkip():
-	dirPath = '/home/sourav/EVD-Segate/EVD-S-D/'
+	dirPath = '/home/nitin14/EVD-Scripts/statsData/EVD'
 
 	gasList = [12, 120, 240]
 	fileNames =[
@@ -380,18 +410,33 @@ def computeEVDSkip():
 		'EVD240_1xDelay_With_skip/',
 	]
 
-	lenFileNames = len(fileNames)
-	outputFilePath = '/home/sourav/EVD-Expt/data/evdSkip.csv'
+	lenFileNames = len(gasList)
+	outputFilePath = '/home/nitin14/EVD-Scripts/evdSkip.csv'
 	outputFile = open(outputFilePath,"w+")
-	outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgHonestPrevTime,avgAdvExtTime,avgAdvProcTime,avgAdvPrevTime,expFraction,actFraction\n")
+	outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgHonestPrevTime,avgAdvExtTime,avgAdvProcTime,avgAdvPrevTime,expFraction,actFraction,cfi\n")
 	
 	for i in range(0,lenFileNames):
-		inputFilePath =  dirPath+fileNames[i]
-		computeFairness(inputFilePath, outputFile, 50, 1000, 1, True, 1)
+		inputFilePath =  dirPath+str(gasList[i])+"M-skip/"
+		startBlk = 50
+		endBlk = startBlk+95
+		for j in range(0,10):
+			computeFairness(inputFilePath, outputFile, startBlk, endBlk, 1, True, 1,False)
+			startBlk = endBlk+1
+			endBlk = startBlk+95
+		avgLateBlock = np.mean(blockFractList)
+		stdDev = np.std(blockFractList)
+		confidenceInterVal = 1.984*stdDev/math.sqrt(10)
+
+		computeFairness(inputFilePath, outputFile, 50, 1000, 1, True, 1,True)
+
+		print(avgLateBlock, stdDev, confidenceInterVal)
+		outputFile.write(str(confidenceInterVal)+"\n")
+		print("\n&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n\n")	
+		blockFractList.clear()
 
 def computeEVDNoSkip():
-	dirPath = '/home/sourav/EVD-Segate/EVD-NS-ND/'
-	gasList = [40, 400, 800]
+	dirPath = '/home/nitin14/EVD-Scripts/statsData/EVD'
+	gasList = [12, 120, 240]
 	fileNames =[
 		'EVD-40-NoSkip-1x-Het/',
 		'EVD-400-NoSkip-1x-Het/',
@@ -399,18 +444,34 @@ def computeEVDNoSkip():
 	]
 
 	
-	lenFileNames = len(fileNames)
-	outputFilePath = '/home/sourav/EVD-Expt/data/evdNoSkip.csv'
+	lenFileNames = len(gasList)
+	outputFilePath = '/home/nitin14/EVD-Scripts/evdNoSkip.csv'
 	outputFile = open(outputFilePath,"w+")
-	outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgHonestPrevTime,expFraction,actFraction\n")
+	outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgHonestPrevTime,expFraction,actFraction,cfi\n")
 	
 
 	for i in range(0,lenFileNames):
-		inputFilePath =  dirPath+fileNames[i]
-		computeFairness(inputFilePath, outputFile, 50, 1000, 0, True, 1)
+		inputFilePath =  dirPath+str(gasList[i])+"M/"
+		startBlk = 50
+		endBlk = startBlk+95
+		for j in range(0,10):
+			computeFairness(inputFilePath, outputFile, startBlk, endBlk, 0, True, 1,False)
+			startBlk = endBlk+1
+			endBlk = startBlk+95
+
+		avgLateBlock = np.mean(blockFractList)
+		stdDev = np.std(blockFractList)
+		confidenceInterVal = 1.984*stdDev/math.sqrt(10)
+
+		computeFairness(inputFilePath, outputFile, 50, 1000, 0, True, 1,True)
+
+		print(avgLateBlock, stdDev, confidenceInterVal)
+		outputFile.write(str(confidenceInterVal)+"\n")
+		print("\n&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n\n")	
+		blockFractList.clear()
 	    
 def computeEVDDelay():
-	dirPath = '/home/sourav/EVD-Segate/EVD-NS-D/'
+	dirPath = '/home/nitin14/EVD-Scripts/statsData/EVD500M-'
 	delays = [1, 2, 4]
 	fileNames =[
 		'EVD800_1xDelay/',
@@ -418,14 +479,66 @@ def computeEVDDelay():
 		'EVD800_4xDelay/'
 	]
 
-	lenFileNames = len(fileNames)
-	outputFilePath = '/home/sourav/EVD-Expt/data/evdDelay.csv'
+	lenFileNames = len(delays)
+	outputFilePath = '/home/nitin14/EVD-Scripts/evdDelay.csv'
 	outputFile = open(outputFilePath,"w+")
-	outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgHonestPrevTime,expFraction,actFraction\n")
+	outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgHonestPrevTime,expFraction,actFraction,cfi\n")
 	
 	for i in range(0,lenFileNames):
-		inputFilePath =  dirPath+fileNames[i]
-		computeFairness(inputFilePath, outputFile, 50, 1000, 0, True, delays[i])
+		inputFilePath =  dirPath+str(delays[i])+"x/"
+		startBlk = 50
+		endBlk = startBlk+95
+		for j in range(0,10):
+			computeFairness(inputFilePath, outputFile, startBlk, endBlk, 0, True, delays[i],False)
+			startBlk = endBlk+1
+			endBlk = startBlk+95
+
+		avgLateBlock = np.mean(blockFractList)
+		stdDev = np.std(blockFractList)
+		confidenceInterVal = 1.984*stdDev/math.sqrt(10)
+
+		computeFairness(inputFilePath, outputFile, 50, 1000, 0, True, delays[i],True)  
+
+		print(avgLateBlock, stdDev, confidenceInterVal)
+		outputFile.write(str(confidenceInterVal)+"\n")
+		print("\n&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n\n")	
+		blockFractList.clear()
+
+def computeEVDDelaySkip():
+	dirPath = '/home/nitin14/EVD-Scripts/statsData/EVD500M-'
+	delays = [1, 2, 4]
+	fileNames =[
+		'EVD800_1xDelay/',
+		'EVD800_2xDelay/',
+		'EVD800_4xDelay/'
+	]
+
+	lenFileNames = len(delays)
+	outputFilePath = '/home/nitin14/EVD-Scripts/evdDelaySkip.csv'
+	outputFile = open(outputFilePath,"w+")
+	outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgHonestPrevTime,expFraction,actFraction,cfi\n")
+	
+	for i in range(0,lenFileNames):
+		inputFilePath =  dirPath+str(delays[i])+"x-skip/"
+		startBlk = 50
+		endBlk = startBlk+95
+		for j in range(0,10):
+			computeFairness(inputFilePath, outputFile, startBlk, endBlk, 0, True, delays[i],False)
+			startBlk = endBlk+1
+			endBlk = startBlk+95
+
+		avgLateBlock = np.mean(blockFractList)
+		stdDev = np.std(blockFractList)
+		confidenceInterVal = 1.984*stdDev/math.sqrt(10)
+
+		computeFairness(inputFilePath, outputFile, 50, 1000, 0, True, delays[i],True)  
+
+		print(avgLateBlock, stdDev, confidenceInterVal)
+		outputFile.write(str(confidenceInterVal)+"\n")
+		print("\n&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n\n")	
+		blockFractList.clear()
+
+
 
 
 def readHashPower(fileName):
@@ -443,11 +556,11 @@ def readHashPower(fileName):
 	return hashPowers
 
 
-hashPowers = readHashPower('/home/sourav/EVD-Expt/hashPower')
+hashPowers = readHashPower('/home/nitin14/EVDExperimentSetup/hashPower')
 hashPowers = [x/sum(hashPowers) for x in hashPowers]
 
 
-# dirPath = '/home/sourav/EVD-Segate/ETH-S-D-15/'
+# dirPath = '/home/nitin14/EVD-Segate/ETH-S-D-15/'
 # gasList = [12, 120, 240]
 # fileNames =[
 # 	'ETH-240-Skip-1x/'
@@ -457,7 +570,7 @@ hashPowers = [x/sum(hashPowers) for x in hashPowers]
 # # ]
 
 # lenFileNames = len(fileNames)
-# outputFilePath = '/home/sourav/EVD-Expt/data/ethSkip1.csv'
+# outputFilePath = '/home/nitin14/EVD-Expt/data/ethSkip1.csv'
 # outputFile = open(outputFilePath,"w+")
 # outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgAdvExtTime,avgAdvProcTime,expFraction,actFraction\n")
 
@@ -467,7 +580,7 @@ hashPowers = [x/sum(hashPowers) for x in hashPowers]
 # 	computeFairness(inputFilePath, outputFile, 50, 1000, 1, False, 1)
 
 
-# dirPath = '/home/sourav/EVD-Segate/ETH-NS-D-15/'
+# dirPath = '/home/nitin14/EVD-Segate/ETH-NS-D-15/'
 # gasList = [12, 120, 240]
 # fileNames =[
 # 	'ETH-800-NoSkip-1x-15/'
@@ -477,7 +590,7 @@ hashPowers = [x/sum(hashPowers) for x in hashPowers]
 # # ]
 
 # lenFileNames = len(fileNames)
-# outputFilePath = '/home/sourav/EVD-Expt/data/ethSkip1.csv'
+# outputFilePath = '/home/nitin14/EVD-Expt/data/ethSkip1.csv'
 # outputFile = open(outputFilePath,"w+")
 # outputFile.write("totalBlocks,delay,avgHonestExTime,avgHonestProcTime,avgAdvExtTime,avgAdvProcTime,expFraction,actFraction\n")
 
@@ -486,8 +599,12 @@ hashPowers = [x/sum(hashPowers) for x in hashPowers]
 # 	inputFilePath =  dirPath+fileNames[i]
 # 	computeFairness(inputFilePath, outputFile, 50, 1000, 0, False, 1)
 
-
-computeEthNoSkip()
+#computeEthSkip()
+#computeEthNoSkip()
+#computeEVDDelay()
+computeEVDDelaySkip()
+#computeEVDSkip()
+#computeEVDNoSkip()
 
 # if len(sys.argv) == 1:
 # 	print('\n eth-s\n eth-ns\n eth-all\n evd-s\n evd-ns\n evd-all\n')
@@ -510,4 +627,3 @@ computeEthNoSkip()
 # 	computeEVDNoSkip()
 # 	computeEVDSkip()
 # 	computeEVDDelay()
-
