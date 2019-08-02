@@ -84,25 +84,29 @@ def calcQueueSizeFreq(inputFilePath, outputFile, startBlk, endBlk, exIndex, dela
 				continue
 
 			
-
+			blkNum = 0
+			prevBlkNum =0
 			for dataItem in data:
 				info = dataItem.rstrip().split(' ')
 				blkNum = int(info[0])
 				if blkNum < startBlk:
+					prevBlkNum = blkNum
 					continue
 				elif blkNum > endBlk:
 					break
 				else:
 					pqLen = int(info[2])
+					for diff in range(0,blkNum-prevBlkNum):
 					# if pqLen == 6:
 					# 	print("***********")
-					if pqLen in pendingQueueAtMiner[j]:
-						pendingQueueAtMiner[j][pqLen] = pendingQueueAtMiner[j][pqLen] + 1
-						pendingQueueGlobal[pqLen] =  pendingQueueGlobal[pqLen] + 1
-					else:
-						pendingQueueAtMiner[j][pqLen] = 1
-						if pqLen not in pendingQueueGlobal:
-							pendingQueueGlobal[pqLen] = 1
+						if pqLen in pendingQueueAtMiner[j]:
+							pendingQueueAtMiner[j][pqLen] = pendingQueueAtMiner[j][pqLen] + 1
+							pendingQueueGlobal[pqLen] =  pendingQueueGlobal[pqLen] + 1
+						else:
+							pendingQueueAtMiner[j][pqLen] = 1
+							if pqLen not in pendingQueueGlobal:
+								pendingQueueGlobal[pqLen] = 1
+						pqLen=pqLen-1
 		else:
 			print("Error", fileName, "file not found")
 	# print()
@@ -311,16 +315,12 @@ def calcQueueEVDNoSkip():
 
 	    
 def calcQueueEVDDelay():
-	dirPath = '/home/nitin14/EVD-Scripts/statsData/EVD500M-'
+	# dirPath = '/home/nitin14/EVD-Scripts/statsData/EVD500M-'
+	dirPath = '/home/soruav/EVD-Segate1/EVD500M-'
 	delays = [1, 2, 4]
-	fileNames =[
-		'EVD800_1xDelay/',
-		'EVD800_2xDelay/',
-		'EVD800_4xDelay/'
-	]
 
 	lenFileNames = len(delays)
-	outputFilePath = '/home/nitin14/EVD-Scripts/queueEvdDelay.csv'
+	outputFilePath = '/home/EVD-Expt/data/queueEvdDelay.csv'
 	outputFile = open(outputFilePath,"w+")
 	outputFile.write("queueLen,fracBlock1,cfi1,fracBlock2,cfi2,fracBlock4,cfi4\n")
 	
@@ -328,9 +328,9 @@ def calcQueueEVDDelay():
 	for i in range(0,lenFileNames):
 		globalQueueFract = defaultdict(list)
 		inputFilePath =  dirPath+str(delays[i])+"x-skip/"
-		startBlk = 50
-		endBlk = startBlk+95
-		maxTillNow = 0
+		# startBlk = 50
+		# endBlk = startBlk+95
+		# maxTillNow = 0
 		#print(str(i))
 		# for k in range(0,10):
 		# 	queueStat = calcQueueSizeFreq(inputFilePath, outputFile, startBlk, endBlk, 0, delays[i])

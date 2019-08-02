@@ -274,8 +274,8 @@ skipResultsExtended = {}
 
 strategy = sys.argv[1]
 # processTime = [0.0, 0.2, 0.5, 1, 2, 4]
-processTime = [0.16562, 2.4297600000000004, 5.19912]
-cList = [0.6]
+processTime = [0.16562, 2.4297600000000004, 5.19912, 8.125]
+cList = [0.0, 0.2, 0.5, 0.6, 1.0]
 # interArrivals = [15.33124, 19.85952, 25.39824]
 
 
@@ -314,14 +314,14 @@ file = open('/home/sourav/EVD-Expt/data/stat/stat-'+str(strategy)+'.csv', 'a+')
 if strategy ==  'adva':
 	file.write("t,frac\n")
 	for t in processTime:
-		file.write(str(t)+","+str(round(stationaryResults[t],3))+"\n")
+		file.write(str(t/(2*t+15.0))+","+str(round(stationaryResults[t],3))+"\n")
 else:
 	file.write("t")
 	for c in cList:
 		file.write(',c'+str(int(c*100)))
 	file.write('\n')
 	for t in processTime:
-		file.write(str(t))
+		file.write(str(t/(2*t+15.0)))
 		for c in cList:
 			file.write(","+str(round(stationaryResults[t][c],3)))
 		file.write("\n")
