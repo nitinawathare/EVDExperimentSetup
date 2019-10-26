@@ -1,7 +1,8 @@
 '''
 
 This file is the discrete event simulator 
-for adversarial strategy reset.
+where the attacker tries to double spend
+a coin by privately forking the chain.
 
 '''
 import sys

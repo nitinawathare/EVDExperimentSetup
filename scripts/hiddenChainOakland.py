@@ -21,8 +21,6 @@ def toString(numRows):
 			if prob > 0:
 				print(str(i//maxQueueLen),",",str(i%maxQueueLen), "->", str(j//maxQueueLen),",",str(j%maxQueueLen), ":", prob)
 
-#Compute the probability of k events in a time interval of
-#size t with parameter lambda
 def poissonProb(lambd, k, t):
 	nTerm1 = Decimal(math.pow(Decimal(lambd*t), Decimal(k)))
 	nTerm2 = Decimal(np.exp(-1*(lambd*t)))
@@ -52,20 +50,20 @@ def printStates(maxQueueLen):
 def computeTransProbReset(maxQueueLen, queueLen, lambd, advFrac, t):
 
 	# These seems correct
-	transProb[0][0] = Decimal(1.0-advFrac)	# (0,0) -> (0,0)
-	transProb[0][1] = Decimal(advFrac)	# (0,0) -> (0,1)
-	transProb[maxQueueLen+1][0] = Decimal(1.0)	# (1,1) -> (0,0)
-	transProb[1][maxQueueLen+1] = Decimal(1.0-advFrac)	# (0,1) -> (1,1)
-	transProb[1][2] = Decimal(advFrac) # (0,1) -> (0,2)
+	transProb[0][0] = Decimal(1.0-advFrac)
+	transProb[0][1] = Decimal(advFrac)
+	transProb[maxQueueLen+1][0] = Decimal(1.0)
+	transProb[1][maxQueueLen+1] = Decimal(1.0-advFrac)
+	transProb[1][2] = Decimal(advFrac)
 
-
+	# These seems correct
 	for si in range(2,numStates):	
 		six = si//maxQueueLen
 		siy = si%maxQueueLen
-		if siy <= queueLen and siy == six+1:	# y<=k and y=x+1
+		if siy <= queueLen and siy == six+1:
 			transProb[si][0] = Decimal(1.0)
 
-		if siy == maxQueueLen-1 and six < siy-1:	# y=M and x<y-1
+		if siy == maxQueueLen-1 and six < siy-1:
 			transProb[si][0] = Decimal(advFrac)
 
 	for si in range(2,numStates):
@@ -79,8 +77,8 @@ def computeTransProbReset(maxQueueLen, queueLen, lambd, advFrac, t):
 				sumProb = sumProb + Decimal(prob)
 			transProb[si][maxQueueLen-1] = Decimal(1)-sumProb
 
-		# if siy <= queueLen and siy == six + 1:	
-		# 	transProb[si][0] = Decimal(1)
+		if siy <= queueLen and siy == six + 1:
+			transProb[si][0] = Decimal(1)
 
 	for si in range(2, numStates):
 		for sf in range(2, numStates):
@@ -94,37 +92,32 @@ def computeTransProbReset(maxQueueLen, queueLen, lambd, advFrac, t):
 			if six<siy-1 and siy == sfy and six == sfx-1:
 				transProb[si][sf] = Decimal(1-advFrac)
 
-#Compute transition probability for MAR attack
+
 def computeTransProbMine(maxQueueLen, queueLen, lambd, advFrac):
 
-	# initialize the transition probability for states.
-	transProb[0][0] = Decimal(1.0-advFrac) # (0,0) -> (0,0)
-	transProb[0][1] = Decimal(advFrac) # (0,0) -> (0,1)
-	transProb[maxQueueLen+1][0] = Decimal(1.0) # (0,0) -> (1,1)
-	transProb[1][maxQueueLen+1] = Decimal(1.0-advFrac) # (0,1) -> (1,1)
-	transProb[1][2] = Decimal(advFrac) # (0,1) -> (0,2)
+	# These seems correct
+	transProb[0][0] = Decimal(1.0-advFrac)
+	transProb[0][1] = Decimal(advFrac)
+	transProb[maxQueueLen+1][0] = Decimal(1.0)
+	transProb[1][maxQueueLen+1] = Decimal(1.0-advFrac)
+	transProb[1][2] = Decimal(advFrac)
 
-
-	# For states of the form (0,2) and beyond
+	# These seems correct
 	for si in range(2,numStates):	
-		six = si//maxQueueLen #row number
-		siy = si%maxQueueLen #column number
-
-		if siy <= queueLen and siy == six+1:	# if y<=k and y = x+1
+		six = si//maxQueueLen
+		siy = si%maxQueueLen
+		if siy <= queueLen and siy == six+1:
 			transProb[si][0] = Decimal(1.0)
 
-		if siy == maxQueueLen-1 and six < siy-1:	# y==M and x<y-1
+		if siy == maxQueueLen-1 and six < siy-1:
 			transProb[si][0] = Decimal(advFrac)
 
-	# For states starting from (0,2) and beyond
 	for si in range(2,numStates):
 		six = si//maxQueueLen
 		siy = si%maxQueueLen
-
-		if siy > queueLen and siy == six+1:	# if y>k and y=x+1 
+		if siy > queueLen and siy == six+1:
 			transProb[si][0] = Decimal(1)
 
-	# For states starting from (0,2) and beyond
 	for si in range(2, numStates):
 		for sf in range(2, numStates):
 			six = si//maxQueueLen
@@ -132,9 +125,9 @@ def computeTransProbMine(maxQueueLen, queueLen, lambd, advFrac):
 			sfx = sf//maxQueueLen
 			sfy = sf%maxQueueLen
 
-			if six<siy-1 and six == sfx and siy == sfy-1:  # if x<y-1, x=x', y'=y+1
+			if six<siy-1 and six == sfx and siy == sfy-1:
 				transProb[si][sf] = Decimal(advFrac)
-			if six<siy-1 and siy == sfy and six == sfx-1:	# if x<y-1, y=y' and x'=x+1
+			if six<siy-1 and siy == sfy and six == sfx-1:
 				transProb[si][sf] = Decimal(1-advFrac)
 
 def vectorMatrixMul(vector, matrix):
@@ -386,7 +379,7 @@ def writeExperimentInfo(strategy, file):
 	file.write("tau: "+str(tau)+"\n")
 	file.write("Thresholds: "+str(stationaryTh)+"\n")
 	file.write("--------------------------------------------------------\n")
-	file.write("queueLen,maxQueueLen,numItr,lateRaw,honestRaw,advRaw,lateFrac,honestFrac,advFrac,emptyFrac,time\n")
+	file.write("queueLen,maxQueueLen,numItr,lateRaw,honestRaw,advRaw,lateFrac,honestFrac,advFrac,time\n")
 
 def printExperimentInfo(strategy):
 	print("Strategy of Adversary: "+strategy)
@@ -395,14 +388,14 @@ def printExperimentInfo(strategy):
 	print("Global Inter arrival: "+str(1/globalLambda))
 	print("Thresholds: "+str(stationaryTh))
 	print("----------------------------------------------")
-	print("queueLen,maxQueueLen,numItr,lateRaw,honestRaw,advRaw,lateFrac,honestFrac,advFrac,emptyFrac,time")
+	print("queueLen,maxQueueLen,numItr,lateRaw,honestRaw,advRaw,lateFrac,honestFrac,advFrac,time")
 
 def writeResults(file):
-	file.write(str(queueLen)+","+str(maxQueueLen-1)+","+str(numitr)+","+str(numLateBlocks)+","+str(numHonestBlocks)+","+str(numAdvBlocks)+","+str(lateFraction)+","+str(honestFraction)+","+str(advFraction)+","+str(emptyFraction)+","+str(timeTaken)+"\n")
+	file.write(str(queueLen)+","+str(maxQueueLen-1)+","+str(numitr)+","+str(numLateBlocks)+","+str(numHonestBlocks)+","+str(numAdvBlocks)+","+str(lateFraction)+","+str(honestFraction)+","+str(advFraction)+","+str(timeTaken)+"\n")
 	file.close()
 
 def printResults():
-	print(str(queueLen)+","+str(maxQueueLen-1)+","+str(numitr)+","+str(numLateBlocks)+","+str(numHonestBlocks)+","+str(numAdvBlocks)+","+str(lateFraction)+","+str(honestFraction)+","+str(advFraction)+","+str(emptyFraction)+","+str(timeTaken))
+	print(str(queueLen)+","+str(maxQueueLen-1)+","+str(numitr)+","+str(numLateBlocks)+","+str(numHonestBlocks)+","+str(numAdvBlocks)+","+str(lateFraction)+","+str(honestFraction)+","+str(advFraction)+","+str(timeTaken))
 
 '''
 State s is the state (s/(M+1), s%(M+1)) where M = k+N
@@ -436,12 +429,10 @@ Strategy Mine:
 	
 '''
 
-#Check command line arguments for which strategy to consider
 if len(sys.argv) < 2:
 	print("\n mine \n reset\n")
 	exit()
 
-#On invalid input suggest input
 advStrategy = sys.argv[1]
 if advStrategy != 'mine' and advStrategy != 'reset':
 	print("\n mine \n reset\n")
@@ -485,17 +476,6 @@ for k in range(10,35,10):
 	numAdvBlocks = 0.0
 	numHonestBlocks = 0.0
 
-	'''
-	We are interested in computing the fraction of empty blocks that the
-	honest miners will mine. The argument we would like to give here is
-	that, honest miner mines empty block as long as blocks entering
-	the queue of the honest miners are late. Also, only adversarial
-	late blocks enter the queue. So for any given strategy, expected
-	fraction of empty honest blocks will be simply:
-		= alpha/beta*(fraction of late blocks)
-	Hence, we don't have to make any changes in the Markov chain analysis.
-	'''
-
 	if advStrategy =='mine':
 		numLateBlocks = float(computeLateBlocksMine(probs, globalLambda, tau))
 		numAdvBlocks = float(computeAdvBlocksMine(probs, globalLambda, tau, acceptProb))
@@ -505,11 +485,9 @@ for k in range(10,35,10):
 		numAdvBlocks = float(computeAdvBlocksReset(probs, acceptProb))
 		numHonestBlocks = float(computeHonestBlocksReset(probs, acceptProb))
 	
-
 	lateFraction = numLateBlocks/(numAdvBlocks + numHonestBlocks)
 	advFraction = numAdvBlocks/(numAdvBlocks + numHonestBlocks)
 	honestFraction = numHonestBlocks/(numAdvBlocks + numHonestBlocks)
-	emptyFraction = ((1-advFrac)/advFrac)*(lateFraction)
 
 	printResults()
 	outputFile = open(outputFilePath, 'a+')

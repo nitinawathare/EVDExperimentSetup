@@ -49,36 +49,31 @@ def releaseHiddenQueueReset(time):
 	
 	advHead = hiddenQueue[0]['height']
 	advTail = hiddenQueue[-1]['height']
-	startPos = 0
 
-	# If adversary is releasing a shorter chain, simulation implementation is incorrect
+	startPos = 0
 	if advTail < lastHonestBlock:
 		print(advTail, lastHonestBlock, "Wrong call")
 		return
 
-	# Adversary head is still in the queue.
 	if advHead > lastProcessedBlock:
 		# print("advHead", advHead, "advTail", advTail, hiddenQueueLen, "lp", lastProcessedBlock)
-		
-		# Finding the common parent
 		index = 0
-		while index < hstQueueLen:
+		# Finding the common parent
+		for index in range(0,hstQueueLen):
 			if hstQueue[index]['height'] < advHead:
-				index=index+1
 				continue
 			break
 		startPos = index
 		
-		# print(hiddenQueueLen, hstQueueLen)
 		# Substitute appropriate honest blocks with adversarial blocks
+		# print(hiddenQueueLen, hstQueueLen)
 		while index < hstQueueLen:
 			hstQueue[index] = hiddenQueue[0]
 			index = index + 1	
 			del hiddenQueue[0]
 			hiddenQueueLen = hiddenQueueLen -1
 
-		# Adding remaining adversarial block in the honest queue
-		# If the block is late, then increment the count of late blocks
+		# Adding extra honest blocks to the queue
 		for i in range(0, hiddenQueueLen):
 			blk = hiddenQueue[0]
 			if hstQueueLen > k:
@@ -88,11 +83,8 @@ def releaseHiddenQueueReset(time):
 			hstQueueLen = hstQueueLen + 1
 			del hiddenQueue[0]
 	
-		# Reset the hidden queue of the miner.
-		hiddenQueue = [] 
+		hiddenQueue = []
 		hiddenQueueLen = 0
-
-		# Clear the previous end process event and add a new event
 		if startPos == 0 and hstQueueLen > 0:
 			removeEvent('END_PROC', epCount)
 			evCount = evCount + 1 
@@ -100,52 +92,35 @@ def releaseHiddenQueueReset(time):
 			heapq.heappush(pQueue, [time+tau, evCount, 'END_PROC', hstQueue[0]])
 
 	else:
-		
 		# To remove the next already available end process event
-		removeEvent('END_PROC', epCount)
-
 		# Fill the entire hstQueue with hiddenQueue
+		removeEvent('END_PROC', epCount)
 		hstQueue = hiddenQueue[:]
 		hstQueueLen = hiddenQueueLen
-
-		# Reset entire hidden queue of the adversary.
 		hiddenQueue = []
 		hiddenQueueLen = 0
 		evCount = evCount + 1
 		epCount = evCount
 		heapq.heappush(pQueue, [time+tau, evCount, 'END_PROC', hstQueue[0]])
 
-		# Todo: If hstQuenelen > k, we should remove block mining event 
-		# of the honest node and instead add a empty block event.
 		if hstQueueLen > k:
 			numLateBlocks = numLateBlocks + hstQueueLen - (k+1)
 			for j in range(k+1, hstQueueLen):
 				lateBlocks.append(hstQueue[j])
 	
-	# Remove honest previous block mining event. 
 	removeEvent('HONEST_BLOCK', hbCount)
-
 	lastHonestBlock = hstQueue[-1]['height']
-
-	# Todo: If length of the honest queue is greater than k, schedule empty block.
-	# Ideally, we should reuse the previous the time of the previous block and schedule
-	# the empty block at that instant.
 	if hstQueueLen > k:
 		if mine:
 			release = True
 	
-	# If honest queue has less than k elements, schedule normal block mining event.
 	if hstQueueLen <= k+1:
 		evCount = evCount + 1
 		hbCount = evCount
 		nextBlkTime = computeBlockInterval(1/honestLambd)
 		heapq.heappush(pQueue, [time+nextBlkTime, evCount, 'HONEST_BLOCK', {'height':lastHonestBlock+1, 'miner':'honest'}])
 	
-	# Todo: Why should we remove the adv block?
-	# The longest chain will still have adversarial block.
 	removeEvent('ADV_BLOCK', abCount)
-
-	# The following event addition is redundant.
 	evCount = evCount + 1
 	abCount = evCount
 	nextAdvBlkTime = computeBlockInterval(1/(advFrac*globalLambd))
@@ -171,45 +146,30 @@ def run():
 			lastProcessedBlock = blk['height']
 			del hstQueue[0]
 			hstQueueLen = hstQueueLen - 1
-
-			# If honest queue has non-zero element schedule the next event for the
-			# to mark the end of processing the next block
 			if hstQueueLen > 0:
 				evCount = evCount + 1
 				epCount = evCount
-
-				# Todo: Here before pushing the next end proc, we first have to iteratively
-				# check whether the blocks in the head of the queue are non-empty
-				# for all empty blocks, we just remove them instantly.
 				heapq.heappush(pQueue, [time+tau, evCount, 'END_PROC', hstQueue[0]])
 
-			# Todo: When the queue length, schedule empty block event,
-			# if the event did not happened, schedule an empty block.
 			if hstQueueLen == k+1:
 				nextBlkTime = computeBlockInterval(1/honestLambd)
 				evCount = evCount + 1
 				hbCount = evCount
 				heapq.heappush(pQueue, [time+nextBlkTime, evCount, 'HONEST_BLOCK', {'height':lastHonestBlock+1, 'miner':'honest'}])	
 
-			# Todo: Also, we have to check that if the event lowers the block queue length
-			# at the honest miner, we have to remove the empty block event and schedule an
-			# non-empty block event instead.
 
 		elif event == 'HONEST_BLOCK':
+			hstQueue.append(blk)
+			hstQueueLen = hstQueueLen + 1
 
 			if blk['height'] > lastHonestBlock:
 				lastHonestBlock = blk['height']
 			else:
 				print("Panic..!!!! A honest block with lower height has been generated")
-
-			hstQueue.append(blk)
-			hstQueueLen = hstQueueLen + 1
 			
 			if hstQueueLen > k+1:
 				lateBlocks.append(blk)
 				numLateBlocks = numLateBlocks + 1
-				# Todo: Here we were making the honest miners silent. Now we have
-				# to make them mine empty blocks.
 			else:
 				nextBlkTime = computeBlockInterval(1/honestLambd)
 				evCount = evCount + 1
@@ -221,7 +181,6 @@ def run():
 				epCount = evCount
 				heapq.heappush(pQueue, [time+tau, evCount, 'END_PROC', blk])
 
-			# Reseting adversarial hidden queue (0,0) -> (0,0)
 			if (hiddenQueueLen == 0):
 				hiddenQueue = []
 				hiddenQueueLen = 0
@@ -231,19 +190,14 @@ def run():
 				abCount = evCount
 				heapq.heappush(pQueue, [time+nextAdvBlkTime, evCount, 'ADV_BLOCK', {'height':lastHonestBlock+1, 'miner':'adv'}])
 
-			# (0,1) -> (1,1), Usually we will give advantage to the adversary in such situation.
 			elif (hiddenQueueLen == 1):
 				releaseHiddenQueueReset(time)
 
-			# (x,x+2) -> (x+1, x+2), adversary releases its chain and all honest miners
-			# adopts the adversarial chain.
 			elif (hiddenQueueLen > 1) and (hiddenQueue[-1]['height'] == lastHonestBlock + 1):
 				releaseHiddenQueueReset(time)
 		
 		elif event == 'ADV_BLOCK':
 			nextBlkHeight = 0
-			# If honest miners are already ahead of the adversary,
-			# reset its hidden chain
 			if lastHonestBlock >= blk['height']:
 				hiddenQueue = []
 				hiddenQueueLen = 0
@@ -336,7 +290,7 @@ else:
 for k in range(25,75,10):
 	outFilePath = os.environ["HOME"]+"/EVD-Expt/data/simData1/sim-res-"+str(strategy)+str(k)+".txt"
 	outFile = open(outFilePath, "a+")
-	numRuns = 1
+	numRuns = 100
 	print(outFilePath)
 	printExptInfo()
 	writeExptInfo(outFile)

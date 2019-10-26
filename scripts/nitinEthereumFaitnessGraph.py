@@ -1,5 +1,9 @@
-''' Note : Here you mat have to rename the data folder accordingly '''
-'''This script calulates the fraction of blocks mined by miner in the main chain and expected number of block mined by a miner present in the main chain based on his mining power'''
+''' 
+Note : Here you mat have to rename the data folder accordingly.
+This script calculates the fraction of blocks mined by miner 
+in the main chain and expected number of block mined by a miner 
+present in the main chain based on his mining power
+'''
 
 import time
 import numpy as np
