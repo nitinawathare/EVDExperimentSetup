@@ -45,7 +45,7 @@ def deleteEventHistory(count):
 	del removedEvents[count]
 
 def releaseHiddenQueueReset(time):
-	global removedEvents, pQueue, release, hstQueue, hiddenQueue, hstQueueLen, numLateBlocks, hiddenQueueLen, evCount, abCount, hbCount, epCount, lastHonestBlock
+	global removedEvents, pQueue, release, hstQueue, hiddenQueue, hstQueueLen, numLateBlocks, hiddenQueueLen, evCount, abCount, hbCount, epCount, lastHonestBlock, latestHonestBlkTime, latestAdvBlkTime, eT
 	
 	advHead = hiddenQueue[0]['height']
 	advTail = hiddenQueue[-1]['height']
@@ -115,7 +115,7 @@ def releaseHiddenQueueReset(time):
 		epCount = evCount
 		heapq.heappush(pQueue, [time+tau, evCount, 'END_PROC', hstQueue[0]])
 
-		# Todo: If hstQuenelen > k, we should remove block mining event 
+		# Todo: If hstQueueLen > k, we should remove block mining event 
 		# of the honest node and instead add a empty block event.
 		if hstQueueLen > k:
 			numLateBlocks = numLateBlocks + hstQueueLen - (k+1)
@@ -125,35 +125,21 @@ def releaseHiddenQueueReset(time):
 	# Remove honest previous block mining event. 
 	removeEvent('HONEST_BLOCK', hbCount)
 
+	# Schedule the next honest block at the new height with old time
 	lastHonestBlock = hstQueue[-1]['height']
-
-	# Todo: If length of the honest queue is greater than k, schedule empty block.
-	# Ideally, we should reuse the previous the time of the previous block and schedule
-	# the empty block at that instant.
+	evCount = evCount + 1
+	hbCount = evCount
+	# If queue crosses threshold, schedule and empty block otherwise schedule an non-empty block.
 	if hstQueueLen > k:
 		if mine:
 			release = True
-	
-	# If honest queue has less than k elements, schedule normal block mining event.
-	if hstQueueLen <= k+1:
-		evCount = evCount + 1
-		hbCount = evCount
-		nextBlkTime = computeBlockInterval(1/honestLambd)
-		heapq.heappush(pQueue, [time+nextBlkTime, evCount, 'HONEST_BLOCK', {'height':lastHonestBlock+1, 'miner':'honest'}])
-	
-	# Todo: Why should we remove the adv block?
-	# The longest chain will still have adversarial block.
-	removeEvent('ADV_BLOCK', abCount)
-
-	# The following event addition is redundant.
-	evCount = evCount + 1
-	abCount = evCount
-	nextAdvBlkTime = computeBlockInterval(1/(advFrac*globalLambd))
-	heapq.heappush(pQueue, [time+nextAdvBlkTime, evCount, 'ADV_BLOCK', {'height':lastHonestBlock+1, 'miner':'adv'}])
+		heapq.heappush(pQueue, [latestHonestBlkTime, evCount, 'HONEST_BLOCK', {'height':lastHonestBlock+1, 'miner':'empty'}])
+	else:
+		heapq.heappush(pQueue, [latestHonestBlkTime, evCount, 'HONEST_BLOCK', {'height':lastHonestBlock+1, 'miner':'honest'}])
 
 def run():
 	
-	global pQueue, numEvents, lastProcessedBlock, lastHonestBlock, evCount, epCount, abCount, hbCount, hstQueue, hiddenQueue, lateBlocks, numLateBlocks,hstQueueLen, hiddenQueueLen, release
+	global pQueue, numEvents, lastProcessedBlock, lastHonestBlock, evCount, epCount, abCount, hbCount, hstQueue, hiddenQueue, lateBlocks, emptyBlocks, numLateBlocks, numEmptyBlocks, hstQueueLen, hiddenQueueLen, latestHonestBlkTime, latestAdvBlkTime, release, eT
 
 	while pQueue and lastHonestBlock < maxNumBlocks:
 		numEvents = numEvents + 1
@@ -175,21 +161,30 @@ def run():
 			# If honest queue has non-zero element schedule the next event for the
 			# to mark the end of processing the next block
 			if hstQueueLen > 0:
-				evCount = evCount + 1
-				epCount = evCount
+				# Remove all empty blocks from the honest queue
+				for qHead in hstQueue:
+					if qHead['miner'] == 'empty':
+						del hstQueue[0]
+						hstQueueLen = hstQueueLen -1
+						eT = eT + 1
+						continue
+					break 
+				
+				if hstQueueLen > 0:
+					evCount = evCount + 1
+					epCount = evCount
+					heapq.heappush(pQueue, [time+tau, evCount, 'END_PROC', hstQueue[0]])
 
-				# Todo: Here before pushing the next end proc, we first have to iteratively
-				# check whether the blocks in the head of the queue are non-empty
-				# for all empty blocks, we just remove them instantly.
-				heapq.heappush(pQueue, [time+tau, evCount, 'END_PROC', hstQueue[0]])
-
-			# Todo: When the queue length, schedule empty block event,
-			# if the event did not happened, schedule an empty block.
+			# When the queue hits k+1, remove event corresponding to the empty
+			# block and schedule an event for non-empty block.
 			if hstQueueLen == k+1:
-				nextBlkTime = computeBlockInterval(1/honestLambd)
+				# To remove the empty block event	
+				removeEvent('HONEST_BLOCK', hbCount) 
+
+				# Insert a non-empty block event with the same time
 				evCount = evCount + 1
 				hbCount = evCount
-				heapq.heappush(pQueue, [time+nextBlkTime, evCount, 'HONEST_BLOCK', {'height':lastHonestBlock+1, 'miner':'honest'}])	
+				heapq.heappush(pQueue, [latestHonestBlkTime, evCount, 'HONEST_BLOCK', {'height':lastHonestBlock+1, 'miner':'honest'}])	
 
 			# Todo: Also, we have to check that if the event lowers the block queue length
 			# at the honest miner, we have to remove the empty block event and schedule an
@@ -204,32 +199,52 @@ def run():
 
 			hstQueue.append(blk)
 			hstQueueLen = hstQueueLen + 1
+
+			# Todo: Check if the block is empty, if so add it to the empty block list
+			if blk['miner'] == 'empty':
+				numEmptyBlocks = numEmptyBlocks + 1
+				emptyBlocks.append(blk)
 			
+
+			evCount = evCount + 1
+			hbCount = evCount
+			nextBlkTime = computeBlockInterval(1/honestLambd)
+			latestHonestBlkTime = time+nextBlkTime
+
 			if hstQueueLen > k+1:
 				lateBlocks.append(blk)
 				numLateBlocks = numLateBlocks + 1
-				# Todo: Here we were making the honest miners silent. Now we have
-				# to make them mine empty blocks.
+				# schedule the next empty block
+				heapq.heappush(pQueue, [time+nextBlkTime, evCount, 'HONEST_BLOCK', {'height':lastHonestBlock+1, 'miner':'empty'}])
 			else:
-				nextBlkTime = computeBlockInterval(1/honestLambd)
-				evCount = evCount + 1
-				hbCount = evCount
 				heapq.heappush(pQueue, [time+nextBlkTime, evCount, 'HONEST_BLOCK', {'height':lastHonestBlock+1, 'miner':'honest'}])
 
+			
 			if hstQueueLen == 1:
-				evCount = evCount + 1
-				epCount = evCount
-				heapq.heappush(pQueue, [time+tau, evCount, 'END_PROC', blk])
+				# If hstQueueLen is of size one, the head of the queue could not
+				# be a empty block. Nevertheless, we will put a check here.
+				for qHead in hstQueue:
+					if qHead['miner'] == 'empty':
+						del hstQueue[0]
+						hstQueueLen = hstQueueLen -1
+						eT = eT + 1
+						continue
+					break
+				if hstQueueLen == 1:
+					evCount = evCount + 1
+					epCount = evCount
+					heapq.heappush(pQueue, [time+tau, evCount, 'END_PROC', blk])
 
 			# Reseting adversarial hidden queue (0,0) -> (0,0)
 			if (hiddenQueueLen == 0):
 				hiddenQueue = []
 				hiddenQueueLen = 0
+
 				removeEvent('ADV_BLOCK', abCount)
-				nextAdvBlkTime = computeBlockInterval(1/(advFrac*globalLambd))
+				nextAdvBlkTime = latestAdvBlkTime
 				evCount = evCount + 1
 				abCount = evCount
-				heapq.heappush(pQueue, [time+nextAdvBlkTime, evCount, 'ADV_BLOCK', {'height':lastHonestBlock+1, 'miner':'adv'}])
+				heapq.heappush(pQueue, [nextAdvBlkTime, evCount, 'ADV_BLOCK', {'height':lastHonestBlock+1, 'miner':'adv'}])
 
 			# (0,1) -> (1,1), Usually we will give advantage to the adversary in such situation.
 			elif (hiddenQueueLen == 1):
@@ -257,7 +272,12 @@ def run():
 						nextBlkHeight = lastHonestBlock + 1
 						numLateBlocks = numLateBlocks + 1
 						lateBlocks.append(blk)
+
+						# Remove previous empty block and schedule a new empty block
 						removeEvent('HONEST_BLOCK', hbCount)
+						evCount = evCount + 1
+						hbCount = evCount
+						heapq.heappush(pQueue, [latestHonestBlkTime, evCount, 'HONEST_BLOCK', {'height':lastHonestBlock+1, 'miner':'empty'}])
 					else:
 						release = False
 				if not release:
@@ -271,6 +291,7 @@ def run():
 			evCount = evCount + 1
 			abCount = evCount
 			nextBlkTime = computeBlockInterval(1/(advFrac*globalLambd))
+			latestAdvBlkTime = time+nextBlkTime
 			heapq.heappush(pQueue, [time+nextBlkTime, evCount, 'ADV_BLOCK', {'height':nextBlkHeight, 'miner':'adv'}])
 		else:
 			print("Unknown event: ", event, " found. Exiting...")
@@ -294,7 +315,7 @@ def printExptInfo():
 	print("Block Processing Time: "+str(tau))
 	print("K:"+str(k)+"\t maximum K+N: "+str('unbounded'))
 	print("-----------------------------------")
-	print("Iteration,NumBlocks,NumLateBlocks,fracLateBlocks,SimTime")
+	print("Iteration,NumBlocks,NumLateBlocks,fracLateBlocks,fracEmptyBlocks,SimTime")
 
 def writeExptInfo(file):
 	file.write("-----------------------------------\n")
@@ -304,14 +325,14 @@ def writeExptInfo(file):
 	file.write("adversary fraction: "+str(advFrac)+"\n")
 	file.write("Block Processing Time: "+str(tau)+"\n")
 	file.write("-----------------------------------\n")
-	file.write("Iteration,NumBlocks,NumLateBlocks,fracLateBlocks,SimTime\n")
+	file.write("Iteration,NumBlocks,NumLateBlocks,fracLateBlocks,fracEmptyBlocks,SimTime\n")
 	file.close()
 
 def printResult(itr):
-	print(str(itr)+","+str(lastHonestBlock)+","+str(numLateBlocks)+","+str(numLateBlocks/lastHonestBlock)+","+str(simTime))
+	print(str(itr)+","+str(lastHonestBlock)+","+str(numLateBlocks)+","+str(numLateBlocks/lastHonestBlock)+","+str(numEmptyBlocks)+","+str(simTime))
 
 def writeResult(file, itr):
-	file.write(str(itr)+","+str(lastHonestBlock)+","+str(numLateBlocks)+","+str(numLateBlocks/lastHonestBlock)+","+str(simTime)+"\n")
+	file.write(str(itr)+","+str(lastHonestBlock)+","+str(numLateBlocks)+","+str(numLateBlocks/lastHonestBlock)+","+str(numEmptyBlocks)+","+str(simTime)+"\n")
 	file.close()
 
 
@@ -333,10 +354,12 @@ if mine:
 else:
 	strategy = 'reset'
 
-for k in range(25,75,10):
-	outFilePath = os.environ["HOME"]+"/EVD-Expt/data/simData1/sim-res-"+str(strategy)+str(k)+".txt"
+for k in range(15,75,10):
+	# outFilePath = os.environ["HOME"]+"/EVD-Expt/data/simDataUS/sim-res-"+str(strategy)+str(k)+".txt"
+	outFilePath = "/home/ubuntu/evd-data/sim-res-"+str(strategy)+str(k)+".txt"
+	
 	outFile = open(outFilePath, "a+")
-	numRuns = 1
+	numRuns = 10
 	print(outFilePath)
 	printExptInfo()
 	writeExptInfo(outFile)
@@ -346,18 +369,22 @@ for k in range(25,75,10):
 		hstQueue = []
 		hiddenQueue = []
 		lateBlocks = []
-		hstQueueLen = hiddenQueueLen = numLateBlocks = 0
+		emptyBlocks = []
+		hstQueueLen = hiddenQueueLen = numLateBlocks = numEmptyBlocks = 0
 		lastProcessedBlock = lastHonestBlock = 0
+		latestHonestBlkTime = 0
+		latestAdvBlkTime = 0
+		eT = 0
 
 		numEvents = 0
 		evCount = 0
 		epCount = abCount = hbCount = -1
 		removedEvents = {}
 
-		startTime = time.clock()
+		startTime = time.process_time()
 		initQueue()
 		run()
-		simTime = time.clock()-startTime
+		simTime = time.process_time()-startTime
 		printResult(i)
 		outFile = open(outFilePath, "a+")
 		writeResult(outFile, i)
