@@ -41,7 +41,7 @@ time for which the required bound holds
 '''
 def computeBwTime(delta, bwTh, advFrac):
 	tMin = 1
-	tMax = 1000 # in multiples of delta advFrac*tMax/c expected number of adversarial blocks 
+	tMax = 4000 # in multiples of delta advFrac*tMax/c expected number of adversarial blocks 
 	tCurr = (tMin+tMax)/2
 	hstDiscount = Decimal(math.exp(Decimal(-1*(1-advFrac)*gLambd)*delta))
 	while (tMax-tMin)>2:
@@ -110,7 +110,8 @@ def computeS0(delta, eH, bwTime, eA):
 
 def printRounded(pc):
 	print("c 		:"+str(round(c,pc)))
-	# print("advFrac 	:"+str(round(advFrac,pc)))
+	print("advFrac 	:"+str(round(advFrac,pc)))
+	print("tau 		:"+str(round(tau,pc)))
 	print("gLambd 	:"+str(round(gLambd,pc)))
 	print("delta	:"+str(round(delta,pc)))
 	print("bwTime 	:"+str(round(bwTime,pc)))
@@ -143,26 +144,48 @@ advFrac = Decimal(0.25)
 bwTh = Decimal(math.pow(2,-10))
 
 # We want to find the value of minimum zeta, such that the required bound holds
-z = 30
-tau = Decimal(5.0) # Say it takes 1/4th of average interarrival time to process a block.
+z = 40
+tau = Decimal(7.5) # Say it takes 1/4th of average interarrival time to process a block.
 
-sList = [x for x in range(100,1000,100)]
+sList = [x for x in range(250,400,100)]
 # c is essentially number expected time in delta as the unit of time 
-for s1 in sList:
-	s = Decimal(s1)
-	for c in range(7,11,5):
-		delta = computeDelta(c,gLambd)
-		bwTime = computeBwTime(delta, bwTh, advFrac)
-		epsilonH = computeEpsilon(s, delta)
-		epsilonA = computeEpsilon(s, bwTime)
-		lambd = (1+epsilonH)*(1-advFrac)*gLambd + (1+epsilonA)*advFrac*gLambd
-		s0 = computeS0(delta, epsilonH, bwTime, epsilonA)
-		md1Tail = computeMd1Tail(tau*lambd, z, math.pow(2,-30)) 
-		poissonTail = 1-computPoissonHead(lambd, s0, z)
-		prob = md1Tail+poissonTail
-		# printRounded(15)
-		print(s1,round(prob,10))
-		print("---------")
+
+zTh = 0.01
+brk = False
+s = Decimal(200)
+while True:
+	minc = 5
+	maxc = 10
+	prevZ = 20
+	for c in range(maxc,minc-1,-1):
+		z = prevZ
+		while True:
+			delta = computeDelta(c,gLambd)
+			bwTime = computeBwTime(delta, bwTh, advFrac)
+			epsilonH = computeEpsilon(s, delta)
+			epsilonA = computeEpsilon(s, bwTime)
+			lambd = (1+epsilonH)*(1-advFrac)*gLambd + (1+epsilonA)*advFrac*gLambd
+			s0 = computeS0(delta, epsilonH, bwTime, epsilonA)
+			if(tau*lambd > 1):
+				print("panic......")
+				break
+			if c==minc:
+				brk = True
+			md1Tail = computeMd1Tail(tau*lambd, z, math.pow(2,-30)) 
+			poissonTail = 1-computPoissonHead(lambd, s0, z)
+			prob = md1Tail+poissonTail
+			print(z,round(prob,10))
+			
+			if prob < zTh:
+				print(s, c, round(bwTime,3), round(md1Tail,10), round(prob,10))
+				printRounded(15)
+				print("---------")
+				prevZ = z
+				break
+			z=z+5
+	if brk:
+		break
+	s = s + Decimal(50.0)
 
 
 
