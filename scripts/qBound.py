@@ -17,6 +17,7 @@ import sys
 import numpy as np
 import math
 from scipy.stats import skellam
+from datetime import datetime
 
 from decimal import *
 getcontext().prec = 400
@@ -82,6 +83,12 @@ def computeMd1Tail(lambd, z, md1Th):
 	qSize = z
 	tailProb = 0
 	while True:
+		#Set a time after which we want the loop to break
+		currTime = datetime.now()
+		timeDiff = (currTime - startTime).total_seconds()
+		if (timeDiff> timeTh) and rSet:
+			return 1
+
 		termProb = computeProb(lambd, qSize)
 		tailProb = tailProb + termProb
 		if termProb < md1Th:
@@ -110,7 +117,7 @@ def computeS0(delta, eH, bwTime, eA):
 
 def printRounded(pc):
 	print("c 		:"+str(round(c,pc)))
-	print("advFrac 	:"+str(round(advFrac,pc)))
+	print("advFrac 	:"+str(round(adv,pc)))
 	print("tau 		:"+str(round(tau,pc)))
 	print("gLambd 	:"+str(round(gLambd,pc)))
 	print("delta	:"+str(round(delta,pc)))
@@ -138,56 +145,108 @@ def printRaw():
 	print("pTail 	:"+str(round(poissonTail,pc)))
 	print("prob 	:"+str(round(prob,pc)))
 
+def computeZeta(advFrac, tau, c, s, z, minZ):
+	delta = computeDelta(c,gLambd)
+	bwTime = computeBwTime(delta, bwTh, advFrac)
+	epsilonH = computeEpsilon(s, delta)
+	epsilonA = computeEpsilon(s, bwTime)
+	lambd = (1+epsilonH)*(1-advFrac)*gLambd + (1+epsilonA)*advFrac*gLambd
+	s0 = computeS0(delta, epsilonH, bwTime, epsilonA)
+	if(tau*lambd > 1):
+		print("panic......")
+		return None
+
+	while True:
+		#Set a time after which we want the loop to break
+		currTime = datetime.now()
+		timeDiff = (currTime - startTime).total_seconds()
+		if (timeDiff> timeTh) and rSet:
+			return (1000, None)
+
+		md1Tail = computeMd1Tail(tau*lambd, z, math.pow(10,-5)) 
+		poissonTail = 1-computPoissonHead(lambd, s0, z)
+		prob = md1Tail+poissonTail
+		# print(z,round(prob,10))
+		
+		if prob < zTh:
+			print(z, s, c, round(advFrac,2), round(tau,2), round(bwTime,3), round(md1Tail,5), round(prob,5))
+			return (z, round(epsilonH,5), round(epsilonA,5), s, round(bwTime,5), round(md1Tail,10), round(prob,10))
+		z=z+1
+		if z > minZ:
+			return (z, None)
 
 gLambd = Decimal(1/15.0)
-advFrac = Decimal(0.25)
 bwTh = Decimal(math.pow(2,-10))
-
-# We want to find the value of minimum zeta, such that the required bound holds
-z = 40
-tau = Decimal(7.5) # Say it takes 1/4th of average interarrival time to process a block.
-
-sList = [x for x in range(250,400,100)]
-# c is essentially number expected time in delta as the unit of time 
-
 zTh = 0.01
-brk = False
-s = Decimal(200)
-while True:
-	minc = 5
-	maxc = 10
-	prevZ = 20
-	for c in range(maxc,minc-1,-1):
-		z = prevZ
-		while True:
-			delta = computeDelta(c,gLambd)
-			bwTime = computeBwTime(delta, bwTh, advFrac)
-			epsilonH = computeEpsilon(s, delta)
-			epsilonA = computeEpsilon(s, bwTime)
-			lambd = (1+epsilonH)*(1-advFrac)*gLambd + (1+epsilonA)*advFrac*gLambd
-			s0 = computeS0(delta, epsilonH, bwTime, epsilonA)
-			if(tau*lambd > 1):
-				print("panic......")
-				break
-			if c==minc:
-				brk = True
-			md1Tail = computeMd1Tail(tau*lambd, z, math.pow(2,-30)) 
-			poissonTail = 1-computPoissonHead(lambd, s0, z)
-			prob = md1Tail+poissonTail
-			print(z,round(prob,10))
-			
-			if prob < zTh:
-				print(s, c, round(bwTime,3), round(md1Tail,10), round(prob,10))
-				printRounded(15)
-				print("---------")
-				prevZ = z
-				break
-			z=z+5
-	if brk:
-		break
-	s = s + Decimal(50.0)
 
 
+advFracs = [0.25]
+taus = [5.0, 7.5]
+cvals = [x for x in range(100,1,-5)]
+
+resultData = {}
+miscData = {}
+
+file1 = open("z-data","w+")
+timeTh = 600
+
+for adv in advFracs:
+	resultData[adv] = {}
+	miscData[adv] = {}
+	for tau in taus:
+		resultData[adv][tau]=[]
+		miscData[adv][tau]=[]
+		prevZ = 26
+		file1.write(str(adv)+","+str(tau)+",[")
+		file2.write(str(adv)+","+str(tau)+"\n")
+		for c in cvals:
+			curZ = prevZ
+			minZ = curZ + 100
+			smin = 75.0
+			smax = 400.0
+			rSet = False
+
+			# Changing the parameters to operate with larger numbers
+			if adv == 0.33:
+				smin = 200
+				smax = 1000
+				prevZ = 40
+				curZ = prevZ
+				minZ = curZ + 1
+
+			sCurr = (smin+smax)/2
+			prevResult = []
+			first = True
+			startTime = datetime.now()
+			while (smax-smin)>2:
+				result = computeZeta(Decimal(adv), Decimal(tau), c, sCurr, curZ, minZ)
+				if result:
+					if not first:
+						if minZ <= result[0]:
+							break
+					smax = sCurr
+					sCurr = (smin+smax)/2
+					prevResult = result
+					print(prevResult)
+					minZ = result[0]
+					first = False
+					rSet = True
+				else:
+					smin = sCurr
+					sCurr = (smin+smax)/2
+				
+				currTime = datetime.now()
+				#Set a time after which we want the loop to break
+				timeDiff = (currTime - startTime).total_seconds()
+				if (timeDiff> timeTh) and len(prevResult) > 0:
+					break
+			prevZ = minZ
+			resultData[adv][tau].append(prevZ)
+			file1.write(str(c)+":"+str(prevZ)+",")
+			file1.flush()
+		file1.write("]\n")
+		file1.flush()
+file1.close()
 
 
 
