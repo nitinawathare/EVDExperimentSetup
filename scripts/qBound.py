@@ -63,15 +63,15 @@ def computeEpsilon(interval, delay):
 
 # To stationary probability of given queue length
 def computeProb(lambd, qSize):
-	term1 = (Decimal(1)-lambd)
-	term2 = np.exp(Decimal(qSize)*lambd)
+	term1 = Decimal(Decimal(1)-lambd)
+	term2 = Decimal(np.exp(Decimal(qSize)*lambd))
 	
 	term3 = Decimal(0.0)
 	for j in range(1,qSize):
-		term4 = np.exp(Decimal(j)*lambd)
-		term5 = np.power(-1,(Decimal(qSize)-Decimal(j)))
-		term6 = np.power(Decimal(j)*lambd, Decimal(qSize)-Decimal(j))/(math.factorial(Decimal(qSize)-Decimal(j)))
-		term7 = np.power(Decimal(j)*lambd, Decimal(qSize)-Decimal(j+1))/(math.factorial(Decimal(qSize)-Decimal(j+1)))
+		term4 = Decimal(np.exp(Decimal(j)*lambd))
+		term5 = Decimal(np.power(-1,(Decimal(qSize)-Decimal(j))))
+		term6 = Decimal(np.power(Decimal(j)*lambd, Decimal(qSize)-Decimal(j))/(math.factorial(Decimal(qSize)-Decimal(j))))
+		term7 = Decimal(np.power(Decimal(j)*lambd, Decimal(qSize)-Decimal(j+1))/(math.factorial(Decimal(qSize)-Decimal(j+1))))
 		term8 = term4*term5*(term6 + term7)
 		term3 = term3 + term8
 
@@ -79,9 +79,9 @@ def computeProb(lambd, qSize):
 	return result
 
 # This is computing tail probability of a given z
-def computeMd1Tail(lambd, z, md1Th):
+def computeMd1Tail(lambd, z, md1Th, minProb):
 	qSize = z
-	tailProb = 0
+	tailProb = Decimal(0.0)
 	while True:
 		#Set a time after which we want the loop to break
 		currTime = datetime.now()
@@ -92,9 +92,9 @@ def computeMd1Tail(lambd, z, md1Th):
 		termProb = computeProb(lambd, qSize)
 		tailProb = tailProb + termProb
 		if termProb < md1Th:
-			break
+			return tailProb
 		qSize = qSize + 1
-	return tailProb
+	
 
 def poissonProb(lambd, k, t):
 	nTerm1 = Decimal(math.pow(Decimal(lambd*t), Decimal(k)))
@@ -104,9 +104,9 @@ def poissonProb(lambd, k, t):
 	return nTerm1*nTerm2/dTerm1
 
 def computPoissonHead(lambd, s, zeta):
-	totalProb = 0
-	for i in range(0,zeta+1):
-		termProb = poissonProb(lambd,i, s)
+	totalProb = Decimal(0.0)
+	for i in range(0,zeta):
+		termProb = poissonProb(lambd,i, Decimal(s))
 		totalProb = totalProb + termProb
 	return totalProb
 
@@ -175,12 +175,33 @@ def computeZeta(advFrac, tau, c, s, z, minZ):
 		if z > minZ:
 			return (z, None)
 
+def computeHonestProb(tau, c, s, z, minProb):
+	delta = computeDelta(c,gLambd)
+	epsilonH = computeEpsilon(s, delta) # Here s0 = s
+	lambd = Decimal((1+epsilonH)*gLambd)
+
+	if(tau*lambd > 1):
+		print("panic......")
+		return None
+
+	#Set a time after which we want the loop to break
+	currTime = datetime.now()
+	timeDiff = (currTime - startTime).total_seconds()
+	if (timeDiff> timeTh) and rSet:
+		return (1, None)
+
+	md1Tail = computeMd1Tail(tau*lambd, z, math.pow(2,-64), minProb) 
+	poissonTail = Decimal(1)-computPoissonHead(lambd, s, z)
+	prob = md1Tail+poissonTail
+	return prob
+
+
 gLambd = Decimal(1/15.0)
 bwTh = Decimal(math.pow(2,-10))
 zTh = 0.01
 
 
-advFracs = [0.25]
+advFracs = [0.33]
 taus = [5.0, 7.5]
 cvals = [x for x in range(100,1,-5)]
 
@@ -189,6 +210,45 @@ miscData = {}
 
 file1 = open("z-data","w+")
 timeTh = 600
+zList = [z for z in range(10,25,5)]
+
+file2 = open("h-data","w+")
+for tau in taus:
+	resultData[tau]=[]
+	for z in zList:
+		file2.write(str(tau)+" "+str(z)+" ")
+		for c in cvals:
+			smin = 0.0
+			smax = 25.0
+			rSet = False
+			minProb = 1
+			startTime = datetime.now()
+			sCurr = (smin+smax)/2
+			while (smax-smin)>2:
+				result = computeHonestProb(Decimal(tau), c, sCurr, z, minProb)
+				if minProb > result:
+					smax = sCurr
+					sCurr = (smin+smax)/2
+					minProb = result
+					rSet = True
+				else:
+					smin = sCurr
+					sCurr = (smin+smax)/2
+				
+				currTime = datetime.now()
+				#Set a time after which we want the loop to break
+				timeDiff = (currTime - startTime).total_seconds()
+				if (timeDiff> timeTh) and rSet:
+					break
+			print(tau,z,c,round(minProb,30))
+			if c==5:
+				file2.write(str(c)+":"+str(round(minProb,20))+str(""))
+			else:
+				file2.write(str(c)+":"+str(round(minProb,20))+str(","))
+			file2.flush()
+		file2.write("\n")
+exit()
+
 
 for adv in advFracs:
 	resultData[adv] = {}
@@ -198,7 +258,6 @@ for adv in advFracs:
 		miscData[adv][tau]=[]
 		prevZ = 26
 		file1.write(str(adv)+","+str(tau)+",[")
-		file2.write(str(adv)+","+str(tau)+"\n")
 		for c in cvals:
 			curZ = prevZ
 			minZ = curZ + 100
@@ -212,7 +271,7 @@ for adv in advFracs:
 				smax = 1000
 				prevZ = 40
 				curZ = prevZ
-				minZ = curZ + 1
+				minZ = curZ + 100
 
 			sCurr = (smin+smax)/2
 			prevResult = []
@@ -247,6 +306,10 @@ for adv in advFracs:
 		file1.write("]\n")
 		file1.flush()
 file1.close()
+
+
+
+
 
 
 
